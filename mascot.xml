@@ -1,0 +1,130 @@
+<tool id="proteomics_search_mascot_1" name="Mascot MSMS Search" version="1.0.0">
+	<requirements><requirement type="package">protkgem</requirement></requirements>
+	<description>Run a Mascot Search on a File</description>
+
+
+	<command>mascot_search.rb -d $database -f $fragment_ion_tol -S $server $input_file -o $output -r
+		## Variable Mods
+
+		--var-mods='
+		$variable_mods
+		'
+		
+		--fix-mods='
+		$fixed_mods
+		'		
+		--allowed-charges=$allowed_charges	--enzyme=$enzyme --instrument=$instrument --precursor-ion-tol-units=$precursor_tolu --email=$email --username=$username -v $missed_cleavages
+		
+	</command>
+
+	<inputs>
+	
+    <param name="input_file" type="data" format="mgf" multiple="false" label="MSMS File" help="A Mascot Generic Format file containing MSMS Spectra"/>
+
+	<param name="database" type="select" format="text" >
+	    <label>Database</label>
+		<options from_file="mascot_databases.loc">
+			<column name="name" index="0" />
+			<column name="value" index="2" />
+		</options>
+	</param>
+
+
+
+	<param name="variable_mods" format="text" type="select" multiple="true" label="Variable Modifications" help="Hold the appropriate key while
+		clicking to select multiple items">
+		<options from_file="mascot_mods.loc">
+			<column name="name" index="0" />
+			<column name="value" index="2" />
+		</options>
+	</param>		
+
+	<param name="fixed_mods" format="text" type="select" multiple="true" label="Fixed Modifications" help="Hold the appropriate key while
+	clicking to select multiple items">
+		<options from_file="mascot_mods.loc">
+			<column name="name" index="0" />
+			<column name="value" index="2" />
+		</options>
+	</param>
+	
+	<param name="missed_cleavages" type="select" format="text">
+		<label>Missed Cleavages Allowed</label>
+	    <option value="0">0</option>		
+		<option value="1">1</option>
+		<option value="2">2</option>
+	</param>
+	
+	<param name="enzyme" type="select" format="text">
+	    <label>Enzyme</label>
+	    <option value="Trypsin">Trypsin</option>		
+	</param>
+	
+	<param name="allowed_charges" type="select" format="text">
+	    <label>Peptide Charge</label>
+		<option value="8-">8-</option>
+		<option value="7-">7-</option>
+		<option value="6-">6-</option>
+		<option value="5-">5-</option>
+		<option value="4-">4-</option>
+		<option value="3-">3-</option>
+		<option value="2-,3- and 4-">2-,3- and 4-</option>
+		<option value="2- and 3-">2- and 3-</option>
+		<option value="2-">2-</option>
+		<option value="1-,2- and 3-">1-,2- and 3-</option>
+		<option value="1-">1-</option>
+		<option value="Mr">Mr</option>
+		<option value="1+">1+</option>
+	    <option value="1+, 2+ and 3+">1+,2+ and 3+</option>		
+		<option value="2+">2+</option>
+		<option value="2+ and 3+">2+ and 3+</option>
+		<option value="2+,3+ and 4+">2+,3+ and 4+</option>
+		<option value="3+">3+</option>
+		<option value="4+">4+</option>
+		<option value="5+">5+</option>
+		<option value="6+">6+</option>
+		<option value="7+">7+</option>
+		<option value="8+">8+</option>
+	</param>
+	
+	<param name="instrument" type="select" format="text">
+	    <label>Instrument</label>
+		<option value="ESI-QUAD-TOF">ESI-QUAD-TOF</option>
+		<option value="MALDI-TOF-PSD">MALDI-TOF-PSD</option>
+		<option value="ESI-TRAP">ESI-TRAP</option>
+		<option value="ESI-QUAD">ESI-QUAD</option>
+		<option value="ESI-FTICR">ESI-FTICR</option>
+	    <option value="MALDI-TOF-TOF">MALDI-TOF-TOF</option>
+		<option value="ESI-4SECTOR">ESI-4SECTOR</option>
+		<option value="FTMS-ECD">FTMS-ECD</option>
+		<option value="ETD-TRAP">ETD-TRAP</option>
+		<option value="MALDI-QUAD-TOF">MALDI-QUAD-TOF</option>
+		<option value="MALDI-QIT-TOF">MALDI-QIT-TOF</option>
+		<option value="MALDI-ISD">MALDI-ISD</option>
+		<option value="CID+ETD">CID+ETD</option>
+	</param>
+	
+	<param name="fragment_ion_tol" label="Fragment Ion Tolerance in Daltons" type="float" value="0.65" min="0" max="10000" help="Fragment ion tolerance in Daltons"/>
+
+	<param name="precursor_ion_tol" label="Precursor Ion Tolerance (Da or ppm)" type="float" value="100" min="0" max="10000" help="Precursor ion tolerance"/>
+	<param name="precursor_tolu" type="select" format="text">
+	    <label>Precursor Ion Tolerance Units</label>
+	    <option value="ppm">ppm</option>		
+		<option value="Da">Da</option>
+	</param>
+
+	<param name="server" type="text" label="URL to Mascot Server cgi " size="60" value="http://www.exampleserver.com/mascot/cgi/"/>
+	
+	<param name="email" type="text" label="Email " size="60" value="" help="Not Supported Yet."/>
+	
+	<param name="username" type="text" label="Username" size="60" value="" help="Not Supported Yet."/>	
+
+  </inputs>
+  <outputs>
+    <data format="mascotdat" name="output" metadata_source="input_file" label="mascot_vs_${database}.${input_file.display_name}.mascotdat"/>
+  </outputs>
+
+  <help>
+	Run a Mascot Search
+  </help>
+
+</tool>

@@ -1,0 +1,77 @@
+#This file lists the names of chemical modifications acceptable for proteomics search engines
+#
+#
+Acetyl (K)	acetyl_k_	Acetyl (K)	acetyl_k_
+Acetyl (N-term)	acetyl_n-term_	Acetyl (N-term)	acetyl_n-term_
+Acetyl (Protein N-term)	acetyl_proteinn-term_	Acetyl (Protein N-term)	acetyl_proteinn-term_
+Amidated (C-term)	amidated_c-term_	Amidated (C-term)	amidated_c-term_
+Amidated (Protein C-term)	amidated_proteinc-term_	Amidated (Protein C-term)	amidated_proteinc-term_
+Ammonia-loss (N-term C)	ammonia-loss_n-termc_	Ammonia-loss (N-term C)	ammonia-loss_n-termc_
+Biotin (K)	biotin_k_	Biotin (K)	biotin_k_
+Biotin (N-term)	biotin_n-term_	Biotin (N-term)	biotin_n-term_
+Carbamidomethyl (C)	carbamidomethyl_c_	Carbamidomethyl (C)	carbamidomethyl_c_
+Carbamyl (K)	carbamyl_k_	Carbamyl (K)	carbamyl_k_
+Carbamyl (N-term)	carbamyl_n-term_	Carbamyl (N-term)	carbamyl_n-term_
+Carboxymethyl (C)	carboxymethyl_c_	Carboxymethyl (C)	carboxymethyl_c_
+Cation:Na (C-term)	cation_na_c-term_	Cation:Na (C-term)	cation_na_c-term_
+Cation:Na (DE)	cation_na_de_	Cation:Na (DE)	cation_na_de_
+Deamidated (NQ)	deamidated_nq_	Deamidated (NQ)	deamidated_nq_
+Deamidated-N (N)	deamidated-n_n_	Deamidated-N (N)	deamidated-n_n_
+Dehydrated (N-term C)	dehydrated_n-termc_	Dehydrated (N-term C)	dehydrated_n-termc_
+Dehydro (C)	dehydro_c_	Dehydro (C)	dehydro_c_
+Dioxidation (M)	dioxidation_m_	Dioxidation (M)	dioxidation_m_
+Ethanolyl (C)	ethanolyl_c_	Ethanolyl (C)	ethanolyl_c_
+ExacTagAmine (K)	exactagamine_k_	ExacTagAmine (K)	exactagamine_k_
+ExacTagThiol (C)	exactagthiol_c_	ExacTagThiol (C)	exactagthiol_c_
+Formyl (N-term)	formyl_n-term_	Formyl (N-term)	formyl_n-term_
+Formyl (Protein N-term)	formyl_proteinn-term_	Formyl (Protein N-term)	formyl_proteinn-term_
+Gln->pyro-Glu (N-term Q)	gln_pyro-glu_n-termq_	Gln->pyro-Glu (N-term Q)	gln_pyro-glu_n-termq_
+Glu->pyro-Glu (N-term E)	glu_pyro-glu_n-terme_	Glu->pyro-Glu (N-term E)	glu_pyro-glu_n-terme_
+Guanidinyl (K)	guanidinyl_k_	Guanidinyl (K)	guanidinyl_k_
+ICAT-C (C)	icat-c_c_	ICAT-C (C)	icat-c_c_
+ICAT-C:13C(9) (C)	icat-c_13c_9__c_	ICAT-C:13C(9) (C)	icat-c_13c_9__c_
+ICPL (K)	icpl_k_	ICPL (K)	icpl_k_
+ICPL (Protein N-term)	icpl_proteinn-term_	ICPL (Protein N-term)	icpl_proteinn-term_
+ICPL:13C(6) (K)	icpl_13c_6__k_	ICPL:13C(6) (K)	icpl_13c_6__k_
+ICPL:13C(6) (Protein N-term)	icpl_13c_6__proteinn-term_	ICPL:13C(6) (Protein N-term)	icpl_13c_6__proteinn-term_
+ICPL:13C(6)2H(4) (K)	icpl_13c_6_2h_4__k_	ICPL:13C(6)2H(4) (K)	icpl_13c_6_2h_4__k_
+ICPL:13C(6)2H(4) (N-term)	icpl_13c_6_2h_4__n-term_	ICPL:13C(6)2H(4) (N-term)	icpl_13c_6_2h_4__n-term_
+ICPL:13C(6)2H(4) (Protein N-term)	icpl_13c_6_2h_4__proteinn-term_	ICPL:13C(6)2H(4) (Protein N-term)	icpl_13c_6_2h_4__proteinn-term_
+ICPL:2H(4) (K)	icpl_2h_4__k_	ICPL:2H(4) (K)	icpl_2h_4__k_
+ICPL:2H(4) (Protein N-term)	icpl_2h_4__proteinn-term_	ICPL:2H(4) (Protein N-term)	icpl_2h_4__proteinn-term_
+iTRAQ4plex (K)	itraq4plex_k_	iTRAQ4plex (K)	itraq4plex_k_
+iTRAQ4plex (N-term)	itraq4plex_n-term_	iTRAQ4plex (N-term)	itraq4plex_n-term_
+iTRAQ4plex (Y)	itraq4plex_y_	iTRAQ4plex (Y)	itraq4plex_y_
+iTRAQ8plex (K)	itraq8plex_k_	iTRAQ8plex (K)	itraq8plex_k_
+iTRAQ8plex (N-term)	itraq8plex_n-term_	iTRAQ8plex (N-term)	itraq8plex_n-term_
+iTRAQ8plex (Y)	itraq8plex_y_	iTRAQ8plex (Y)	itraq8plex_y_
+Label:18O(1) (C-term)	label_18o_1__c-term_	Label:18O(1) (C-term)	label_18o_1__c-term_
+Label:18O(2) (C-term)	label_18o_2__c-term_	Label:18O(2) (C-term)	label_18o_2__c-term_
+Met->Hse (C-term M)	met_hse_c-termm_	Met->Hse (C-term M)	met_hse_c-termm_
+Met->Hsl (C-term M)	met_hsl_c-termm_	Met->Hsl (C-term M)	met_hsl_c-termm_
+Methyl (C-term)	methyl_c-term_	Methyl (C-term)	methyl_c-term_
+Methyl (DE)	methyl_de_	Methyl (DE)	methyl_de_
+Methylthio (C)	methylthio_c_	Methylthio (C)	methylthio_c_
+mTRAQ (K)	mtraq_k_	mTRAQ (K)	mtraq_k_
+mTRAQ (N-term)	mtraq_n-term_	mTRAQ (N-term)	mtraq_n-term_
+mTRAQ (Y)	mtraq_y_	mTRAQ (Y)	mtraq_y_
+mTRAQ:13C(3)15N(1) (K)	mtraq_13c_3_15n_1__k_	mTRAQ:13C(3)15N(1) (K)	mtraq_13c_3_15n_1__k_
+mTRAQ:13C(3)15N(1) (N-term)	mtraq_13c_3_15n_1__n-term_	mTRAQ:13C(3)15N(1) (N-term)	mtraq_13c_3_15n_1__n-term_
+mTRAQ:13C(3)15N(1) (Y)	mtraq_13c_3_15n_1__y_	mTRAQ:13C(3)15N(1) (Y)	mtraq_13c_3_15n_1__y_
+NIPCAM (C)	nipcam_c_	NIPCAM (C)	nipcam_c_
+Oxidation (HW)	oxidation_hw_	Oxidation (HW)	oxidation_hw_
+Oxidation (M)	oxidation_m_	Oxidation (M)	oxidation_m_
+Phospho (ST)	phospho_st_	Phospho (ST)	phospho_st_
+Phospho (Y)	phospho_y_	Phospho (Y)	phospho_y_
+Propionamide (C)	propionamide_c_	Propionamide (C)	propionamide_c_
+Pyridylethyl (C)	pyridylethyl_c_	Pyridylethyl (C)	pyridylethyl_c_
+Pyro-carbamidomethyl (N-term C)	pyro-carbamidomethyl_n-termc_	Pyro-carbamidomethyl (N-term C)	pyro-carbamidomethyl_n-termc_
+Sulfo (S)	sulfo_s_	Sulfo (S)	sulfo_s_
+Sulfo (T)	sulfo_t_	Sulfo (T)	sulfo_t_
+Sulfo (Y)	sulfo_y_	Sulfo (Y)	sulfo_y_
+TMT (K)	tmt_k_	TMT (K)	tmt_k_
+TMT (N-term)	tmt_n-term_	TMT (N-term)	tmt_n-term_
+TMT2plex (K)	tmt2plex_k_	TMT2plex (K)	tmt2plex_k_
+TMT2plex (N-term)	tmt2plex_n-term_	TMT2plex (N-term)	tmt2plex_n-term_
+TMT6plex (K)	tmt6plex_k_	TMT6plex (K)	tmt6plex_k_
+TMT6plex (N-term)	tmt6plex_n-term_	TMT6plex (N-term)	tmt6plex_n-term_
