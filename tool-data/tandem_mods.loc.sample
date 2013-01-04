@@ -1,0 +1,6 @@
+#This file lists the names of inbuilt chemical modifications accepted by X!Tandem
+#
+#
+Carbamidomethyl C	carbamidomethyl_c_	57.021464@C	carbamidomethyl_c_
+Glycocapture-N	glycocapture_n_	0.998@N!{P}[ST]	glycocapture_n_
+Oxidation M	oxidation_m_	15.994915@M	oxidation_m_
