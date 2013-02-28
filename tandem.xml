@@ -7,8 +7,8 @@
 
 	<command>
 		#if $database.source_select=="built_in":
-		rvm 1.9.3@protk do tandem_search.rb -d $database.dbkey 
-		#else #tandem_search.rb -d $database.fasta_file
+		rvm 1.9.3@protk-1.1.8 do tandem_search.rb -d $database.dbkey 
+		#else #rvm 1.9.3@protk-1.1.8 do tandem_search.rb -d $database.fasta_file
 		#end if
 
 		--var-mods='
@@ -111,7 +111,6 @@
 		<data format="raw_pepxml" name="output" metadata_source="input_file" label="X!Tandem_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}.pepXML"/>
 	</outputs>
 
-
 	<tests>
     	<test>
     		<param name="source_select" value="input_ref"/>
@@ -120,7 +119,7 @@
       		<param name="variable_mods" value="15.994915@M"/>
       		<param name="fixed_mods" value="57.021464@C"/>
       		<param name="allow_multi_isotope_search" value="false"/>
-      		<output name="output" file="bsa.pepXML"/>
+      		<output name="output" file="bsa.pepXML" compare="sim_size" delta="100" /> 
     	</test>
   	</tests>
 
