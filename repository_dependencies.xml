@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<repositories description="X!Tandem requires Proteomics Datatypes">
+     <repository toolshed="http://10.211.55.29:9009" name="proteomics_datatypes" owner="iracooke" changeset_revision="699a890a9d99"/>
+</repositories>

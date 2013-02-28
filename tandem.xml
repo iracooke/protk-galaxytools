@@ -1,10 +1,13 @@
 <tool id="proteomics_search_tandem_1" name="X!Tandem MSMS Search" version="1.0.0">
-	<requirements><requirement type="package">protkgem</requirement></requirements>
+	<requirements>
+		<requirement type="package" version="1.1.8">galaxy_protk</requirement>
+		<requirement type="package" version="4.6.1">trans_proteomic_pipeline</requirement>
+	</requirements>
 	<description>Run an X!Tandem Search</description>
 
 	<command>
 		#if $database.source_select=="built_in":
-		tandem_search.rb -d $database.dbkey 
+		rvm 1.9.3@protk do tandem_search.rb -d $database.dbkey 
 		#else #tandem_search.rb -d $database.fasta_file
 		#end if
 
@@ -23,8 +26,6 @@
 		'
 
 		$input_file -o $output -r --enzyme=$enzyme --precursor-ion-tol-units=$precursor_tolu -v $missed_cleavages -f $fragment_ion_tol -p $precursor_ion_tol $allow_multi_isotope_search --keep-params-files
-		
-		
 		
 	</command>
 
@@ -109,6 +110,19 @@
 	<outputs>
 		<data format="raw_pepxml" name="output" metadata_source="input_file" label="X!Tandem_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}.pepXML"/>
 	</outputs>
+
+
+	<tests>
+    	<test>
+    		<param name="source_select" value="input_ref"/>
+	      	<param name="fasta_file" value="bsa.fasta"/>
+   		   	<param name="input_file" value="bsa.mzML"/>
+      		<param name="variable_mods" value="15.994915@M"/>
+      		<param name="fixed_mods" value="57.021464@C"/>
+      		<param name="allow_multi_isotope_search" value="false"/>
+      		<output name="output" file="bsa.pepXML"/>
+    	</test>
+  	</tests>
 
 
   <help>
