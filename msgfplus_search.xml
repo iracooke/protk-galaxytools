@@ -1,11 +1,18 @@
-<tool id="proteomics_search_msgfplus_1" name="MSGF+ MSMS Search" version="1.0.0">
-	<requirements><requirement type="package">protkgem</requirement></requirements>
+<tool id="proteomics_search_msgfplus_1" name="MSGF+ MSMS Search" version="1.0.1">
+
+	<requirements>
+    	<requirement type="package" version="1.2.0">galaxy_protk</requirement>
+    	<requirement type="package" version="20130227">msgfplus</requirement>
+    	<requirement type="package" version="3_0_4388">proteowizard</requirement>
+   	</requirements>
+
+
 	<description>Run an MSGF+ Search</description>
 
 	<command>
 		#if $database.source_select=="built_in":
-		msgfplus_search.rb --galaxy -d $database.dbkey --java-mem 8000M
-		#else #msgfplus_search.rb -d $database.fasta_file
+		rvm 1.9.3@protk-1.2.0 do msgfplus_search.rb --galaxy -d $database.dbkey
+		#else #rvm 1.9.3@protk-1.2.0 do msgfplus_search.rb --galaxy -d $database.fasta_file
 		#end if
 
 		--var-mods='

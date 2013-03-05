@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<repositories description="Proteomics datatypes, MSGF+ and Protk">
+
+     <repository toolshed="http://toolshed.g2.bx.psu.edu" name="proteomics_datatypes" owner="iracooke" changeset_revision="463328a6967f"/>
+
+	<repository toolshed="http://toolshed.g2.bx.psu.edu" name="galaxy_protk" owner="iracooke" changeset_revision="dac478a72c1d"/>
+
+     <repository toolshed="http://toolshed.g2.bx.psu.edu" name="protk_msgfplus" owner="iracooke" changeset_revision="21c7f6a61d61"/>
+
+     <repository toolshed="http://toolshed.g2.bx.psu.edu" name="protk_proteowizard" owner="iracooke" changeset_revision="dd22a794a86b"/>
+
+ </repositories>
