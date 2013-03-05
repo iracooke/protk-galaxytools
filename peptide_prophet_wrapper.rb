@@ -2,8 +2,6 @@ require 'pathname'
 
 $VERBOSE=nil
 
-peptide_prophet_path=%x[which peptide_prophet.rb]
-
 actual_output_path_string=ARGV.shift
 
 # Second argument is the original input file name ... we'll change this below
@@ -20,7 +18,7 @@ full_tmp_output_path_string="#{wd}/peptide_prophet_output.pep.xml"
 
 cmd = "ln -s #{original_input_file} #{actual_input_path_string};"
 
-cmd << peptide_prophet_path.chomp
+cmd << "rvm 1.9.3@protk-1.2.0 do peptide_prophet.rb"
 
 
 ARGV[0]="#{actual_input_path_string}"
@@ -35,4 +33,4 @@ cmd << " -o peptide_prophet_output.pep.xml"
 cmd << ";ruby -pi -e \"gsub('#{actual_input_path_string}', '#{original_input_file}')\" peptide_prophet_output.pep.xml"
 cmd << ";ruby -pi -e \"gsub('#{full_tmp_output_path_string}', '#{actual_output_path_string}')\" peptide_prophet_output.pep.xml"
 
-%x[#{cmd}]
+p %x[#{cmd}]

@@ -2,8 +2,6 @@ require 'pathname'
 
 $VERBOSE=nil
 
-protein_prophet_path=%x[which protein_prophet.rb]
-
 actual_output_path_string=ARGV.shift
 
 # Second argument is the original input file name ... we'll change this below
@@ -19,7 +17,7 @@ actual_input_path_string="#{wd}/#{original_input_path.basename}.pep.xml"
 
 cmd = "ln -s #{original_input_file} #{actual_input_path_string};"
 
-cmd << protein_prophet_path.chomp
+cmd << "rvm 1.9.3@protk-1.2.0 do protein_prophet.rb"
 
 
 ARGV[0]="#{actual_input_path_string}"

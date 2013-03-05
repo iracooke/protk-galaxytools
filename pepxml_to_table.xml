@@ -1,0 +1,29 @@
+<tool id="pepxml_to_table_1" name="PepXML to Table" version="1.0.1">
+
+	<requirements>
+	    <requirement type="package" version="1.2.0">galaxy_protk</requirement>
+   </requirements>
+
+
+
+  <description>Converts a pepXML file to a tab delimited text file</description>
+
+
+<!-- Note .. the input file is assumed to be the first argument -->
+<command>rvm 1.9.3@protk-1.2.0 do pepxml_to_table.rb $input_file -o $output</command>
+
+
+<inputs>
+
+	<param name="input_file" type="data" format="pepxml,peptideprophet_pepxml,interprophet_pepxml"  multiple="false" label="Input File" help="A pepXML file"/>
+
+</inputs>
+<outputs>
+	<data format="csv" name="output" metadata_source="input_file" label="${input_file.display_name}.csv" />
+</outputs>
+
+<help>
+	Convert a pepXML file to Tab delimited text
+</help>
+
+</tool>

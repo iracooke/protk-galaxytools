@@ -34,8 +34,7 @@ input_files=original_input_files.collect do |input|
   actual_input_path_string
 end
 
-interprophet_path=%x[which interprophet.rb]
-cmd << interprophet_path.chomp
+cmd << "rvm 1.9.3@protk-1.2.0 do interprophet.rb"
 
 cmd << " --no-nss" unless use_nss=="blank"
 cmd << " --no-nrs" unless use_nrs=="blank"
