@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<tool_dependency>
+<!--     <package name="galaxy_protk" version="1.2.0">
+	     <repository toolshed="http://10.211.55.28:9009" name="galaxy_protk" owner="iracooke" changeset_revision="5610168f3b53"/>
+    </package>
+
+    <package name="trans_proteomic_pipeline" version="4.6.1">
+        <repository toolshed="http://10.211.55.28:9009" name="protk_tpp" owner="iracooke" changeset_revision="e44f0d3bb9dd" />
+    </package>
+ -->
+    <package name="galaxy_protk" version="1.2.0">
+	     <repository toolshed="http://toolshed.g2.bx.psu.edu" name="galaxy_protk" owner="iracooke" changeset_revision="dac478a72c1d"/>
+    </package>
+
+    <package name="trans_proteomic_pipeline" version="4.6.1">
+        <repository toolshed="http://toolshed.g2.bx.psu.edu" name="protk_trans_proteomic_pipeline" owner="iracooke" changeset_revision="cedd5e884349" />
+    </package>
+
+
+
+</tool_dependency>

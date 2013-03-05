@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<repositories description="X!Tandem requires Proteomics Datatypes as well the trans proteomic pipeline">
-     <repository toolshed="http://10.211.55.28:9009" name="proteomics_datatypes" owner="iracooke" changeset_revision="699a890a9d99"/>
-     <repository toolshed="http://10.211.55.28:9009" name="protk_tpp" owner="iracooke" changeset_revision="e22c9164d5f9"/>
-</repositories>
+<repositories description="Proteomics datatypes and the TPP">
+     <repository toolshed="http://toolshed.g2.bx.psu.edu" name="proteomics_datatypes" owner="iracooke" changeset_revision="463328a6967f"/>
+     <repository toolshed="http://toolshed.g2.bx.psu.edu" name="protk_trans_proteomic_pipeline" owner="iracooke" changeset_revision="cedd5e884349"/>
+ </repositories>
+
