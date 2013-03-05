@@ -1,13 +1,17 @@
-<tool id="proteomics_search_omssa_1" name="OMSSA MSMS Search" version="1.0.0">
-	<requirements>
-		<requirement type="package">protkgem</requirement>
-	</requirements>
-	
+<tool id="proteomics_search_omssa_1" name="OMSSA MSMS Search" version="1.0.1">
+
+   <requirements>
+	    <requirement type="package" version="1.2.0">galaxy_protk</requirement>
+    	<requirement type="package" version="2.1.8">omssa</requirement>
+    	<requirement type="package" version="2.2.27">blast</requirement>
+   </requirements>
+
+
 	<description>Run an OMSSA MS/MS Search</description>
 		
 	<command>#if $database.source_select=="built_in":
-		omssa_search.rb -d $database.dbkey 
-		#else #omssa_search.rb -d $database.fasta_file
+		rvm 1.9.3@protk-1.2.0 do omssa_search.rb -d $database.dbkey 
+		#else #rvm 1.9.3@protk-1.2.0 do omssa_search.rb -d $database.fasta_file
 		#end if
 		
 		--var-mods='
