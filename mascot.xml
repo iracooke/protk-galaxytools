@@ -1,9 +1,14 @@
-<tool id="proteomics_search_mascot_1" name="Mascot MSMS Search" version="1.0.0">
-	<requirements><requirement type="package">protkgem</requirement></requirements>
-	<description>Run a Mascot Search on a File</description>
+<tool id="proteomics_search_mascot_1" name="Mascot MSMS Search" version="1.0.1">
 
 
-	<command>mascot_search.rb -d $database -f $fragment_ion_tol -S $server $input_file -o $output -r
+	<requirements>
+	    <requirement type="package" version="1.2.0">galaxy_protk</requirement>
+   </requirements>
+
+	<description>Mascot MS/MS Search</description>
+
+
+	<command>rvm 1.9.3@protk-1.2.0 do mascot_search.rb -d $database -f $fragment_ion_tol -S $server $input_file -o $output -r
 		## Variable Mods
 
 		--var-mods='

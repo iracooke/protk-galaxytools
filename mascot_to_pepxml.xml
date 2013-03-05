@@ -1,10 +1,12 @@
-<tool id="mascot_to_pepxml_1" name="Mascot to pepXML" version="1.0.0">
-	<requirements><requirement type="package">protkgem</requirement></requirements>
+<tool id="mascot_to_pepxml_1" name="Mascot to pepXML" version="1.0.1">
+	<requirements>
+	    <requirement type="package" version="1.2.0">galaxy_protk</requirement>
+	    <requirement type="package" version="4.6.1">trans_proteomic_pipeline</requirement>
+   </requirements>
+
   <description>Converts a mascot results file to pepXML</description>
 
-
-<!-- Note .. the input file is assumed to be the first argument -->
-<command>mascot_to_pepxml.rb $input_file -o $output -d $database</command>
+<command>rvm 1.9.3@protk-1.2.0 do mascot_to_pepxml.rb $input_file -o $output -d $database</command>
 <inputs>
 
 	<param name="input_file" type="data" format="mascotdat" multiple="false" label="Input File" help="Mascot results file"/>
@@ -23,7 +25,7 @@
 </outputs>
 
 <help>
-	Convert mascot results to pepXML
+	Convert mascot results from mascotdat to pepXML
 </help>
 
 </tool>
