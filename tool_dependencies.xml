@@ -20,7 +20,7 @@
         <repository toolshed="http://toolshed.g2.bx.psu.edu" name="protk_blast" owner="iracooke" changeset_revision="0d86d29aaed6" />
     </package>
 
-    <package name="omssa" version="2.1.8">
+    <package name="omssa" version="2.1.9">
         <repository toolshed="http://toolshed.g2.bx.psu.edu" name="protk_omssa" owner="iracooke" changeset_revision="f77532db59b6" />
     </package>
 
