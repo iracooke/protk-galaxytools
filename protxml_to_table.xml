@@ -1,0 +1,35 @@
+<tool id="protxml_to_table_1" name="ProtXML to Table" version="1.0.0">
+	<requirements>
+	    <requirement type="package" version="1.2.2">galaxy_protk</requirement>
+   </requirements>
+
+	<description>Converts a ProtXML file to a table</description>
+
+	<command>
+		rvm 1.9.3@protk-1.2.2 do protxml_to_table.rb 
+
+		$input_file 
+		-o $output 
+	</command>
+
+	<inputs>	
+		
+		<param format="protxml" name="input_file" type="data" label="ProtXML File to Convert"/>
+
+	</inputs>
+
+
+	<outputs>
+		<data format="tabular" name="output" />
+	</outputs>
+
+
+  <help>
+
+**What it does**
+
+Converts a ProtXML file to a tab separated table 
+
+  </help>
+
+</tool>

@@ -1,17 +1,30 @@
 <tool id="proteomics_search_interprophet_1" name="InterProphet" version="1.0.1">
 	
 	<requirements>
-	    <requirement type="package" version="1.2.0">galaxy_protk</requirement>
+	    <requirement type="package" version="1.2.2">galaxy_protk</requirement>
 	    <requirement type="package" version="4.6.1">trans_proteomic_pipeline</requirement>
    </requirements>
 
 
   <description>Combine Peptide Prophet results from multiple search engines</description>
 
-  <command interpreter="ruby">
+  <command interpreter="bash">
 
-	interprophet_wrapper.rb $output $use_nss $use_nrs $use_nse $use_nsi $use_nsm --minprob $minprob
+	interprophet_wrapper.sh 
 
+	$output 
+
+	$use_nss 
+
+	$use_nrs 
+
+	$use_nse 
+
+	$use_nsi 
+
+	$use_nsm 
+
+	--minprob $minprob
 
 	## Inputs.
 	${first_input}
@@ -29,11 +42,11 @@
 		<param format="peptideprophet_pepxml" name="additional_input" type="data" label="PepXML produced by Peptide Prophet" help=""/>
 	</repeat>
 	
-	<param name="use_nss" checked="true" type="boolean" label="Include NSS in Model" help="Include NSS (Number of Sibling Searches) in Statistical Model" truevalue="blank" falsevalue="--nonss"/>
-	<param name="use_nrs" checked="true" type="boolean" label="Include NRS in Model" help="Include NRS (Number of Replicate Spectra) in Statistical Model" truevalue="blank" falsevalue="--nonrs"/>
-	<param name="use_nse" checked="true" type="boolean" label="Include NSE in Model" help="Include NSE (Number of Sibling Experiments) in Statistical Model" truevalue="blank" falsevalue="--nonse"/>
-	<param name="use_nsi" checked="true" type="boolean" label="Include NSI in Model" help="Include NSI (Number of Sibling Ions) in Statistical Model" truevalue="blank" falsevalue="--nonsi"/>
-	<param name="use_nsm" checked="true" type="boolean" label="Include NSM in Model" help="Include NSM (Number of Sibling Modifications) in Statistical Model" truevalue="blank" falsevalue="--nonsm"/>
+	<param name="use_nss" checked="true" type="boolean" label="Include NSS in Model" help="Include NSS (Number of Sibling Searches) in Statistical Model" truevalue="blank" falsevalue="--no-nss"/>
+	<param name="use_nrs" checked="true" type="boolean" label="Include NRS in Model" help="Include NRS (Number of Replicate Spectra) in Statistical Model" truevalue="blank" falsevalue="--no-nrs"/>
+	<param name="use_nse" checked="true" type="boolean" label="Include NSE in Model" help="Include NSE (Number of Sibling Experiments) in Statistical Model" truevalue="blank" falsevalue="--no-nse"/>
+	<param name="use_nsi" checked="true" type="boolean" label="Include NSI in Model" help="Include NSI (Number of Sibling Ions) in Statistical Model" truevalue="blank" falsevalue="--no-nsi"/>
+	<param name="use_nsm" checked="true" type="boolean" label="Include NSM in Model" help="Include NSM (Number of Sibling Modifications) in Statistical Model" truevalue="blank" falsevalue="--no-nsm"/>
 	
 	<param name="minprob" type="text" label="Minimum threshod probability for reporting results"/>
 		

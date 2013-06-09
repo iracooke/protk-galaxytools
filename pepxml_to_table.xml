@@ -1,7 +1,7 @@
 <tool id="pepxml_to_table_1" name="PepXML to Table" version="1.0.1">
 
 	<requirements>
-	    <requirement type="package" version="1.2.0">galaxy_protk</requirement>
+	    <requirement type="package" version="1.2.2">galaxy_protk</requirement>
    </requirements>
 
 
@@ -10,7 +10,7 @@
 
 
 <!-- Note .. the input file is assumed to be the first argument -->
-<command>rvm 1.9.3@protk-1.2.0 do pepxml_to_table.rb $input_file -o $output</command>
+<command>rvm 1.9.3@protk-1.2.2 do pepxml_to_table.rb $input_file -o $output</command>
 
 
 <inputs>
