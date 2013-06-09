@@ -1,7 +1,7 @@
 <tool id="proteomics_search_tandem_1" name="X!Tandem MSMS Search" version="1.0.1">
 
    <requirements>
-    <requirement type="package" version="1.2.0">galaxy_protk</requirement>
+    <requirement type="package" version="1.2.2">galaxy_protk</requirement>
     <requirement type="package" version="4.6.1">trans_proteomic_pipeline</requirement>
    </requirements>
 
@@ -9,8 +9,8 @@
 
 	<command>
 		#if $database.source_select=="built_in":
-		rvm 1.9.3@protk-1.2.0 do tandem_search.rb -d $database.dbkey 
-		#else #rvm 1.9.3@protk-1.2.0 do tandem_search.rb -d $database.fasta_file
+		rvm 1.9.3@protk-1.2.2 do tandem_search.rb -d $database.dbkey 
+		#else #rvm 1.9.3@protk-1.2.2 do tandem_search.rb -d $database.fasta_file
 		#end if
 
 		--var-mods='
@@ -121,7 +121,7 @@
       		<param name="variable_mods" value="15.994915@M"/>
       		<param name="fixed_mods" value="57.021464@C"/>
       		<param name="allow_multi_isotope_search" value="false"/>
-      		<output name="output" file="bsa.pepXML" compare="sim_size" delta="100" /> 
+      		<output name="output" file="bsa.pepXML" compare="sim_size" delta="600" /> 
     	</test>
   	</tests>
 
