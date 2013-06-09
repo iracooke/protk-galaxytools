@@ -15,7 +15,7 @@
 
 <inputs>
 
-	<param name="input_file" type="data" format="pepxml,peptideprophet_pepxml,interprophet_pepxml"  multiple="false" label="Input File" help="A pepXML file"/>
+	<param name="input_file" type="data" format="pepxml,raw_pepxml,peptideprophet_pepxml,interprophet_pepxml"  multiple="false" label="Input File" help="A pepXML file"/>
 
 </inputs>
 <outputs>
