@@ -1,8 +1,10 @@
-This package installs wrapper scripts for running Mascot MS/MS searches
+This includes tools for running Mascot MS/MS searches
 
 Running this tool requires a working installation of Mascot (commercial software).
 Mascot is available from http://www.matrixscience.com/
 
 Requirements:
 This package depends on the galaxy_protk and protk_trans_proteomic_pipeline packages
-Please see instructions for those packages before installing
+Please see instructions for those packages before installing. In particular 
+you will need to install system package requirements for galaxy_protk and protk_trans_proteomic_pipeline
+using your package manager

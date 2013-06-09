@@ -6,7 +6,7 @@
 # Display_name omssa_tandem_dbname dbkey
 #
 #
-Swissprot	spall_	spall	spall_
+Swissprot	spall_	SwissProt	spall_
 Combined PlasmboDB (falciparum) and Swissprot Human	plasmodb_pfalciparum_sphuman_	plasmodb_pfalciparum_sphuman	plasmodb_pfalciparum_sphuman_
 Swissprot Human	sphuman_	sphuman	sphuman_
 Combined Swissprot/TRembl Human	sptrhuman_	sptrhuman	sptrhuman_

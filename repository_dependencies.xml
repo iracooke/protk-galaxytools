@@ -1,4 +1,6 @@
 <?xml version="1.0"?>
-<repositories description="Proteomics datatypes and mascot2xml from the TPP">
+<repositories description="Requires the Proteomics Datatypes package">
+
      <repository toolshed="http://toolshed.g2.bx.psu.edu" name="proteomics_datatypes" owner="iracooke" changeset_revision="463328a6967f"/>
- </repositories>
+
+</repositories>

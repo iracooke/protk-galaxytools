@@ -9,5 +9,5 @@
 # Entries should follow the be structured as follows
 # Display_name dbkey dbNameOnMascot dbkey
 #
-Swissprot	spall_	SPAll	spall_
+Swissprot	spall_	SwissProt	spall_
 Swissprot Human	sphuman_	SPHuman	sphuman_
