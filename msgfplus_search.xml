@@ -1,7 +1,7 @@
 <tool id="proteomics_search_msgfplus_1" name="MSGF+ MSMS Search" version="1.0.1">
 
 	<requirements>
-    	<requirement type="package" version="1.2.0">galaxy_protk</requirement>
+    	<requirement type="package" version="1.2.2">galaxy_protk</requirement>
     	<requirement type="package" version="20130227">msgfplus</requirement>
     	<requirement type="package" version="3_0_4388">proteowizard</requirement>
    	</requirements>
@@ -10,9 +10,11 @@
 	<description>Run an MSGF+ Search</description>
 
 	<command>
+		rvm 1.9.3@protk-1.2.2 do msgfplus_search.rb
 		#if $database.source_select=="built_in":
-		rvm 1.9.3@protk-1.2.0 do msgfplus_search.rb --galaxy -d $database.dbkey
-		#else #rvm 1.9.3@protk-1.2.0 do msgfplus_search.rb --galaxy -d $database.fasta_file
+		 --galaxy -d $database.dbkey
+		#else
+		--galaxy -d $database.fasta_file
 		#end if
 
 		--var-mods='
@@ -29,10 +31,44 @@
 		#end for
 		'
 
-		$input_file -o $output -r --enzyme=$enzyme --precursor-ion-tol-units=$precursor_tolu -v $missed_cleavages -f $fragment_ion_tol -p $precursor_ion_tol --instrument=$instrument
+		$input_file 
+
+		-o $output 
+
+		-r 
+
+		--enzyme=$enzyme 
+
+		--precursor-ion-tol-units=$precursor_tolu 
+
+		-v $missed_cleavages 
+
+		-f $fragment_ion_tol 
+
+		-p $precursor_ion_tol 
+
+		--instrument=$instrument
 		
-		
-		
+		--isotope-error-range=$isotope_error_range
+
+		--fragment-method=$fragment_method
+
+		--protocol=$protocol
+
+		--min-pep-len=$min_pep_len
+		--max-pep-len=$max_pep_len
+		--max-pep-charge=$max_pep_charge
+		--min-pep-charge=$min_pep_charge
+		--num-reported-matches=$num_reported_matches
+
+		--java-mem=$java_mem
+
+		#if $pepxml_output_use
+
+		#else
+		--no-pepxml
+		#end if
+
 	</command>
 
 	<inputs>	
@@ -58,8 +94,7 @@
 		<param name="input_file" type="data" format="mzml" multiple="false" label="MSMS File" help="An mzML file with MS/MS data"/>
 
 
-		<param name="variable_mods" format="text" type="select" multiple="true" label="Variable Modifications" help="Hold the appropriate key while
-			clicking to select multiple items">
+		<param name="variable_mods" format="text" type="select" multiple="true" label="Variable Modifications" help="Multiple Selection Allowed">
 			<options from_file="msgfplus_mods.loc">
 				<column name="name" index="0" />
 				<column name="value" index="2" />
@@ -72,8 +107,7 @@
 		</repeat>
 		
 		
-		<param name="fixed_mods" format="text" type="select" multiple="true" label="Fixed Modifications" help="Hold the appropriate key while
-			clicking to select multiple items">
+		<param name="fixed_mods" format="text" type="select" multiple="true" label="Fixed Modifications" help="Multiple Selection Allowed">
 			<options from_file="msgfplus_mods.loc">
 				<column name="name" index="0" />
 				<column name="value" index="2" />
@@ -96,7 +130,16 @@
 		
 		<param name="enzyme" type="select" format="text">
 		    <label>Enzyme</label>
-		    <option value="Trypsin">Trypsin</option>
+		    <option value="0">unspecific cleavage</option>
+		    <option value="1">Trypsin</option>
+		    <option value="2">Chymotrypsin</option>
+		    <option value="3">Lys-C</option>
+		   	<option value="4">Lys-N</option>
+			<option value="5">glutamyl endopeptidase</option>
+			<option value="6">Arg-C</option>
+			<option value="7">Asp-N</option>
+			<option value="8">alphaLP</option>
+			<option value="9">no cleavage</option>
 		</param>
 		
 		<param name="instrument" type="select" format="text">
@@ -104,6 +147,23 @@
 			<option value="2">TOF</option>
 			<option value="0">Low-res LCQ/LTQ</option>
 			<option value="1">High-res LTQ</option>
+		</param>
+
+		<param name="fragment_method" type="select" format="text">
+	    	<label>Fragmentation Method</label>
+			<option value="0">Respect Input File</option>
+			<option value="1">CID</option>
+			<option value="2">ETD</option>
+			<option value="3">HCD</option>
+			<option value="4">Merge spectra from same precursor</option>
+		</param>
+
+		<param name="protocol" type="select" format="text">
+	    	<label>Protocol</label>
+			<option value="0">NoProtocol</option>
+			<option value="1">Phosphorylation</option>
+			<option value="2">iTRAQ</option>
+			<option value="3">iTRAQPhospho</option>
 		</param>
 
 		<param name="fragment_ion_tol" help="Fragment Ion Tolerance in Daltons" type="float" value="0.65" min="0" max="10000" label="Fragment ion tolerance"/>
@@ -115,12 +175,42 @@
 			<option value="Da">Da</option>
 		</param>
 		
+		<param name="isotope_error_range" help="Takes into account of the error introduced by chooosing a non-monoisotopic peak for fragmentation." type="text" size="80" value="0,1" label="Isotope Error Range"/>
+
+		<param name="min_pep_len" help="" type="integer" value="6" label="Minimum Peptide Length"/>
+		<param name="max_pep_len" help="" type="integer" value="40" label="Maximum Peptide Length"/>
+		<param name="min_pep_charge" help="" type="integer" value="2" label="Minimum Peptide Charge"/>
+		<param name="max_pep_charge" help="" type="integer" value="3" label="Maximum Peptide Charge"/>
+		<param name="num_reported_matches" help="Number of matches per spectrum to be reported" type="integer" value="1" label="Num reported matches"/>
+		<param name="java_mem" help="Increase this value if you get out of memory errors" type="text" size="80" value="3500M" label="Java Memory Limit"/>
+
+
+		<param name="pepxml_output_use" type="boolean" label="Convert results to pepXML" help="" truevalue="true" falsevalue="false" />
+
 	</inputs>
 
 
-	<outputs>
+<!-- 	<outputs>
 		<data format="raw_pepxml" name="output" metadata_source="input_file" label="MSGF+_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}.pepXML"/>
 	</outputs>
+ -->
+	<outputs>
+    	<data format="mzid" name="output" metadata_source="input_file" label="MSGF+_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}">
+      <change_format>
+        <when input="pepxml_output_use" value="true" format="raw_pepxml" metadata_source="input_file" label="MSGF+_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}"/>
+      </change_format>
+    </data>
+  </outputs>
+
+
+	<tests>
+    	<test>
+    		<param name="source_select" value="input_ref"/>
+	      	<param name="fasta_file" value="bsa.fasta"/>
+   		   	<param name="input_file" value="bsa.mzML"/>
+      		<output name="output" file="bsa.mzid" compare="sim_size" delta="600" /> 
+    	</test>
+  	</tests>
 
 
   <help>

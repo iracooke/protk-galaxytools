@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <tool_dependency>
 
-    <package name="galaxy_protk" version="1.2.0">
-	     <repository toolshed="http://toolshed.g2.bx.psu.edu" name="galaxy_protk" owner="iracooke" changeset_revision="dac478a72c1d"/>
+
+    <package name="galaxy_protk" version="1.2.2">
+         <repository toolshed="http://toolshed.g2.bx.psu.edu" name="galaxy_protk" owner="iracooke" changeset_revision="dac478a72c1d" prior_installation_required="True"/>
     </package>
 
 	<package name="proteowizard" version="3_0_4388">
