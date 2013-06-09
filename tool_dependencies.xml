@@ -1,19 +1,8 @@
 <?xml version="1.0"?>
 <tool_dependency>
-    <!-- <package name="galaxy_protk" version="1.2.0">
-	     <repository toolshed="http://10.211.55.28:9009" name="galaxy_protk" owner="iracooke" changeset_revision="5610168f3b53"/>
-    </package>
 
-    <package name="blast" version="2.2.27">
-        <repository toolshed="http://10.211.55.28:9009" name="protk_blast" owner="iracooke" changeset_revision="0f3b7bbdfdd4" />
-    </package>
-
-    <package name="omssa" version="2.1.8">
-        <repository toolshed="http://10.211.55.28:9009" name="protk_omssa" owner="iracooke" changeset_revision="117faa58df2a" />
-    </package> -->
-
-<package name="galaxy_protk" version="1.2.0">
-	     <repository toolshed="http://toolshed.g2.bx.psu.edu" name="galaxy_protk" owner="iracooke" changeset_revision="dac478a72c1d"/>
+    <package name="galaxy_protk" version="1.2.2">
+         <repository toolshed="http://toolshed.g2.bx.psu.edu" name="galaxy_protk" owner="iracooke" changeset_revision="dac478a72c1d" prior_installation_required="True"/>
     </package>
 
     <package name="blast" version="2.2.27">
