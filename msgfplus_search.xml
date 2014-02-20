@@ -1,219 +1,175 @@
 <tool id="proteomics_search_msgfplus_1" name="MSGF+ MSMS Search" version="1.0.1">
+    <description>Run an MSGF+ Search</description>
+    <requirements>
+        <requirement type="package" version="1.2.2">galaxy_protk</requirement>
+        <requirement type="package" version="20130227">msgfplus</requirement>
+        <requirement type="package" version="3_0_4388">proteowizard</requirement>
+    </requirements>
+    <command>
+        rvm 1.9.3@protk-1.2.2 do msgfplus_search.rb
+        #if $database.source_select=="built_in":
+         --galaxy -d $database.dbkey
+        #else
+        --galaxy -d $database.fasta_file
+        #end if
 
-	<requirements>
-    	<requirement type="package" version="1.2.2">galaxy_protk</requirement>
-    	<requirement type="package" version="20130227">msgfplus</requirement>
-    	<requirement type="package" version="3_0_4388">proteowizard</requirement>
-   	</requirements>
+        --var-mods='
+        $variable_mods
+        #for $custom_variable_mod in $custom_variable_mods:
+        ,${custom_variable_mod.custom_mod}
+        #end for
+        '
 
+        --fix-mods='
+        $fixed_mods
+        #for $custom_fix_mod in $custom_fix_mods:
+        ,${custom_fix_mod.custom_mod}
+        #end for
+        '
+        $input_file 
+        -o $output 
+        -r 
+        --enzyme=$enzyme 
+        --precursor-ion-tol-units=$precursor_tolu 
+        -v $missed_cleavages 
+        -f $fragment_ion_tol 
+        -p $precursor_ion_tol 
+        --instrument=$instrument
+        --isotope-error-range=$isotope_error_range
+        --fragment-method=$fragment_method
+        --protocol=$protocol
+        --min-pep-len=$min_pep_len
+        --max-pep-len=$max_pep_len
+        --max-pep-charge=$max_pep_charge
+        --min-pep-charge=$min_pep_charge
+        --num-reported-matches=$num_reported_matches
+        --java-mem=$java_mem
+        #if $pepxml_output_use
+        #else
+        --no-pepxml
+        #end if
+    </command>
 
-	<description>Run an MSGF+ Search</description>
+    <inputs>
+        <conditional name="database">
+            <param name="source_select" type="select" label="Database source">
+                <option value="built_in">Built-In</option>
+                <option value="input_ref">Your Upload File</option>
+            </param>
+            <when value="built_in">
+                <param name="dbkey" type="select" format="text" >
+                    <label>Database</label>
+                    <options from_file="pepxml_databases.loc">
+                        <column name="name" index="0" />
+                        <column name="value" index="2" />
+                    </options>
+                </param>
+            </when>
+            <when value="input_ref">
+                <param name="fasta_file" type="data" format="fasta" label="Uploaded FASTA file" />
+            </when>
+        </conditional>
+        <param name="input_file" type="data" format="mzml" multiple="false" label="MSMS File" help="An mzML file with MS/MS data"/>
+        <param name="variable_mods" format="text" type="select" multiple="true" label="Variable Modifications" help="Multiple Selection Allowed">
+            <options from_file="msgfplus_mods.loc">
+                <column name="name" index="0" />
+                <column name="value" index="2" />
+            </options>
+        </param>
+        <repeat name="custom_variable_mods" title="Custom Variable Modifications" 
+            help="See https://bix-lab.ucsd.edu/pages/viewpage.action?pageId=13533355 for details on how to create these">
+            <param name="custom_mod" type="text" />
+        </repeat>
+        <param name="fixed_mods" format="text" type="select" multiple="true" label="Fixed Modifications" help="Multiple Selection Allowed">
+            <options from_file="msgfplus_mods.loc">
+                <column name="name" index="0" />
+                <column name="value" index="2" />
+            </options>
+        </param>
+        <repeat name="custom_fix_mods" title="Custom Fixed Modifications" help="See https://bix-lab.ucsd.edu/pages/viewpage.action?pageId=13533355 for details on how to create these">
+            <param name="custom_mod" type="text">
+            </param>
+        </repeat>
+        <param name="missed_cleavages" type="select" format="text" help="Allow peptides to contain up to this many missed enzyme cleavage sites">
+            <label>Missed Cleavages Allowed</label>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </param>
+        
+        <param name="enzyme" type="select" format="text">
+            <label>Enzyme</label>
+            <option value="0">unspecific cleavage</option>
+            <option value="1">Trypsin</option>
+            <option value="2">Chymotrypsin</option>
+            <option value="3">Lys-C</option>
+            <option value="4">Lys-N</option>
+            <option value="5">glutamyl endopeptidase</option>
+            <option value="6">Arg-C</option>
+            <option value="7">Asp-N</option>
+            <option value="8">alphaLP</option>
+            <option value="9">no cleavage</option>
+        </param>
+        
+        <param name="instrument" type="select" format="text">
+            <label>Instrument Type</label>
+            <option value="2">TOF</option>
+            <option value="0">Low-res LCQ/LTQ</option>
+            <option value="1">High-res LTQ</option>
+        </param>
 
-	<command>
-		rvm 1.9.3@protk-1.2.2 do msgfplus_search.rb
-		#if $database.source_select=="built_in":
-		 --galaxy -d $database.dbkey
-		#else
-		--galaxy -d $database.fasta_file
-		#end if
+        <param name="fragment_method" type="select" format="text">
+            <label>Fragmentation Method</label>
+            <option value="0">Respect Input File</option>
+            <option value="1">CID</option>
+            <option value="2">ETD</option>
+            <option value="3">HCD</option>
+            <option value="4">Merge spectra from same precursor</option>
+        </param>
 
-		--var-mods='
-		$variable_mods
-		#for $custom_variable_mod in $custom_variable_mods:
-		,${custom_variable_mod.custom_mod}
-		#end for
-		'
+        <param name="protocol" type="select" format="text">
+            <label>Protocol</label>
+            <option value="0">NoProtocol</option>
+            <option value="1">Phosphorylation</option>
+            <option value="2">iTRAQ</option>
+            <option value="3">iTRAQPhospho</option>
+        </param>
 
-		--fix-mods='
-		$fixed_mods
-		#for $custom_fix_mod in $custom_fix_mods:
-		,${custom_fix_mod.custom_mod}
-		#end for
-		'
+        <param name="fragment_ion_tol" help="Fragment Ion Tolerance in Daltons" type="float" value="0.65" min="0" max="10000" label="Fragment ion tolerance"/>
 
-		$input_file 
+        <param name="precursor_ion_tol" help="Precursor Ion Tolerance (Da or ppm)" type="float" value="100" min="0" max="10000" label="Precursor ion tolerance"/>
+        <param name="precursor_tolu" type="select" format="text">
+            <label>Precursor Ion Tolerance Units</label>
+            <option value="ppm">ppm</option>
+            <option value="Da">Da</option>
+        </param>
 
-		-o $output 
-
-		-r 
-
-		--enzyme=$enzyme 
-
-		--precursor-ion-tol-units=$precursor_tolu 
-
-		-v $missed_cleavages 
-
-		-f $fragment_ion_tol 
-
-		-p $precursor_ion_tol 
-
-		--instrument=$instrument
-		
-		--isotope-error-range=$isotope_error_range
-
-		--fragment-method=$fragment_method
-
-		--protocol=$protocol
-
-		--min-pep-len=$min_pep_len
-		--max-pep-len=$max_pep_len
-		--max-pep-charge=$max_pep_charge
-		--min-pep-charge=$min_pep_charge
-		--num-reported-matches=$num_reported_matches
-
-		--java-mem=$java_mem
-
-		#if $pepxml_output_use
-
-		#else
-		--no-pepxml
-		#end if
-
-	</command>
-
-	<inputs>	
-		<conditional name="database">
-			<param name="source_select" type="select" label="Database source">
-				<option value="built_in">Built-In</option>
-				<option value="input_ref">Your Upload File</option>
-			</param>
-			<when value="built_in">
-				<param name="dbkey" type="select" format="text" >
-					<label>Database</label>
-					<options from_file="pepxml_databases.loc">
-						<column name="name" index="0" />
-						<column name="value" index="2" />
-					</options>
-				</param>
-			</when>
-			<when value="input_ref">
-				<param name="fasta_file" type="data" format="fasta" label="Uploaded FASTA file" />
-			</when>
-		</conditional>
-		
-		<param name="input_file" type="data" format="mzml" multiple="false" label="MSMS File" help="An mzML file with MS/MS data"/>
-
-
-		<param name="variable_mods" format="text" type="select" multiple="true" label="Variable Modifications" help="Multiple Selection Allowed">
-			<options from_file="msgfplus_mods.loc">
-				<column name="name" index="0" />
-				<column name="value" index="2" />
-			</options>
-		</param>
-
-		<repeat name="custom_variable_mods" title="Custom Variable Modifications" help="See https://bix-lab.ucsd.edu/pages/viewpage.action?pageId=13533355 for details on how to create these">
-			<param name="custom_mod" type="text">
-			</param>
-		</repeat>
-		
-		
-		<param name="fixed_mods" format="text" type="select" multiple="true" label="Fixed Modifications" help="Multiple Selection Allowed">
-			<options from_file="msgfplus_mods.loc">
-				<column name="name" index="0" />
-				<column name="value" index="2" />
-			</options>
-		</param>
-
-		<repeat name="custom_fix_mods" title="Custom Fixed Modifications" help="See https://bix-lab.ucsd.edu/pages/viewpage.action?pageId=13533355 for details on how to create these">
-			<param name="custom_mod" type="text">
-			</param>
-		</repeat>
-		
-		
-
-		<param name="missed_cleavages" type="select" format="text" help="Allow peptides to contain up to this many missed enzyme cleavage sites">
-			<label>Missed Cleavages Allowed</label>
-		    <option value="0">0</option>		
-			<option value="1">1</option>
-			<option value="2">2</option>
-		</param>
-		
-		<param name="enzyme" type="select" format="text">
-		    <label>Enzyme</label>
-		    <option value="0">unspecific cleavage</option>
-		    <option value="1">Trypsin</option>
-		    <option value="2">Chymotrypsin</option>
-		    <option value="3">Lys-C</option>
-		   	<option value="4">Lys-N</option>
-			<option value="5">glutamyl endopeptidase</option>
-			<option value="6">Arg-C</option>
-			<option value="7">Asp-N</option>
-			<option value="8">alphaLP</option>
-			<option value="9">no cleavage</option>
-		</param>
-		
-		<param name="instrument" type="select" format="text">
-	    	<label>Instrument Type</label>
-			<option value="2">TOF</option>
-			<option value="0">Low-res LCQ/LTQ</option>
-			<option value="1">High-res LTQ</option>
-		</param>
-
-		<param name="fragment_method" type="select" format="text">
-	    	<label>Fragmentation Method</label>
-			<option value="0">Respect Input File</option>
-			<option value="1">CID</option>
-			<option value="2">ETD</option>
-			<option value="3">HCD</option>
-			<option value="4">Merge spectra from same precursor</option>
-		</param>
-
-		<param name="protocol" type="select" format="text">
-	    	<label>Protocol</label>
-			<option value="0">NoProtocol</option>
-			<option value="1">Phosphorylation</option>
-			<option value="2">iTRAQ</option>
-			<option value="3">iTRAQPhospho</option>
-		</param>
-
-		<param name="fragment_ion_tol" help="Fragment Ion Tolerance in Daltons" type="float" value="0.65" min="0" max="10000" label="Fragment ion tolerance"/>
-
-		<param name="precursor_ion_tol" help="Precursor Ion Tolerance (Da or ppm)" type="float" value="100" min="0" max="10000" label="Precursor ion tolerance"/>
-		<param name="precursor_tolu" type="select" format="text">
-		    <label>Precursor Ion Tolerance Units</label>
-		    <option value="ppm">ppm</option>		
-			<option value="Da">Da</option>
-		</param>
-		
-		<param name="isotope_error_range" help="Takes into account of the error introduced by chooosing a non-monoisotopic peak for fragmentation." type="text" size="80" value="0,1" label="Isotope Error Range"/>
-
-		<param name="min_pep_len" help="" type="integer" value="6" label="Minimum Peptide Length"/>
-		<param name="max_pep_len" help="" type="integer" value="40" label="Maximum Peptide Length"/>
-		<param name="min_pep_charge" help="" type="integer" value="2" label="Minimum Peptide Charge"/>
-		<param name="max_pep_charge" help="" type="integer" value="3" label="Maximum Peptide Charge"/>
-		<param name="num_reported_matches" help="Number of matches per spectrum to be reported" type="integer" value="1" label="Num reported matches"/>
-		<param name="java_mem" help="Increase this value if you get out of memory errors" type="text" size="80" value="3500M" label="Java Memory Limit"/>
-
-
-		<param name="pepxml_output_use" type="boolean" label="Convert results to pepXML" help="" truevalue="true" falsevalue="false" />
-
-	</inputs>
-
-
-<!-- 	<outputs>
-		<data format="raw_pepxml" name="output" metadata_source="input_file" label="MSGF+_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}.pepXML"/>
-	</outputs>
- -->
-	<outputs>
-    	<data format="mzid" name="output" metadata_source="input_file" label="MSGF+_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}">
-      <change_format>
-        <when input="pepxml_output_use" value="true" format="raw_pepxml" metadata_source="input_file" label="MSGF+_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}"/>
-      </change_format>
-    </data>
-  </outputs>
-
-
-	<tests>
-    	<test>
-    		<param name="source_select" value="input_ref"/>
-	      	<param name="fasta_file" value="bsa.fasta"/>
-   		   	<param name="input_file" value="bsa.mzML"/>
-      		<output name="output" file="bsa.mzid" compare="sim_size" delta="600" /> 
-    	</test>
-  	</tests>
-
-
-  <help>
+        <param name="isotope_error_range" help="Takes into account of the error introduced by chooosing a non-monoisotopic peak for fragmentation." type="text" size="80" value="0,1" label="Isotope Error Range"/>
+        <param name="min_pep_len" help="" type="integer" value="6" label="Minimum Peptide Length"/>
+        <param name="max_pep_len" help="" type="integer" value="40" label="Maximum Peptide Length"/>
+        <param name="min_pep_charge" help="" type="integer" value="2" label="Minimum Peptide Charge"/>
+        <param name="max_pep_charge" help="" type="integer" value="3" label="Maximum Peptide Charge"/>
+        <param name="num_reported_matches" help="Number of matches per spectrum to be reported" type="integer" value="1" label="Num reported matches"/>
+        <param name="java_mem" help="Increase this value if you get out of memory errors" type="text" size="80" value="3500M" label="Java Memory Limit"/>
+        <param name="pepxml_output_use" type="boolean" label="Convert results to pepXML" help="" truevalue="true" falsevalue="false" />
+    </inputs>
+    <outputs>
+        <data format="mzid" name="output" metadata_source="input_file" label="MSGF+_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}">
+            <change_format>
+                <when input="pepxml_output_use" value="true" format="raw_pepxml" metadata_source="input_file" 
+                    label="MSGF+_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}"/>
+            </change_format>
+        </data>
+    </outputs>
+    <tests>
+        <test>
+            <param name="source_select" value="input_ref"/>
+              <param name="fasta_file" value="bsa.fasta"/>
+                  <param name="input_file" value="bsa.mzML"/>
+              <output name="output" file="bsa.mzid" compare="sim_size" delta="600" /> 
+        </test>
+    </tests>
+    <help>
 
 **What it does**
 
@@ -225,6 +181,5 @@ Runs an MS/MS database search using the MSGFPlus search engine. Output is in the
 
 Please see http://proteomics.ucsd.edu/Software/MSGFPlus.html for details of the MSGFPlus search engine and references describing its algorithm
 
-  </help>
-
+    </help>
 </tool>
