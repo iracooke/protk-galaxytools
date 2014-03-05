@@ -1,12 +1,12 @@
 <tool id="proteomics_search_msgfplus_1" name="MSGF+ MSMS Search" version="1.0.1">
     <description>Run an MSGF+ Search</description>
     <requirements>
-        <requirement type="package" version="1.2.2">galaxy_protk</requirement>
-        <requirement type="package" version="20130227">msgfplus</requirement>
+        <requirement type="package" version="1.2.6">protk</requirement>
+        <requirement type="package" version="20140210">msgfplus</requirement>
         <requirement type="package" version="3_0_4388">proteowizard</requirement>
     </requirements>
     <command>
-        rvm 1.9.3@protk-1.2.2 do msgfplus_search.rb
+        msgfplus_search.rb
         #if $database.source_select=="built_in":
          --galaxy -d $database.dbkey
         #else
@@ -26,6 +26,7 @@
         ,${custom_fix_mod.custom_mod}
         #end for
         '
+
         $input_file 
         -o $output 
         -r 
@@ -44,10 +45,9 @@
         --min-pep-charge=$min_pep_charge
         --num-reported-matches=$num_reported_matches
         --java-mem=$java_mem
-        #if $pepxml_output_use
-        #else
+        #unless $pepxml_output_use:
         --no-pepxml
-        #end if
+        #end unless
     </command>
 
     <inputs>
