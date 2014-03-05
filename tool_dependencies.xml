@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <tool_dependency>
-    <package name="galaxy_protk" version="1.2.2">
-         <repository name="galaxy_protk" owner="iracooke" prior_installation_required="True"/>
+    <package name="protk" version="1.2.6">
+         <repository name="package_protk_1_2_6" owner="iracooke" prior_installation_required="True"/>
     </package>
     <package name="proteowizard" version="3_0_4388">
-         <repository name="protk_proteowizard" owner="iracooke" />
+         <repository name="package_proteowizard_3_0_4388" owner="iracooke" />
     </package>
-    <package name="msgfplus" version="20130227">
-         <repository name="protk_msgfplus" owner="iracooke" />
+    <package name="msgfplus" version="20140210">
+         <repository name="package_msgfplus_20140210" owner="iracooke" />
     </package>
 </tool_dependency>
