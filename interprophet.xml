@@ -1,18 +1,16 @@
 <tool id="proteomics_search_interprophet_1" name="InterProphet" version="1.0.1">
 	
 	<requirements>
-	    <requirement type="package" version="1.2.2">galaxy_protk</requirement>
-	    <requirement type="package" version="4.6.1">trans_proteomic_pipeline</requirement>
+	    <requirement type="package" version="1.2.6">protk</requirement>
+	    <requirement type="package" version="4.6.3">trans_proteomic_pipeline</requirement>
    </requirements>
 
 
   <description>Combine Peptide Prophet results from multiple search engines</description>
 
-  <command interpreter="bash">
+  <command>interprophet.rb --galaxy
 
-	interprophet_wrapper.sh 
-
-	$output 
+	-o interprophet_output.pep.xml
 
 	$use_nss 
 

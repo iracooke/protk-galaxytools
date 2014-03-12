@@ -1,12 +1,12 @@
 <tool id="protxml_to_table_1" name="ProtXML to Table" version="1.0.1">
 	<requirements>
-	    <requirement type="package" version="1.2.2">galaxy_protk</requirement>
+	    <requirement type="package" version="1.2.6">protk</requirement>
    </requirements>
 
 	<description>Converts a ProtXML file to a table</description>
 
 	<command>
-		rvm 1.9.3@protk-1.2.2 do protxml_to_table.rb 
+		protxml_to_table.rb 
 
 		$input_file 
 		-o $output 
