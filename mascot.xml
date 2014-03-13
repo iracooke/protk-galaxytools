@@ -2,13 +2,13 @@
 
 
 	<requirements>
-	    <requirement type="package" version="1.2.2">galaxy_protk</requirement>
+	    <requirement type="package" version="1.2.6">protk</requirement>
    </requirements>
 
 	<description>Mascot MS/MS Search</description>
 
 
-	<command>rvm 1.9.3@protk-1.2.2 do mascot_search.rb 
+	<command>mascot_search.rb 
 
 		#if $database.source_select=="built_in":
 		-d $database.dbkey

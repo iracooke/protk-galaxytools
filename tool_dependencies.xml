@@ -1,12 +1,9 @@
 <?xml version="1.0"?>
 <tool_dependency>
-
-    <package name="galaxy_protk" version="1.2.2">
-	     <repository toolshed="http://toolshed.g2.bx.psu.edu" name="galaxy_protk" owner="iracooke" changeset_revision="dac478a72c1d" prior_installation_required="True"/>
+    <package name="protk" version="1.2.6">
+         <repository name="package_protk_1_2_6" owner="iracooke" prior_installation_required="True"/>
     </package>
-
-	<package name="trans_proteomic_pipeline" version="4.6.1">
-        <repository toolshed="http://toolshed.g2.bx.psu.edu" name="protk_trans_proteomic_pipeline" owner="iracooke" changeset_revision="cedd5e884349"/>
+	<package name="trans_proteomic_pipeline" version="4.6.3">
+        <repository name="package_tpp_4_6_3" owner="bgruening"/>
     </package>
-
 </tool_dependency>
