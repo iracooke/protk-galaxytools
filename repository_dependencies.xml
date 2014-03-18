@@ -1,12 +1,4 @@
 <?xml version="1.0"?>
-  <repositories description="Proteomics datatypes, omssa and blast executables">
-
-	<repository toolshed="http://toolshed.g2.bx.psu.edu" name="proteomics_datatypes" owner="iracooke" changeset_revision="463328a6967f"/>
-
-    <repository toolshed="http://toolshed.g2.bx.psu.edu" name="galaxy_protk" owner="iracooke" changeset_revision="dac478a72c1d" prior_installation_required="True"/>
-
-    <repository toolshed="http://toolshed.g2.bx.psu.edu" name="protk_blast" owner="iracooke" changeset_revision="0d86d29aaed6" />
-
-    <repository toolshed="http://toolshed.g2.bx.psu.edu" name="protk_omssa" owner="iracooke" changeset_revision="f77532db59b6" />
-
-</repositories>
+<repositories description="Proteomics datatypes">
+    <repository name="proteomics_datatypes" owner="iracooke" />
+ </repositories>
