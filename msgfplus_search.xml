@@ -1,4 +1,4 @@
-<tool id="proteomics_search_msgfplus_1" name="MSGF+ MSMS Search" version="1.0.1">
+<tool id="proteomics_search_msgfplus_1" name="MSGF+ MSMS Search" version="1.0.2">
     <description>Run an MSGF+ Search</description>
     <requirements>
         <requirement type="package" version="1.2.6">protk</requirement>
@@ -32,7 +32,8 @@
         -r 
         --enzyme=$enzyme 
         --precursor-ion-tol-units=$precursor_tolu 
-        -v $missed_cleavages 
+        -v $missed_cleavages
+        $cleavage_semi
         -f $fragment_ion_tol 
         -p $precursor_ion_tol 
         --instrument=$instrument
@@ -97,6 +98,8 @@
             <option value="2">2</option>
         </param>
         
+        <param name="cleavage_semi" type="boolean" label="Allow semi-cleaved peptides" help="This can increase search time dramatically" truevalue="" falsevalue="--no-cleavage-semi" />
+
         <param name="enzyme" type="select" format="text">
             <label>Enzyme</label>
             <option value="0">unspecific cleavage</option>
