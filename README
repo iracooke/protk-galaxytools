@@ -1,5 +1,5 @@
 This package installs a wrapper script for the X!Tandem search engine 
 
 Requirements:
-This package depends on the galaxy_protk and protk_trans_proteomic_pipeline packages
+This package depends on the protk and the trans proteomic pipeline packages
 Please see instructions for those packages before installing

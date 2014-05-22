@@ -1,4 +1,4 @@
-<tool id="proteomics_search_tandem_1" name="X!Tandem MSMS Search" version="1.0.1">
+<tool id="proteomics_search_tandem_1" name="X!Tandem MSMS Search" version="1.0.2">
 
    <requirements>
     <requirement type="package" version="1.2.6">protk</requirement>
@@ -28,7 +28,23 @@
 		#end for
 		'
 
-		$input_file -o $output -r --enzyme=$enzyme --precursor-ion-tol-units=$precursor_tolu -v $missed_cleavages -f $fragment_ion_tol -p $precursor_ion_tol $allow_multi_isotope_search --keep-params-files
+		$input_file -o $output -r 
+
+		--enzyme=$enzyme 
+
+		--precursor-ion-tol-units=$precursor_tolu 
+
+		-v $missed_cleavages 
+
+		-f $fragment_ion_tol 
+
+		-p $precursor_ion_tol 
+
+		$allow_multi_isotope_search 
+
+		--keep-params-files
+
+		$cleavage_semi
 		
 	</command>
 
@@ -36,7 +52,7 @@
 		<conditional name="database">
 			<param name="source_select" type="select" label="Database source">
 				<option value="built_in">Built-In</option>
-				<option value="input_ref">Your Upload File</option>
+				<option value="input_ref" selected="true">Your Upload File</option>
 			</param>
 			<when value="built_in">
 				<param name="dbkey" type="select" format="text" >
@@ -90,11 +106,36 @@
 			<option value="1">1</option>
 			<option value="2">2</option>
 		</param>
+
+		<param name="cleavage_semi" type="boolean" label="Allow semi-cleaved peptides" help="This can increase search time dramatically" truevalue="" falsevalue="--no-cleavage-semi" />
 		
 		<param name="enzyme" type="select" format="text">
 		    <label>Enzyme</label>
-		    <option value="Trypsin">Trypsin</option>
+			<option value="[R]|{P}">argc - [R]|{P}</option>
+			<option value="[X]|[D]">aspn - [X]|[D]</option>
+			<option value="[FLMWY]|{P}">chymotrypsin - [FLMWY]|{P}</option>
+			<option value="[R]|[X]">clostripain - [R]|[X]</option>
+			<option value="[M]|{P}">cnbr - [M]|{P}</option>
+			<option value="[AGILV]|{P}">elastase - [AGILV]|{P}</option>
+			<option value="[D]|{P}">formicacid - [D]|{P}</option>
+			<option value="[DE]|{P}">gluc - [DE]|{P}</option>
+			<option value="[E]|{P}">gluc_bicarb - [E]|{P}</option>
+			<option value="[W]|[X]">iodosobenzoate - [W]|[X]</option>
+			<option value="[K]|{P}">lysc - [K]|{P}</option>
+			<option value="[K]|[X]">lysc-p - [K]|[X]</option>
+			<option value="[X]|[K]">lysn - [X]|[K]</option>
+			<option value="[X]|[AKRS]">lysn_promisc - [X]|[AKRS]</option>
+			<option value="[X]|[X]">nonspecific - [X]|[X]</option>
+			<option value="[FL]|[X]">pepsina - [FL]|[X]</option>
+			<option value="[P]|[X]">protein_endopeptidase - [P]|[X]</option>
+			<option value="[E]|[X]">staph_protease - [E]|[X]</option>
+			<option value="[FMWY]|{P},[KR]|{P},[X]|[D]">tca - [FMWY]|{P},[KR]|{P},[X]|[D]</option>
+			<option value="[KR]|{P}" selected="true">trypsin - [KR]|{P}</option>
+			<option value="[FKLMRWY]|{P}">trypsin/chymotrypsin - [FKLMRWY]|{P}</option>
+			<option value="[KR]|{P},[M]|{P}">trypsin/cnbr - [KR]|{P},[M]|{P}</option>
+			<option value="[DEKR]|{P}">trypsin_gluc - [DEKR]|{P}</option>
 		</param>
+
 		
 		<param name="fragment_ion_tol" help="Fragment Ion Tolerance in Daltons" type="float" value="0.65" min="0" max="10000" label="Fragment ion tolerance"/>
 
