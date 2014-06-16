@@ -1,8 +1,7 @@
 <tool id="proteomics_search_tandem_1" name="X!Tandem MSMS Search" version="1.0.2">
 
    <requirements>
-    <requirement type="package" version="1.2.6">protk</requirement>
-    <requirement type="package" version="4.6.3">trans_proteomic_pipeline</requirement>
+	    <requirement type="package" version="1.3.0">protk</requirement>
    </requirements>
 
 	<description>Run an X!Tandem Search</description>
@@ -13,6 +12,13 @@
 		#else 
 		tandem_search.rb -d $database.fasta_file
 		#end if
+
+		#if $tandem_params.source_select=="built_in":
+		-T $tandem_params.paramskey 
+		#else 
+		-T $tandem_params.params_file
+		#end if
+
 
 		--var-mods='
 		$variable_mods
@@ -42,13 +48,17 @@
 
 		$allow_multi_isotope_search 
 
-		--keep-params-files
+		$acetyl_protein_nterm
 
 		$cleavage_semi
+
+		$keep_spectra
+
+		--threads $threads
 		
 	</command>
 
-	<inputs>	
+	<inputs>
 		<conditional name="database">
 			<param name="source_select" type="select" label="Database source">
 				<option value="built_in">Built-In</option>
@@ -68,8 +78,24 @@
 			</when>
 		</conditional>
 		
-		<param name="input_file" type="data" format="mzml" multiple="false" label="MSMS File" help="An mzML file with MS/MS data"/>
+		<conditional name="tandem_params">
+			<param name="source_select" type="select" label="Baseline Parameters">
+				<option value="built_in" selected="true">Built-In</option>
+				<option value="input_ref">Custom parameter file</option>
+			</param>
+			<when value="built_in">
+				<param name="paramskey" type="select" format="text" >
+					<label>Paramset</label>
+				    <option value="isb_native">ISB Native</option>		
+					<option value="isb_kscore">ISB K-Score</option>
+				</param>
+			</when>
+			<when value="input_ref">
+				<param name="params_file" type="data" format="xml" label="Custom X!Tandem Parameters" />
+			</when>
+		</conditional>
 
+		<param name="input_file" type="data" format="mzml,mgf" multiple="false" label="MSMS File" help="A file with MS/MS data"/>
 
 		<param name="variable_mods" format="text" type="select" multiple="true" label="Variable Modifications" help="Hold the appropriate key while
 			clicking to select multiple items">
@@ -97,7 +123,8 @@
 			<param name="custom_mod" type="text">
 			</param>
 		</repeat>
-		
+
+		<param name="acetyl_protein_nterm" type="boolean" label="Allow N-terminal protein acetylation as a variable modification" truevalue="-y" falsevalue="" />		
 		
 
 		<param name="missed_cleavages" type="select" format="text" help="Allow peptides to contain up to this many missed enzyme cleavage sites">
@@ -107,7 +134,11 @@
 			<option value="2">2</option>
 		</param>
 
-		<param name="cleavage_semi" type="boolean" label="Allow semi-cleaved peptides" help="This can increase search time dramatically" truevalue="" falsevalue="--no-cleavage-semi" />
+		<param name="cleavage_semi" type="boolean" label="Allow semi-cleaved peptides" help="This can increase search time dramatically" truevalue="--cleavage-semi" falsevalue=""/>
+
+		<param name="keep_spectra" type="boolean" label="Keep Spectra" help="Include spectra in the output" truevalue="--output-spectra" falsevalue=""/>
+
+		<param name="threads" type="integer" value="1" label="Threads" help="Number of threads to use for search. Maximum is 16"/>
 		
 		<param name="enzyme" type="select" format="text">
 		    <label>Enzyme</label>
@@ -146,26 +177,14 @@
 			<option value="Da">Da</option>
 		</param>
 		
-		<param name="allow_multi_isotope_search" type="boolean" label="Allow multi-isotope search" help="This allows peptide candidates in windows around -1 Da and -2 Da from the acquired mass to be considered. Only applicable when the minus/plus window above is set to less than 0.5 Da. Good for accurate-mass instruments for which the reported precursor mass is not corrected to the monoisotopic mass." truevalue="" falsevalue="--strict-monoisotopic-mass"/>
+		<param name="allow_multi_isotope_search" type="boolean" label="Allow multi-isotope search" help="This allows peptide candidates in windows around -1 Da and -2 Da from the acquired mass to be considered. Only applicable when the minus/plus window above is set to less than 0.5 Da. Good for accurate-mass instruments for which the reported precursor mass is not corrected to the monoisotopic mass." truevalue="" falsevalue=""/>
 
 	</inputs>
 
 
 	<outputs>
-		<data format="raw_pepxml" name="output" metadata_source="input_file" label="X!Tandem_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}.pepXML"/>
+		<data format="tandem" name="output" metadata_source="input_file" label="X!Tandem_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}.tandem"/>
 	</outputs>
-
-	<tests>
-    	<test>
-    		<param name="source_select" value="input_ref"/>
-	      	<param name="fasta_file" value="bsa.fasta"/>
-   		   	<param name="input_file" value="bsa.mzML"/>
-      		<param name="variable_mods" value="15.994915@M"/>
-      		<param name="fixed_mods" value="57.021464@C"/>
-      		<param name="allow_multi_isotope_search" value="false"/>
-      		<output name="output" file="bsa.pepXML" compare="sim_size" delta="600" /> 
-    	</test>
-  	</tests>
 
 
   <help>
