@@ -86,6 +86,7 @@
 			<when value="built_in">
 				<param name="paramskey" type="select" format="text" >
 					<label>Paramset</label>
+				    <option value="gpm">GPM</option>
 				    <option value="isb_native">ISB Native</option>		
 					<option value="isb_kscore">ISB K-Score</option>
 				</param>
