@@ -1,5 +1,6 @@
 This package installs wrapper scripts for Peptide Prophet, iProphet and Protein Prophet
 
 Requirements:
-This package depends on the galaxy_protk and protk_trans_proteomic_pipeline packages
-Please see instructions for those packages before installing
+This package uses protk and the tpp which must be installed separately. 
+
+For instructions please see: https://github.com/iracooke/protk/#galaxy-integration

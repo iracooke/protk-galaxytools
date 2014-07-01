@@ -1,6 +1,6 @@
 <tool id="proteomics_search_peptide_prophet_1" name="Peptide Prophet" version="1.0.1">
     <requirements>
-        <requirement type="package" version="1.2.6">protk</requirement>
+        <requirement type="package" version="1.3">protk</requirement>
         <requirement type="package" version="4.6.3">trans_proteomic_pipeline</requirement>
    </requirements>
    
@@ -31,7 +31,7 @@
     <param name="input_file" type="data" format="raw_pepxml" multiple="false" label="Raw Search Results" help="These files will typically be outputs from omssa or xtandem search tools"/>
 
 	<param name="glyco" type="boolean" label="Expect true positives to have a glycocapture motif" truevalue="--glyco" falsevalue=""/>
-	<param name="useicat" type="boolean" label="Use icat information" truevalue="--useicat" falsevalue="--no-useicat"/>
+	<param name="useicat" type="boolean" label="Use icat information" truevalue="--useicat" falsevalue=""/>
 	<param name="phospho" type="boolean" label="Use phospho information" truevalue="--phospho" falsevalue=""/>
 	<param name="usepi" type="boolean" label="Use pI information" truevalue="--usepi" falsevalue=""/>
 	<param name="usert" type="boolean" label="Use hydrophobicity / RT information" truevalue="--usert" falsevalue=""/>
