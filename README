@@ -1,7 +1,6 @@
 This package is a galaxy wrapper for the MSGF+ search tool.
 
 Requirements:
-This package depends on the galaxy_protk, protk_msgfplus, protk_proteowizard packages
-Please see instructions for those packages before installing
+This package uses protk, msgfplus and proteowizard, which must be installed separately. 
 
-In addition to basic requirements you must also have unzip and java 6 runtime (or greater) installed
+For instructions please see: https://github.com/iracooke/protk/#galaxy-integration

@@ -1,1 +1,1 @@
-tar --exclude=.DS_Store --exclude=.hgcheck --exclude=.hg --exclude=*.tar --exclude=*.bz2 --exclude=bundle.sh -cvf msgfplus.tar ./;bzip2 -f msgfplus.tar
+tar --exclude=.hg --exclude=.DS_Store --exclude=.hgcheck --exclude=.git --exclude=*.tar --exclude=*.bz2 --exclude=bundle.sh -cvf package.tar ./;bzip2 -f package.tar
