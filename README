@@ -4,7 +4,6 @@ Running this tool requires a working installation of Mascot (commercial software
 Mascot is available from http://www.matrixscience.com/
 
 Requirements:
-This package depends on the galaxy_protk and protk_trans_proteomic_pipeline packages
-Please see instructions for those packages before installing. In particular 
-you will need to install system package requirements for galaxy_protk and protk_trans_proteomic_pipeline
-using your package manager
+This package uses protk which must be installed separately. 
+
+For instructions please see: https://github.com/iracooke/protk/#galaxy-integration
