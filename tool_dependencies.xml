@@ -1,16 +1,8 @@
 <?xml version="1.0"?>
 <tool_dependency>
 
-    <package name="protk" version="1.2.6">
-         <repository name="package_protk_1_2_6" owner="iracooke" prior_installation_required="True"/>
-    </package>
-
     <package name="blast+" version="2.2.29">
         <repository name="package_blast_plus_2_2_29" owner="iuc" />
-    </package>
-
-    <package name="omssa" version="2.1.9">
-        <repository name="package_omssa_2_1_9" owner="iracooke"/>
     </package>
 
 </tool_dependency>
