@@ -45,6 +45,9 @@
         --min-pep-charge=$min_pep_charge
         --num-reported-matches=$num_reported_matches
         --java-mem=$java_mem
+
+        --threads $threads
+
         #if $pepxml_output_use:
         --pepxml
         #end if
@@ -94,7 +97,7 @@
             <label>Missed Cleavages Allowed</label>
             <option value="0">0</option>
             <option value="1">1</option>
-            <option value="2">2</option>
+            <option selected="true" value="2">2</option>
         </param>
         
         <param name="cleavage_semi" type="boolean" label="Allow semi-cleaved peptides" help="This can increase search time dramatically" truevalue="--cleavage-semi" falsevalue="" />
@@ -116,7 +119,7 @@
         <param name="instrument" type="select" format="text">
             <label>Instrument Type</label>
             <option value="2">TOF</option>
-            <option value="0">Low-res LCQ/LTQ</option>
+            <option value="0" selected="true">Low-res LCQ/LTQ</option>
             <option value="1">High-res LTQ</option>
         </param>
 
@@ -137,7 +140,7 @@
             <option value="3">iTRAQPhospho</option>
         </param>
 
-        <param name="precursor_ion_tol" help="Precursor Ion Tolerance (Da or ppm)" type="float" value="100" min="0" max="10000" label="Precursor ion tolerance"/>
+        <param name="precursor_ion_tol" help="Precursor Ion Tolerance (Da or ppm)" type="float" value="10" min="0" max="10000" label="Precursor ion tolerance"/>
         <param name="precursor_tolu" type="select" format="text">
             <label>Precursor Ion Tolerance Units</label>
             <option value="ppm">ppm</option>
@@ -151,13 +154,13 @@
         <param name="max_pep_charge" help="" type="integer" value="3" label="Maximum Peptide Charge"/>
         <param name="num_reported_matches" help="Number of matches per spectrum to be reported" type="integer" value="1" label="Num reported matches"/>
         <param name="java_mem" help="Increase this value if you get out of memory errors" type="text" size="80" value="3500M" label="Java Memory Limit"/>
-        <param name="pepxml_output_use" type="boolean" label="Convert results to pepXML" help="" truevalue="true" falsevalue="false" />
+        <param name="threads" type="integer" value="1" label="Threads" help="Number of threads to use for search."/>        
+        <param name="pepxml_output_use" checked="true" type="boolean" label="Convert results to pepXML" help="" truevalue="true" falsevalue="false" />
     </inputs>
     <outputs>
-        <data format="mzid" name="output" metadata_source="input_file" label="MSGF+_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}">
+        <data format="mzid" name="output" metadata_source="input_file" label="MSGF+_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}.${'pepXML' if $pepxml_output_use else 'mzid'}">
             <change_format>
-                <when input="pepxml_output_use" value="true" format="raw_pepxml" metadata_source="input_file" 
-                    label="MSGF+_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}"/>
+                <when input="pepxml_output_use" value="true" format="raw_pepxml" metadata_source="input_file"/>
             </change_format>
         </data>
     </outputs>
