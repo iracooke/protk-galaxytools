@@ -59,7 +59,7 @@
 		<conditional name="database">
 			<param name="source_select" type="select" label="Database source">
 				<option value="built_in">Built-In</option>
-				<option value="input_ref">Uploaded fasta file</option>
+				<option selected="true" value="input_ref">Uploaded fasta file</option>
 			</param>
 			<when value="built_in">
 				<param name="dbkey" type="select" format="text" >
@@ -98,7 +98,7 @@
 			<label>Missed Cleavages Allowed</label>
 		    <option value="0">0</option>		
 			<option value="1">1</option>
-			<option value="2">2</option>
+			<option selected="true" value="2">2</option>
 		</param>
 
 		<param name="enzyme" type="select" format="text">
@@ -130,12 +130,12 @@
 			<option value="24">Semi-Glu-C</option>
 		</param>
 
-		<param name="fragment_ion_tol" help="Fragment Ion Tolerance in Daltons" type="float" value="0.65" min="0" max="10000" label="Fragment ion tolerance"/>
-		<param name="max_hit_expect" help="Expect values less than this are considered to be hits. Use a large value, eg 10000 when results will be processed downstream with Peptide Prophet" type="float" value="1.0" min="0" max="10000000" label="Maximum Expect value allowed in the hit list"/><!-- -he-->
+		<param name="fragment_ion_tol" help="Fragment Ion Tolerance in Daltons" type="float" value="0.5" min="0" max="10000" label="Fragment ion tolerance"/>
+		<param name="max_hit_expect" help="Expect values less than this are considered to be hits. Use a large value, eg 10000 when results will be processed downstream with Peptide Prophet" type="float" value="10000.0" min="0" max="10000000" label="Maximum Expect value allowed in the hit list"/><!-- -he-->
 		<param name="intensity_cut_off" help="Peak intensity cut-off as a fraction of maximum peak intensity" type="float" value="0.0005" min="0" max="1" label="Peak intensity cut-off"/><!-- -ci-->
 
 
-		<param name="precursor_ion_tol" help="Precursor Ion Tolerance (Da or ppm)" type="float" value="100" min="0" max="10000" label="Precursor ion tolerance"/>
+		<param name="precursor_ion_tol" help="Precursor Ion Tolerance (Da or ppm)" type="float" value="10" min="0" max="10000" label="Precursor ion tolerance"/>
 		<param name="precursor_tolu" type="select" format="text">
 		    <label>Precursor Ion Tolerance Units</label>
 		    <option value="ppm">ppm</option>		
@@ -155,10 +155,10 @@
 		</param>
 
 		<param name="searched_ions" display="checkboxes" type="select" multiple="true" format="text" label="Ions included in search" help="">
-		    <option selected="true" value="0">a</option>
+		    <option value="0">a</option>
 			<option selected="true" value="1">b</option>
 			<option value="2">c</option>
-			<option selected="true" value="3">x</option>
+			<option value="3">x</option>
 			<option selected="true" value="4">y</option>
 			<option value="5">zdot</option>
 			<option value="10">adot</option>
