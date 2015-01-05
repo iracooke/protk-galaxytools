@@ -35,7 +35,6 @@
 	
     <param name="input_file" type="data" format="peptideprophet_pepxml,interprophet_pepxml" multiple="false" label="Peptide Prophet Results" help="These files will typically be outputs from peptide prophet or interprophet"/>
 
-
 	<param name="iproph" selected="true" type="boolean" label="Inputs are from iProphet" truevalue="--iprophet-input" falsevalue=""/>
 	<param name="nooccam" type="boolean" label="Don't apply Occam's razor" help="When selected no attempt will be made to derive the simplest protein list explaining observed peptides" truevalue="--no-occam" falsevalue=""/>
 	<param name="groupwts" type="boolean" label="Use group weights" help="Check peptide's total weight (rather than actual weight) in the Protein Group against the threshold" truevalue="--group-wts" falsevalue=""/>

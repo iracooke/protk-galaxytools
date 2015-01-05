@@ -23,6 +23,16 @@
         $force_fit 
         $allow_alt_instruments 
         $maldi
+        $usedecoys
+        --decoy-prefix $decoy_prefix_string
+
+#if $experiment_label
+        --experiment-label $experiment_label
+#end if
+
+        --p-thresh $p_thresh
+
+        --threads $threads
 
 	</command>
 
@@ -44,7 +54,11 @@
 	<param name="force_fit" type="boolean" label="Force fitting" help="Bypasses automatic mixture model checks and forces fitting of a mixture model" truevalue="--force-fit" falsevalue=""/>
 	<param name="allow_alt_instruments" type="boolean" label="Allow multiple instrument types" help="Warning instead of exit with error if instrument types between runs is different" truevalue="--allow-alt-instruments" falsevalue=""/>
 	<param name="maldi" type="boolean" label="Maldi data" truevalue="-l" falsevalue=""/>
-	
+    <param name="usedecoys" type="boolean" label="Use decoys to pin down the negative distribution" truevalue="" falsevalue="--no-decoy"/>
+    <param name="decoy_prefix_string" help="Prefix string for decoy ids" type="text" value="decoy_" label="Decoy Prefix String" size="20"/>	
+    <param name="experiment_label" help="Used to commonly label all spectra from one experiment" type="text" value="" label="Experiment Label" size="20"/>
+    <param name="p_thresh" help="Peptides scoring less than this value are discarded" type="float" value="0.05" min="0" max="1" label="Probability Threshold"/>
+    <param name="threads" type="integer" value="1" min="0" label="Threads" help="Number of threads to use"/>
 	
   </inputs>
   <outputs>
