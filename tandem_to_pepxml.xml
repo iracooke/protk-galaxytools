@@ -1,6 +1,6 @@
-<tool id="tandem_to_pepxml_1" name="Tandem to pepXML" version="1.0.1">
+<tool id="tandem_to_pepxml_1" name="Tandem to pepXML" version="1.0.2">
 	<requirements>
-	    <requirement type="package" version="1.3.0">protk</requirement>
+	    <requirement type="package" version="1.4">protk</requirement>
 	    <requirement type="package" version="4.6.3">trans_proteomic_pipeline</requirement>
    </requirements>
 

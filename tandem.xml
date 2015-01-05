@@ -1,7 +1,7 @@
-<tool id="proteomics_search_tandem_1" name="X!Tandem MSMS Search" version="1.0.2">
+<tool id="proteomics_search_tandem_1" name="X!Tandem MSMS Search" version="1.0.4">
 
    <requirements>
-	    <requirement type="package" version="1.3.0">protk</requirement>
+	    <requirement type="package" version="1.4">protk</requirement>
    </requirements>
 
 	<description>Run an X!Tandem Search</description>
