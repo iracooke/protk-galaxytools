@@ -31,18 +31,25 @@
 		
 		--fix-mods='
 		$fixed_mods
-		'		
-		--allowed-charges=$allowed_charges	
+		'
+
+		--allowed-charges='$allowed_charges'
 
 		--enzyme=$enzyme 
 
-		--instrument=$instrument 
+		--instrument='$instrument'
 
+		-p $precursor_ion_tol
+		
 		--precursor-ion-tol-units=$precursor_tolu 
 
+		#if $email
 		--email=$email 
+		#end if
 
 		-v $missed_cleavages
+
+		--quantitation='$quant_method'
 
 		#if $security.security_use
 		--use-security
@@ -54,6 +61,8 @@
 		--proxy $proxy
 		#end if
 
+		--timeout=600
+
 	</command>
 
 	<inputs>
@@ -63,7 +72,7 @@
 	<conditional name="database">
 		<param name="source_select" type="select" label="Database Type">
 			<option value="built_in">Built-In</option>
-			<option value="custom_defined">Custom</option>
+			<option selected="true" value="custom_defined">Custom</option>
 		</param>
 		<when value="built_in">
 			<param name="dbkey" type="select" format="text" >
@@ -97,7 +106,7 @@
 		<label>Missed Cleavages Allowed</label>
 	    <option value="0">0</option>		
 		<option value="1">1</option>
-		<option value="2">2</option>
+		<option selected="true" value="2">2</option>
 	</param>
 	
 	<param name="enzyme" type="select" format="text">
@@ -143,7 +152,7 @@
 	    <option value="1+, 2+ and 3+">1+,2+ and 3+</option>		
 		<option value="2+">2+</option>
 		<option value="2+ and 3+">2+ and 3+</option>
-		<option value="2+,3+ and 4+">2+,3+ and 4+</option>
+		<option selected="true" value="2+,3+ and 4+">2+,3+ and 4+</option>
 		<option value="3+">3+</option>
 		<option value="4+">4+</option>
 		<option value="5+">5+</option>
@@ -156,7 +165,7 @@
 	    <label>Instrument</label>
 		<option value="ESI-QUAD-TOF">ESI-QUAD-TOF</option>
 		<option value="MALDI-TOF-PSD">MALDI-TOF-PSD</option>
-		<option value="ESI-TRAP">ESI-TRAP</option>
+		<option selected="true" value="ESI-TRAP">ESI-TRAP</option>
 		<option value="ESI-QUAD">ESI-QUAD</option>
 		<option value="ESI-FTICR">ESI-FTICR</option>
 	    <option value="MALDI-TOF-TOF">MALDI-TOF-TOF</option>
@@ -168,10 +177,44 @@
 		<option value="MALDI-ISD">MALDI-ISD</option>
 		<option value="CID+ETD">CID+ETD</option>
 	</param>
-	
-	<param name="fragment_ion_tol" label="Fragment Ion Tolerance" type="float" value="0.65" min="0" max="10000" help="Fragment ion tolerance in Daltons"/>
 
-	<param name="precursor_ion_tol" label="Precursor Ion Tolerance (Da or ppm)" type="float" value="100" min="0" max="10000" help="Enter a value in Daltons or ppm depending on the units chosen below"/>
+
+	<param name="quant_method" type="select" format="text">
+	    <label>Quantitation</label>
+		<option selected="true" value="None">None</option>
+		<option value="iTRAQ 4plex">iTRAQ 4plex</option>
+		<option value="iTRAQ 4plex (protein)">iTRAQ 4plex (protein)</option>
+		<option value="iTRAQ 8plex">iTRAQ 8plex</option>
+		<option value="TMT 6plex">TMT 6plex</option>
+		<option value="TMT 2plex">TMT 2plex</option>
+	    <option value="DiLeu 4plex">DiLeu 4plex</option>
+		<option value="18O multiplex">18O multiplex</option>
+		<option value="SILAC K+6 R+6 multiplex">SILAC K+6 R+6 multiplex</option>
+		<option value="IPTL (Succinyl and IMID) multiplex">IPTL (Succinyl and IMID) multiplex</option>
+		<option value="ICPL duplex pre-digest [MD]">ICPL duplex pre-digest [MD]</option>
+		<option value="ICPL duplex post-digest [MD]">ICPL duplex post-digest [MD]</option>
+		<option value="ICPL triplex pre-digest [MD]">ICPL triplex pre-digest [MD]</option>
+		<option value="ICPL quadruplex pre-digest [MD]">ICPL quadruplex pre-digest [MD]</option>
+		<option value="18O corrected [MD]">18O corrected [MD]</option>
+		<option value="15N Metabolic [MD]">15N Metabolic [MD]</option>
+		<option value="15N + 13C Metabolic [MD]">15N + 13C Metabolic [MD]</option>
+		<option value="SILAC K+6 R+10 [MD]">SILAC K+6 R+10 [MD]</option>
+		<option value="SILAC K+6 R+10 Arg-Pro [MD]">SILAC K+6 R+10 Arg-Pro [MD]</option>
+		<option value="SILAC K+6 R+6 [MD]">SILAC K+6 R+6 [MD]</option>
+		<option value="SILAC R+6 R+10 [MD]">SILAC R+6 R+10 [MD]</option>
+		<option value="SILAC K+8 R+10 [MD]">SILAC K+8 R+10 [MD]</option>		
+		<option value="SILAC K+4 K+8 R+6 R+10 [MD]">SILAC K+4 K+8 R+6 R+10 [MD]</option>
+		<option value="ICAT ABI Cleavable [MD]">ICAT ABI Cleavable [MD]</option>
+		<option value="ICAT D8 [MD]">ICAT D8 [MD]</option>
+		<option value="Dimethylation [MD]">Dimethylation [MD]</option>
+		<option value="NBS Shimadzu [MD]">NBS Shimadzu [MD]</option>
+		<option value="Acetylation [MD]">Acetylation [MD]</option>
+		<option value="Label-free [MD]">Label-free [MD]</option>
+	</param>	
+	
+	<param name="fragment_ion_tol" label="Fragment Ion Tolerance" type="float" value="0.5" min="0" max="10000" help="Fragment ion tolerance in Daltons"/>
+
+	<param name="precursor_ion_tol" label="Precursor Ion Tolerance (Da or ppm)" type="float" value="10" min="0" max="10000" help="Enter a value in Daltons or ppm depending on the units chosen below"/>
 	<param name="precursor_tolu" type="select" format="text">
 	    <label>Precursor Ion Tolerance Units</label>
 	    <option value="ppm">ppm</option>		
