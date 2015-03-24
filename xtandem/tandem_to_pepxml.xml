@@ -1,7 +1,8 @@
 <tool id="tandem_to_pepxml_1" name="Tandem to pepXML" version="1.0.2">
 	<requirements>
+         <container type="docker">simonalpha/protk:1.4.1</container>
 	    <requirement type="package" version="1.4">protk</requirement>
-	    <requirement type="package" version="4.6.3">trans_proteomic_pipeline</requirement>
+	    <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
    </requirements>
 
   <description>Converts a tandem result file to pepXML</description>
