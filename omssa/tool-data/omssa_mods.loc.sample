@@ -1,0 +1,181 @@
+#This file lists the names of chemical modifications accepted by OMMSA
+#
+#
+2-amino-3-oxo-butanoic acid T	2-amino-3-oxo-butanoicacidt_	23	2-amino-3-oxo-butanoicacidt_
+Asparagine HexNAc	asparaginehexnac_	182	asparaginehexnac_
+Asparagine dHexHexNAc	asparaginedhexhexnac_	183	asparaginedhexhexnac_
+CAMthiopropanoyl K	camthiopropanoylk_	131	camthiopropanoylk_
+CHD2-di-methylation of K	chd2-di-methylationofk_	189	chd2-di-methylationofk_
+CHD2-di-methylation of peptide n-term	chd2-di-methylationofpeptiden-term_	190	chd2-di-methylationofpeptiden-term_
+ICAT heavy	icatheavy_	130	icatheavy_
+ICAT light	icatlight_	129	icatlight_
+M cleavage from protein n-term	mcleavagefromproteinn-term_	9	mcleavagefromproteinn-term_
+MMTS on C	mmtsonc_	179	mmtsonc_
+Maleimide-PEO2-Biotin of C	maleimide-peo2-biotinofc_	191	maleimide-peo2-biotinofc_
+NEM C	nemc_	83	nemc_
+NIPCAM	nipcam_	84	nipcam_
+O18 on peptide n-term	o18onpeptiden-term_	87	o18onpeptiden-term_
+PNGasF in O18 water	pngasfino18water_	139	pngasfino18water_
+SeMet	semet_	113	semet_
+Serine HexNAc	serinehexnac_	184	serinehexnac_
+TMT 6-plex on K	tmt6-plexonk_	198	tmt6-plexonk_
+TMT 6-plex on n-term peptide	tmt6-plexonn-termpeptide_	199	tmt6-plexonn-termpeptide_
+Threonine HexNAc	threoninehexnac_	185	threoninehexnac_
+Uniblue A on K	uniblueaonk_	195	uniblueaonk_
+acetylation of K	acetylationofk_	24	acetylationofk_
+acetylation of protein n-term	acetylationofproteinn-term_	10	acetylationofproteinn-term_
+amidation of peptide c-term	amidationofpeptidec-term_	25	amidationofpeptidec-term_
+arginine to ornithine	argininetoornithine_	163	argininetoornithine_
+beta elimination of S	betaeliminationofs_	140	betaeliminationofs_
+beta elimination of T	betaeliminationoft_	141	betaeliminationoft_
+beta methythiolation of D	betamethythiolationofd_	13	betamethythiolationofd_
+beta-carboxylation of D	beta-carboxylationofd_	47	beta-carboxylationofd_
+beta-methylthiolation of D (duplicate of 13)	beta-methylthiolationofd_duplicateof13__	26	beta-methylthiolationofd_duplicateof13__
+carbamidomethyl C	carbamidomethylc_	3	carbamidomethylc_
+carbamylation of K	carbamylationofk_	31	carbamylationofk_
+carbamylation of n-term peptide	carbamylationofn-termpeptide_	32	carbamylationofn-termpeptide_
+carboxyamidomethylation of D	carboxyamidomethylationofd_	29	carboxyamidomethylationofd_
+carboxyamidomethylation of E	carboxyamidomethylationofe_	30	carboxyamidomethylationofe_
+carboxyamidomethylation of H	carboxyamidomethylationofh_	28	carboxyamidomethylationofh_
+carboxyamidomethylation of K	carboxyamidomethylationofk_	27	carboxyamidomethylationofk_
+carboxykynurenin of W	carboxykynureninofw_	165	carboxykynureninofw_
+carboxymethyl C	carboxymethylc_	2	carboxymethylc_
+carboxymethylated selenocysteine	carboxymethylatedselenocysteine_	207	carboxymethylatedselenocysteine_
+citrullination of R	citrullinationofr_	33	citrullinationofr_
+deamidation of N	deamidationofn_	196	deamidationofn_
+deamidation of N and Q	deamidationofnandq_	4	deamidationofnandq_
+dehydro of S and T	dehydroofsandt_	164	dehydroofsandt_
+di-O18 on peptide n-term	di-o18onpeptiden-term_	88	di-o18onpeptiden-term_
+di-iodination of Y	di-iodinationofy_	35	di-iodinationofy_
+di-methylation of K	di-methylationofk_	36	di-methylationofk_
+di-methylation of R	di-methylationofr_	37	di-methylationofr_
+di-methylation of peptide n-term	di-methylationofpeptiden-term_	38	di-methylationofpeptiden-term_
+farnesylation of C	farnesylationofc_	42	farnesylationofc_
+fluorophenylalanine	fluorophenylalanine_	46	fluorophenylalanine_
+formylation of K	formylationofk_	43	formylationofk_
+formylation of peptide n-term	formylationofpeptiden-term_	44	formylationofpeptiden-term_
+formylation of protein n-term	formylationofproteinn-term_	82	formylationofproteinn-term_
+gamma-carboxylation of E	gamma-carboxylationofe_	48	gamma-carboxylationofe_
+gammathiopropionylation of K	gammathiopropionylationofk_	40	gammathiopropionylationofk_
+gammathiopropionylation of peptide n-term	gammathiopropionylationofpeptiden-term_	41	gammathiopropionylationofpeptiden-term_
+geranyl-geranyl	geranyl-geranyl_	49	geranyl-geranyl_
+glucuronylation of protein n-term	glucuronylationofproteinn-term_	50	glucuronylationofproteinn-term_
+glutathione disulfide	glutathionedisulfide_	51	glutathionedisulfide_
+guanidination of K	guanidinationofk_	53	guanidinationofk_
+heavy arginine-13C6	heavyarginine-13c6_	136	heavyarginine-13c6_
+heavy arginine-13C6-15N4	heavyarginine-13c6-15n4_	137	heavyarginine-13c6-15n4_
+heavy lysine - 13C6 15N2	heavylysine-13c615n2_	181	heavylysine-13c615n2_
+heavy lysine - 2H4	heavylysine-2h4_	180	heavylysine-2h4_
+heavy lysine-13C6	heavylysine-13c6_	138	heavylysine-13c6_
+homoserine	homoserine_	56	homoserine_
+homoserine lactone	homoserinelactone_	57	homoserinelactone_
+hydroxylation of  Y	hydroxylationofy_	64	hydroxylationofy_
+hydroxylation of D	hydroxylationofd_	59	hydroxylationofd_
+hydroxylation of F	hydroxylationoff_	63	hydroxylationoff_
+hydroxylation of K	hydroxylationofk_	60	hydroxylationofk_
+hydroxylation of N	hydroxylationofn_	61	hydroxylationofn_
+hydroxylation of P	hydroxylationofp_	62	hydroxylationofp_
+iTRAQ114 on K	itraq114onk_	168	itraq114onk_
+iTRAQ114 on Y	itraq114ony_	169	itraq114ony_
+iTRAQ114 on nterm	itraq114onnterm_	167	itraq114onnterm_
+iTRAQ115 on K	itraq115onk_	171	itraq115onk_
+iTRAQ115 on Y	itraq115ony_	172	itraq115ony_
+iTRAQ115 on nterm	itraq115onnterm_	170	itraq115onnterm_
+iTRAQ116 on K	itraq116onk_	174	itraq116onk_
+iTRAQ116 on Y	itraq116ony_	175	itraq116ony_
+iTRAQ116 on nterm	itraq116onnterm_	173	itraq116onnterm_
+iTRAQ117 on K	itraq117onk_	177	itraq117onk_
+iTRAQ117 on Y	itraq117ony_	178	itraq117ony_
+iTRAQ117 on nterm	itraq117onnterm_	176	itraq117onnterm_
+iTRAQ8plex	itraq8plex_	204	itraq8plex_
+iTRAQ8plex	itraq8plex_	205	itraq8plex_
+iTRAQ8plex	itraq8plex_	203	itraq8plex_
+iTRAQ8plex	itraq8plex_	201	itraq8plex_
+iTRAQ8plex	itraq8plex_	202	itraq8plex_
+iTRAQ8plex	itraq8plex_	200	itraq8plex_
+iodination of Y	iodinationofy_	65	iodinationofy_
+lipoyl K	lipoylk_	67	lipoylk_
+methyl C	methylc_	73	methylc_
+methyl H	methylh_	74	methylh_
+methyl N	methyln_	75	methyln_
+methyl R	methylr_	77	methylr_
+methyl ester of D	methylesterofd_	69	methylesterofd_
+methyl ester of E (duplicate of 17)	methylesterofe_duplicateof17__	70	methylesterofe_duplicateof17__
+methyl ester of S	methylesterofs_	71	methylesterofs_
+methyl ester of Y	methylesterofy_	72	methylesterofy_
+methyl ester of peptide c-term (duplicate of 18)	methylesterofpeptidec-term_duplicateof18__	68	methylesterofpeptidec-term_duplicateof18__
+methylation of D	methylationofd_	16	methylationofd_
+methylation of E	methylationofe_	17	methylationofe_
+methylation of K	methylationofk_	0	methylationofk_
+methylation of Q	methylationofq_	14	methylationofq_
+methylation of peptide c-term	methylationofpeptidec-term_	18	methylationofpeptidec-term_
+methylation of peptide n-term	methylationofpeptiden-term_	76	methylationofpeptiden-term_
+methylation of protein n-term	methylationofproteinn-term_	11	methylationofproteinn-term_
+myristoleylation of G	myristoleylationofg_	78	myristoleylationofg_
+myristoyl-4H of G	myristoyl-4hofg_	79	myristoyl-4hofg_
+myristoylation of K	myristoylationofk_	81	myristoylationofk_
+myristoylation of peptide n-term G	myristoylationofpeptiden-termg_	80	myristoylationofpeptiden-termg_
+n-acyl diglyceride cysteine	n-acyldiglyceridecysteine_	118	n-acyldiglyceridecysteine_
+n-formyl met addition	n-formylmetaddition_	22	n-formylmetaddition_
+oxidation of C	oxidationofc_	193	oxidationofc_
+oxidation of C to cysteic acid	oxidationofctocysteicacid_	34	oxidationofctocysteicacid_
+oxidation of C to sulfinic acid	oxidationofctosulfinicacid_	162	oxidationofctosulfinicacid_
+oxidation of F to dihydroxyphenylalanine	oxidationofftodihydroxyphenylalanine_	39	oxidationofftodihydroxyphenylalanine_
+oxidation of H	oxidationofh_	89	oxidationofh_
+oxidation of H to D	oxidationofhtod_	55	oxidationofhtod_
+oxidation of H to N	oxidationofhton_	54	oxidationofhton_
+oxidation of M	oxidationofm_	1	oxidationofm_
+oxidation of P to pyroglutamic acid	oxidationofptopyroglutamicacid_	111	oxidationofptopyroglutamicacid_
+oxidation of W	oxidationofw_	90	oxidationofw_
+oxidation of W to formylkynurenin	oxidationofwtoformylkynurenin_	45	oxidationofwtoformylkynurenin_
+oxidation of W to hydroxykynurenin	oxidationofwtohydroxykynurenin_	58	oxidationofwtohydroxykynurenin_
+oxidation of W to kynurenin	oxidationofwtokynurenin_	66	oxidationofwtokynurenin_
+oxidation of W to nitro	oxidationofwtonitro_	85	oxidationofwtonitro_
+oxidation of Y (duplicate of 64)	oxidationofy_duplicateof64__	194	oxidationofy_duplicateof64__
+oxidation of Y to nitro	oxidationofytonitro_	86	oxidationofytonitro_
+palmitoleyl of C	palmitoleylofc_	187	palmitoleylofc_
+palmitoleyl of S	palmitoleylofs_	186	palmitoleylofs_
+palmitoleyl of T	palmitoleyloft_	188	palmitoleyloft_
+palmitoylation of C	palmitoylationofc_	92	palmitoylationofc_
+palmitoylation of K	palmitoylationofk_	93	palmitoylationofk_
+palmitoylation of S	palmitoylationofs_	94	palmitoylationofs_
+palmitoylation of T	palmitoylationoft_	95	palmitoylationoft_
+phosphopantetheine S	phosphopantetheines_	91	phosphopantetheines_
+phosphorylation of H	phosphorylationofh_	192	phosphorylationofh_
+phosphorylation of S	phosphorylationofs_	6	phosphorylationofs_
+phosphorylation of S with ETD loss	phosphorylationofswithetdloss_	134	phosphorylationofswithetdloss_
+phosphorylation of S with prompt loss	phosphorylationofswithpromptloss_	96	phosphorylationofswithpromptloss_
+phosphorylation of T	phosphorylationoft_	7	phosphorylationoft_
+phosphorylation of T with ETD loss	phosphorylationoftwithetdloss_	135	phosphorylationoftwithetdloss_
+phosphorylation of T with prompt loss	phosphorylationoftwithpromptloss_	97	phosphorylationoftwithpromptloss_
+phosphorylation of Y	phosphorylationofy_	8	phosphorylationofy_
+phosphorylation with neutral loss on C	phosphorylationwithneutrallossonc_	99	phosphorylationwithneutrallossonc_
+phosphorylation with neutral loss on D	phosphorylationwithneutrallossond_	100	phosphorylationwithneutrallossond_
+phosphorylation with neutral loss on H	phosphorylationwithneutrallossonh_	101	phosphorylationwithneutrallossonh_
+phosphorylation with neutral loss on S	phosphorylationwithneutrallossons_	132	phosphorylationwithneutrallossons_
+phosphorylation with neutral loss on T	phosphorylationwithneutrallossont_	133	phosphorylationwithneutrallossont_
+phosphorylation with prompt loss on Y	phosphorylationwithpromptlossony_	98	phosphorylationwithpromptlossony_
+propionamide C	propionamidec_	5	propionamidec_
+propionyl heavy K	propionylheavyk_	104	propionylheavyk_
+propionyl heavy peptide n-term	propionylheavypeptiden-term_	105	propionylheavypeptiden-term_
+propionyl light K	propionyllightk_	102	propionyllightk_
+propionyl light on peptide n-term	propionyllightonpeptiden-term_	103	propionyllightonpeptiden-term_
+pyridyl K	pyridylk_	106	pyridylk_
+pyridyl peptide n-term	pyridylpeptiden-term_	107	pyridylpeptiden-term_
+pyro-cmC	pyro-cmc_	108	pyro-cmc_
+pyro-glu from n-term E	pyro-glufromn-terme_	109	pyro-glufromn-terme_
+pyro-glu from n-term Q	pyro-glufromn-termq_	110	pyro-glufromn-termq_
+s-pyridylethylation of C	s-pyridylethylationofc_	112	s-pyridylethylationofc_
+selenocysteine	selenocysteine_	206	selenocysteine_
+sulfation of Y	sulfationofy_	114	sulfationofy_
+sulphone of M	sulphoneofm_	115	sulphoneofm_
+sumoylation of K	sumoylationofk_	166	sumoylationofk_
+tri-deuteromethylation of D	tri-deuteromethylationofd_	19	tri-deuteromethylationofd_
+tri-deuteromethylation of E	tri-deuteromethylationofe_	20	tri-deuteromethylationofe_
+tri-deuteromethylation of peptide c-term	tri-deuteromethylationofpeptidec-term_	21	tri-deuteromethylationofpeptidec-term_
+tri-iodination of Y	tri-iodinationofy_	116	tri-iodinationofy_
+tri-methylation of K	tri-methylationofk_	15	tri-methylationofk_
+tri-methylation of R	tri-methylationofr_	117	tri-methylationofr_
+tri-methylation of protein n-term	tri-methylationofproteinn-term_	12	tri-methylationofproteinn-term_
+trideuteration of L (SILAC)	trideuterationofl_silac__	197	trideuterationofl_silac__
+ubiquitinylation residue	ubiquitinylationresidue_	52	ubiquitinylationresidue_
