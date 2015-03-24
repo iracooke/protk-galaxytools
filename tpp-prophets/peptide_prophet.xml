@@ -1,0 +1,114 @@
+<tool id="proteomics_search_peptide_prophet_1" name="Peptide Prophet" version="1.0.2">
+    <requirements>
+        <requirement type="package" version="1.4">protk</requirement>
+        <requirement type="package" version="4.6.3">trans_proteomic_pipeline</requirement>
+   </requirements>
+   
+	<description>Calculate Peptide Prophet statistics on search results</description>
+
+	<command>
+        peptide_prophet.rb --galaxy $input_file -o peptide_prophet_output.pep.xml
+
+        -r 
+        $glyco 
+        $useicat 
+        $phospho 
+        $usepi 
+        $usert 
+        $accurate_mass 
+        $no_ntt 
+        $no_nmc 
+        $use_gamma 
+        $use_only_expect 
+        $force_fit 
+        $allow_alt_instruments 
+        $maldi
+        $usedecoys
+        --decoy-prefix $decoy_prefix_string
+
+#if $experiment_label
+        --experiment-label $experiment_label
+#end if
+
+        --p-thresh $p_thresh
+
+        --threads $threads
+
+	</command>
+
+	<inputs>
+	
+    <param name="input_file" type="data" format="raw_pepxml" multiple="false" label="Raw Search Results" help="These files will typically be outputs from omssa or xtandem search tools"/>
+
+	<param name="glyco" type="boolean" label="Expect true positives to have a glycocapture motif" truevalue="--glyco" falsevalue=""/>
+	<param name="useicat" type="boolean" label="Use icat information" truevalue="--useicat" falsevalue=""/>
+	<param name="phospho" type="boolean" label="Use phospho information" truevalue="--phospho" falsevalue=""/>
+	<param name="usepi" type="boolean" label="Use pI information" truevalue="--usepi" falsevalue=""/>
+	<param name="usert" type="boolean" label="Use hydrophobicity / RT information" truevalue="--usert" falsevalue=""/>
+	<param name="accurate_mass" type="boolean" label="Use accurate mass binning" truevalue="--accurate-mass" falsevalue=""/>
+	<param name="no_ntt" type="boolean" label="Don't use NTT model" truevalue="--no-ntt" falsevalue=""/>
+	<param name="no_nmc" type="boolean" label="Don't use NMC model" truevalue="--no-nmc" falsevalue=""/>
+	<param name="use_gamma" type="boolean" label="Use Gamma distribution to model the negatives" help="Applies only to X!Tandem results" truevalue="--usegamma" falsevalue=""/>
+	<param name="use_only_expect" type="boolean" label="Only use Expect Score as the discriminant" help="Applies only to X!Tandem results. 
+        Helpful for data with homologous top hits e.g. phospho or glyco" truevalue="--use-only-expect" falsevalue=""/>
+	<param name="force_fit" type="boolean" label="Force fitting" help="Bypasses automatic mixture model checks and forces fitting of a mixture model" truevalue="--force-fit" falsevalue=""/>
+	<param name="allow_alt_instruments" type="boolean" label="Allow multiple instrument types" help="Warning instead of exit with error if instrument types between runs is different" truevalue="--allow-alt-instruments" falsevalue=""/>
+	<param name="maldi" type="boolean" label="Maldi data" truevalue="-l" falsevalue=""/>
+    <param name="usedecoys" type="boolean" label="Use decoys to pin down the negative distribution" truevalue="" falsevalue="--no-decoy"/>
+    <param name="decoy_prefix_string" help="Prefix string for decoy ids" type="text" value="decoy_" label="Decoy Prefix String" size="20"/>	
+    <param name="experiment_label" help="Used to commonly label all spectra from one experiment" type="text" value="" label="Experiment Label" size="20"/>
+    <param name="p_thresh" help="Peptides scoring less than this value are discarded" type="float" value="0.05" min="0" max="1" label="Probability Threshold"/>
+    <param name="threads" type="integer" value="1" min="0" label="Threads" help="Number of threads to use"/>
+	
+  </inputs>
+  <outputs>
+    <data format="peptideprophet_pepxml" name="output" metadata_source="input_file" label="peptide_prophet.${input_file.display_name}.pep.xml" from_work_dir="peptide_prophet_output.pep.xml"/>
+  </outputs>
+
+<help>
+
+**What it does**
+
+Given raw search engine scores as inputs this tool estimates the accuracy of peptide assignments.  From a practical perspective it estimates the probability that each peptide assignment is correct (providing probabilities as outputs), given raw scores (possibly on some arbitrary scale) as inputs. 
+
+----
+
+**Citation**
+
+If you use this tool please read and cite the paper describing the statistical model implemented by Peptide Prophet
+
+Keller A., et al. “Empirical Statistical Model to Estimate the Accuracy of Peptide Identifications Made by MS/MS and Database Search” *Anal. Chem.* 74, 5383-5392 (2002).
+
+
+</help>
+
+
+<!--PeptideProphet options [following the 'O']:
+                 i [use icat information in PeptideProphet]
+                 f [do not use icat information in PeptideProphet]
+                 g [use N-glyc motif information in PeptideProphet]
+                 H [use Phospho information in PeptideProphet]
+                 m [maldi data]
+                 I [use pI information in PeptideProphet]
+                 R [use Hydrophobicity / RT information in PeptideProphet]
+                 F [force the fitting of the mixture model, bypass automatic mixture model checks]
+                 A [use accurate mass binning in PeptideProphet]
+                 w [warning instead of exit with error if instrument types between runs is different]
+                 x [exclude all entries with asterisked score values in PeptideProphet]
+                 l [leave alone all entries with asterisked score values in PeptideProphet]
+                 n [use hardcoded default initialization parameters of the distributions]
+                 P [use Non-parametric model, can only be used with decoy option]
+                 N [do not use the NTT model]
+                 M [do not use the NMC model]
+                 G [use Gamma Distribution to model the Negatives (applies only to X!Tandem data)]
+                 E [only use Expect Score as the Discriminant(applies only to X!Tandem data, 
+                    helpful for data with homologous top hits e.g. phospho or glyco)]
+                 d [report decoy hits with a computed probability based on the model learned]
+                 p [run ProteinProphet afterwards]
+                 t [do not create png data plot]
+                 u [do not assemble protein groups in ProteinProphet analysis]
+                 s [do not use Occam's Razor in ProteinProphet analysis to 
+                    derive the simplest protein list to explain observed peptides]
+-->
+
+</tool>
