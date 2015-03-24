@@ -1,0 +1,6 @@
+Galaxy wrapper for running the X!Tandem search engine and converting results to pepXML
+
+Requirements:
+This package uses protk and the trans_proteomic_pipeline. These must be installed separately. 
+
+For instructions please see: https://github.com/iracooke/protk/#galaxy-integration
