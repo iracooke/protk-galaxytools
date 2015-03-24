@@ -1,7 +1,7 @@
-<tool id="proteomics_search_msgfplus_1" name="MSGF+ MSMS Search" version="1.0.3">
+<tool id="proteomics_search_msgfplus_1" name="MSGF+ MSMS Search" version="1.0.4">
     <description>Run an MSGF+ Search</description>
     <requirements>
-        <requirement type="package" version="1.3">protk</requirement>
+        <requirement type="package" version="1.4">protk</requirement>
         <requirement type="package" version="20140210">msgfplus</requirement>
         <requirement type="package" version="3_0_4388">proteowizard</requirement>
     </requirements>
