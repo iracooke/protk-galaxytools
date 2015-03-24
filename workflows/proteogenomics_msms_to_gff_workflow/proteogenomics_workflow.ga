@@ -1,0 +1,354 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "Creates a protein database from a 6-frame translation of a genome, and from predicted transcripts, then searches msms data using this database and maps peptides back to the genome", 
+    "format-version": "0.1", 
+    "name": "Proteogenomics Map Peptides to GFF", 
+    "steps": {
+        "0": {
+            "annotation": "MSMSData", 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "MSMSData", 
+                    "name": "MSMS Data"
+                }
+            ], 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 200, 
+                "top": 200
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"MSMS Data\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": []
+        }, 
+        "1": {
+            "annotation": "", 
+            "id": 1, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "Genome"
+                }
+            ], 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 206, 
+                "top": 371
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"Genome\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": []
+        }, 
+        "2": {
+            "annotation": "", 
+            "id": 2, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "Predicted Genes"
+                }
+            ], 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 207, 
+                "top": 616
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"Predicted Genes\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": []
+        }, 
+        "3": {
+            "annotation": "", 
+            "id": 3, 
+            "input_connections": {
+                "type|input": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "name": "msconvert3", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "mzml"
+                }
+            ], 
+            "position": {
+                "left": 967, 
+                "top": 314
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/iracooke/msconvert/msconvert3/0.2.1", 
+            "tool_state": "{\"__page__\": 0, \"filtering\": \"{\\\"filtering_use\\\": \\\"False\\\", \\\"__current_case__\\\": 0}\", \"settings\": \"{\\\"settingsType\\\": \\\"default\\\", \\\"__current_case__\\\": 0}\", \"chromInfo\": \"\\\"/home/vagrant/galaxy-dist/database/files/000/dataset_27.dat\\\"\", \"__rerun_remap_job_id__\": null, \"output_type\": \"\\\"mzML\\\"\", \"type\": \"{\\\"input_type\\\": \\\"mgf\\\", \\\"__current_case__\\\": 2, \\\"input\\\": null}\"}", 
+            "tool_version": "0.2.1", 
+            "type": "tool", 
+            "user_outputs": []
+        }, 
+        "4": {
+            "annotation": "", 
+            "id": 4, 
+            "input_connections": {
+                "fasta_file": {
+                    "id": 1, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "name": "Generate 6-frame translation", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "fasta"
+                }
+            ], 
+            "position": {
+                "left": 554, 
+                "top": 570
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/iracooke/sixframe_translate/sixframe_translate/1.0.0", 
+            "tool_state": "{\"__page__\": 0, \"strip_header\": \"\\\"True\\\"\", \"fasta_file\": \"null\", \"coords\": \"\\\"True\\\"\", \"chromInfo\": \"\\\"/home/vagrant/galaxy-dist/database/files/000/dataset_27.dat\\\"\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": []
+        }, 
+        "5": {
+            "annotation": "", 
+            "id": 5, 
+            "input_connections": {
+                "gff_file": {
+                    "id": 2, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "name": "Extract proteins from gff3", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "fasta"
+                }
+            ], 
+            "position": {
+                "left": 524, 
+                "top": 876
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/iracooke/proteindb_from_gff3/proteindb_from_gff3/1.0.1", 
+            "tool_state": "{\"gff_file\": \"null\", \"coords\": \"\\\"True\\\"\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/home/vagrant/galaxy-dist/database/files/000/dataset_27.dat\\\"\", \"__page__\": 0}", 
+            "tool_version": "1.0.1", 
+            "type": "tool", 
+            "user_outputs": []
+        }, 
+        "6": {
+            "annotation": "", 
+            "id": 6, 
+            "input_connections": {
+                "input1": {
+                    "id": 5, 
+                    "output_name": "output"
+                }, 
+                "queries_0|input2": {
+                    "id": 4, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "name": "Concatenate datasets", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 898, 
+                "top": 590
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "cat1", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"input1\": \"null\", \"chromInfo\": \"\\\"/home/vagrant/galaxy-dist/database/files/000/dataset_27.dat\\\"\", \"queries\": \"[{\\\"input2\\\": null, \\\"__index__\\\": 0}]\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": []
+        }, 
+        "7": {
+            "annotation": "", 
+            "id": 7, 
+            "input_connections": {
+                "fasta_file": {
+                    "id": 6, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "name": "Generate protein decoy sequences", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "fasta"
+                }
+            ], 
+            "position": {
+                "left": 1092, 
+                "top": 448
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/iracooke/make_protein_decoys/make_decoy/1.0.0", 
+            "tool_state": "{\"prefix_string\": \"\\\"decoy_\\\"\", \"__page__\": 0, \"fasta_file\": \"null\", \"chromInfo\": \"\\\"/home/vagrant/galaxy-dist/database/files/000/dataset_27.dat\\\"\", \"__rerun_remap_job_id__\": null, \"append\": \"\\\"True\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": []
+        }, 
+        "8": {
+            "annotation": "", 
+            "id": 8, 
+            "input_connections": {
+                "database|fasta_file": {
+                    "id": 7, 
+                    "output_name": "output"
+                }, 
+                "input_file": {
+                    "id": 3, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "name": "MSGF+ MSMS Search", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "mzid"
+                }
+            ], 
+            "position": {
+                "left": 1389, 
+                "top": 313
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/iracooke/msgfplus/proteomics_search_msgfplus_1/1.0.2", 
+            "tool_state": "{\"protocol\": \"\\\"0\\\"\", \"custom_variable_mods\": \"[]\", \"num_reported_matches\": \"\\\"1\\\"\", \"fragment_method\": \"\\\"0\\\"\", \"fragment_ion_tol\": \"\\\"0.4\\\"\", \"custom_fix_mods\": \"[]\", \"__page__\": 0, \"fixed_mods\": \"{\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"C2H3N1O1,C,opt,any,Carbamidomethyl\\\"}\", \"variable_mods\": \"{\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"O1,M,opt,any,Oxidation\\\"}\", \"__rerun_remap_job_id__\": null, \"max_pep_len\": \"\\\"40\\\"\", \"isotope_error_range\": \"\\\"0,1\\\"\", \"instrument\": \"\\\"2\\\"\", \"enzyme\": \"\\\"1\\\"\", \"precursor_ion_tol\": \"\\\"80.0\\\"\", \"input_file\": \"null\", \"min_pep_charge\": \"\\\"2\\\"\", \"cleavage_semi\": \"\\\"False\\\"\", \"precursor_tolu\": \"\\\"ppm\\\"\", \"java_mem\": \"\\\"3500M\\\"\", \"pepxml_output_use\": \"\\\"True\\\"\", \"database\": \"{\\\"fasta_file\\\": null, \\\"__current_case__\\\": 1, \\\"source_select\\\": \\\"input_ref\\\"}\", \"min_pep_len\": \"\\\"6\\\"\", \"max_pep_charge\": \"\\\"3\\\"\", \"chromInfo\": \"\\\"/home/vagrant/galaxy-dist/database/files/000/dataset_27.dat\\\"\", \"missed_cleavages\": \"\\\"0\\\"\"}", 
+            "tool_version": "1.0.2", 
+            "type": "tool", 
+            "user_outputs": []
+        }, 
+        "9": {
+            "annotation": "", 
+            "id": 9, 
+            "input_connections": {
+                "input_file": {
+                    "id": 8, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "name": "Peptide Prophet", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "peptideprophet_pepxml"
+                }
+            ], 
+            "position": {
+                "left": 1681, 
+                "top": 250
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/iracooke/tpp_prophets/proteomics_search_peptide_prophet_1/1.0.1", 
+            "tool_state": "{\"accurate_mass\": \"\\\"False\\\"\", \"force_fit\": \"\\\"False\\\"\", \"phospho\": \"\\\"False\\\"\", \"no_nmc\": \"\\\"False\\\"\", \"allow_alt_instruments\": \"\\\"False\\\"\", \"input_file\": \"null\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"usert\": \"\\\"False\\\"\", \"use_gamma\": \"\\\"False\\\"\", \"use_only_expect\": \"\\\"False\\\"\", \"glyco\": \"\\\"False\\\"\", \"maldi\": \"\\\"False\\\"\", \"no_ntt\": \"\\\"False\\\"\", \"useicat\": \"\\\"False\\\"\", \"chromInfo\": \"\\\"/home/vagrant/galaxy-dist/database/files/000/dataset_27.dat\\\"\", \"usepi\": \"\\\"False\\\"\"}", 
+            "tool_version": "1.0.1", 
+            "type": "tool", 
+            "user_outputs": []
+        }, 
+        "10": {
+            "annotation": "", 
+            "id": 10, 
+            "input_connections": {
+                "input_file": {
+                    "id": 9, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "name": "Protein Prophet", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "protxml"
+                }
+            ], 
+            "position": {
+                "left": 1432, 
+                "top": 566
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/iracooke/tpp_prophets/proteomics_search_protein_prophet_1/1.0.1", 
+            "tool_state": "{\"minprob\": \"\\\"0.05\\\"\", \"groupwts\": \"\\\"False\\\"\", \"input_file\": \"null\", \"minindep\": \"\\\"0\\\"\", \"__page__\": 0, \"logprobs\": \"\\\"False\\\"\", \"allpeps\": \"\\\"False\\\"\", \"normprotlen\": \"\\\"False\\\"\", \"instances\": \"\\\"False\\\"\", \"confem\": \"\\\"False\\\"\", \"nooccam\": \"\\\"False\\\"\", \"unmapped\": \"\\\"False\\\"\", \"iproph\": \"\\\"False\\\"\", \"chromInfo\": \"\\\"/home/vagrant/galaxy-dist/database/files/000/dataset_27.dat\\\"\", \"__rerun_remap_job_id__\": null, \"delude\": \"\\\"False\\\"\"}", 
+            "tool_version": "1.0.1", 
+            "type": "tool", 
+            "user_outputs": []
+        }, 
+        "11": {
+            "annotation": "", 
+            "id": 11, 
+            "input_connections": {
+                "genome_fasta_file": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "protein_fasta_file": {
+                    "id": 5, 
+                    "output_name": "output"
+                }, 
+                "protxml_file": {
+                    "id": 10, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "name": "ProtXML to GFF", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "fasta"
+                }
+            ], 
+            "position": {
+                "left": 1725, 
+                "top": 632
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/iracooke/protxml_to_gff/protxml_to_gff/1.0.0", 
+            "tool_state": "{\"__page__\": 0, \"protxml_file\": \"null\", \"protein_fasta_file\": \"null\", \"genome_fasta_file\": \"null\", \"__rerun_remap_job_id__\": null, \"protein_threshold\": \"\\\"0.99\\\"\", \"chromInfo\": \"\\\"/home/vagrant/galaxy-dist/database/files/000/dataset_27.dat\\\"\", \"collapse_redundant_proteins\": \"\\\"False\\\"\", \"peptide_threshold\": \"\\\"0.95\\\"\", \"stack_charges\": \"\\\"False\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": []
+        }
+    }
+}

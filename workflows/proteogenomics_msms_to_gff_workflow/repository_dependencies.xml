@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<repositories description="This requires numerous proteomics tools">
+	<!-- Owner needs to be galaxyp on main toolshed -->
+	<repository name="msconvert" owner="iracooke" />
+
+	<repository name="proteomics_datatypes" owner="iracooke" />
+
+	<repository name="make_protein_decoys" owner="iracooke" />
+
+	<repository name="msgfplus" owner="iracooke" />
+
+	<repository name="proteindb_from_gff3" owner="iracooke" />	
+
+	<repository name="protxml_to_gff" owner="iracooke" />
+
+	<repository name="sixframe_translate" owner="iracooke" />
+
+
+	<repository name="tpp_prophets" owner="iracooke" />
+
+	<repository name="tpp_prophets" owner="iracooke" />
+
+</repositories>
