@@ -1,6 +1,7 @@
-<tool id="pepxml_to_table_1" name="PepXML to Table" version="1.0.2">
+<tool id="pepxml_to_table_1" name="PepXML to Table" version="1.0.1">
 
 	<requirements>
+            <container type="docker">simonalpha/protk:1.4.1</container>
 	    <requirement type="package" version="1.4">protk</requirement>
    </requirements>
 
