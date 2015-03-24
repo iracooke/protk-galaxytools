@@ -1,6 +1,7 @@
 <tool id="proteomics_search_omssa_1" name="OMSSA MSMS Search" version="1.0.3">
 
    <requirements>
+        <container type="docker">simonalpha/protk:1.4.1</container>
 	    <requirement type="package" version="1.4">protk</requirement>
     	<requirement type="package" version="2.1.9">omssa</requirement>
     	<requirement type="package" version="2.2.29">blast+</requirement>
