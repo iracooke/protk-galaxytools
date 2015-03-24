@@ -1,0 +1,13 @@
+#This file lists the names of protein databases installed on Mascot
+#
+#In order to use interprophet to combine results from different search engines
+#it is important that all searches are performed on the same database
+#you should therefore ensure that each database installed on mascot has an equivalent
+#database installed in the Protk databases directory (databases used by omssa and x!tandem)
+#the mascot_to_pepxml tool will ask for this database when performing the conversion.
+#
+# Entries should follow the be structured as follows
+# Display_name dbkey dbNameOnMascot dbkey
+#
+Swissprot	spall_	SwissProt	spall_
+Swissprot Human	sphuman_	SPHuman	sphuman_

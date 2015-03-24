@@ -1,0 +1,9 @@
+This includes tools for running Mascot MS/MS searches
+
+Running this tool requires a working installation of Mascot (commercial software).
+Mascot is available from http://www.matrixscience.com/
+
+Requirements:
+This package uses protk which must be installed separately. 
+
+For instructions please see: https://github.com/iracooke/protk/#galaxy-integration
