@@ -10,6 +10,15 @@
 # We need Python 2.6 or 2.7 to run Galaxy but many Galaxy tools also need Java
 # to run the simplest way to get that installed is to just start with "java".
 # (which will still have a system python installed).
+
+# This is an attempt to run tests for protk-tools by running them in a docker container
+# 
+# To get docker setup on a travis build we copied the travis yaml from here
+#
+# https://github.com/rocker-org/rocker/blob/56cb59cc262e9d2c02f9e11cfacab65f0b659c5f/.travis.yml
+#
+
+
 language: java
 
 env:
@@ -24,11 +33,17 @@ before_install:
   - sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
   - echo exit 101 | sudo tee /usr/sbin/policy-rc.d
   - sudo chmod +x /usr/sbin/policy-rc.d
+  - sudo apt-get install -y python-virtualenv
+  - virtualenv planemo-venv
+  - source planemo-venv/bin/activate
+  - pip install planemo
+  - planemo travis_before_install
+  - source ${TRAVIS_BUILD_DIR}/.travis/env.sh # source environment created by planemo
 
 install:
   - sudo apt-get -qqy update
   - sudo apt-get -qqy install lxc lxc-docker-1.2.0 slirp
-  - sudo sudo usermod -aG docker "$USER"
+  - sudo usermod -aG docker "$USER"
   - git clone git://github.com/cptactionhank/sekexe
 
 before_script:
@@ -36,10 +51,6 @@ before_script:
   - "while ! docker info &> /dev/null ; do sleep 1; done"
   - docker pull iracooke/protk-1.4.1
 
-
 script:
-	- docker version
-
-
-# script:
-#  - wget -O- https://raw.github.com/galaxyproject/planemo/master/scripts/travis_test.sh | /bin/bash -x
+  - docker version
+  - planemo test --install_galaxy --job_config_file .travis.job_conf.xml xtandem/

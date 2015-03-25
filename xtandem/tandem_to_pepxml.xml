@@ -1,26 +1,26 @@
-<tool id="tandem_to_pepxml_1" name="Tandem to pepXML" version="1.0.2">
+<tool id="tandem_to_pepxml_1" name="Tandem to pepXML" version="1.4.1">
 	<requirements>
-         <container type="docker">simonalpha/protk:1.4.1</container>
+         <container type="docker">simonalpha/protk-1.4.1</container>
 	    <requirement type="package" version="1.4">protk</requirement>
 	    <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
-   </requirements>
+    </requirements>
 
-  <description>Converts a tandem result file to pepXML</description>
+	<description>Converts a tandem result file to pepXML</description>
 
-<command>
-	tandem_to_pepxml.rb $input_file -o $output 
-</command>
+	<command>
+		tandem_to_pepxml.rb $input_file -o $output 
+	</command>
 
-<inputs>
-	<param name="input_file" type="data" format="tandem" multiple="false" label="Input File" help="X!Tandem results file"/>
-</inputs>
+	<inputs>
+		<param name="input_file" type="data" format="tandem" multiple="false" label="Input File" help="X!Tandem results file"/>
+	</inputs>
 
-<outputs>
-	<data format="raw_pepxml" metadata_source="input_file" name="output" label="${input_file.display_name}.pepXML" />
-</outputs>
+	<outputs>
+		<data format="raw_pepxml" metadata_source="input_file" name="output" label="${input_file.display_name}.pepXML" />
+	</outputs>
 
-<help>
-	Convert X!Tandem results to pepXML
-</help>
+	<help>
+		Convert X!Tandem results to pepXML
+	</help>
 
 </tool>
