@@ -1,0 +1,45 @@
+
+# This is a special configuration file to run tests on Travis-CI via
+# GitHub notifications when changes are committed.
+#
+# See http://travis-ci.org/ for details
+
+# This file is heavily inspired by Peter Cock's efforts. See more details at
+# http://blastedbio.blogspot.com/2013/09/using-travis-ci-for-testing-galaxy-tools.html
+
+# We need Python 2.6 or 2.7 to run Galaxy but many Galaxy tools also need Java
+# to run the simplest way to get that installed is to just start with "java".
+# (which will still have a system python installed).
+language: java
+
+env:
+  global:
+    - "HOST_IP=$(/sbin/ifconfig venet0:0 | grep 'inet addr' | awk -F: '{print $2}' | awk '{print $1}')"
+    - DOCKER_HOST=tcp://$HOST_IP:2375
+    - DOCKER_PORT_RANGE=2400:2500
+    - SLIRP_PORTS=$(seq 2375 2500)
+
+before_install:
+  - sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
+  - sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
+  - echo exit 101 | sudo tee /usr/sbin/policy-rc.d
+  - sudo chmod +x /usr/sbin/policy-rc.d
+
+install:
+  - sudo apt-get -qqy update
+  - sudo apt-get -qqy install lxc lxc-docker-1.2.0 slirp
+  - sudo sudo usermod -aG docker "$USER"
+  - git clone git://github.com/cptactionhank/sekexe
+
+before_script:
+  - "sekexe/run 'mount -t tmpfs -o size=8g tmpfs /var/lib/docker && docker -d -H tcp://0.0.0.0:2375' &"
+  - "while ! docker info &> /dev/null ; do sleep 1; done"
+  - docker pull iracooke/protk-1.4.1
+
+
+script:
+	- docker version
+
+
+# script:
+#  - wget -O- https://raw.github.com/galaxyproject/planemo/master/scripts/travis_test.sh | /bin/bash -x
