@@ -1,7 +1,7 @@
-<tool id="proteomics_search_tandem_1" name="X!Tandem MSMS Search" version="1.0.4">
+<tool id="proteomics_search_tandem_1" name="X!Tandem MSMS Search" version="1.4.1">
 
    <requirements>
-         <container type="docker">simonalpha/protk:1.4.1</container>
+         <container type="docker">iracooke/protk-1.4.1</container>
 	    <requirement type="package" version="1.4">protk</requirement>
    </requirements>
 
@@ -188,7 +188,19 @@
 		<data format="tandem" name="output" metadata_source="input_file" label="X!Tandem_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}.tandem"/>
 	</outputs>
 
-
+	<tests>
+		<!-- Just test that the tool runs and produces vaguely correct output -->
+		<test>
+		    <param name="source_select" value="input_ref"/>
+		    <param name="fasta_file" value="testdb.fasta" format="fasta"/>
+		    <param name="input_file" value="tiny.mzML" format="mzml"/>
+		    <output name="output" format="tandem">
+		        <assert_contents>
+					<has_text text="tandem-style" />
+		        </assert_contents>
+		    </output>
+		</test>
+	</tests>
   <help>
 
 **What it does**
