@@ -1,6 +1,0 @@
-Create protein database from gff3 including encoding genome coordinates into the fasta header
-
-Requirements:
-This package uses protk which must be installed separately. 
-
-For instructions please see: https://github.com/iracooke/protk/#galaxy-integration

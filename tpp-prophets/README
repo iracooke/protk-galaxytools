@@ -1,6 +1,0 @@
-This package installs wrapper scripts for Peptide Prophet, iProphet and Protein Prophet
-
-Requirements:
-This package uses protk and the tpp which must be installed separately. 
-
-For instructions please see: https://github.com/iracooke/protk/#galaxy-integration

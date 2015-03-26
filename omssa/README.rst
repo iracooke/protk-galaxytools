@@ -1,19 +1,23 @@
-X!Tandem
-========
+OMSSA
+=====
 
-Galaxy wrapper for running the X!Tandem search engine and converting results to pepXML
+Galaxy wrapper for the OMSSA tandem ms search tool
 
 Requirements
 ------------
 
-This package uses protk_ and the trans_proteomic_pipeline_ which need to be present in order for the tool to work.
+This package uses protk_, omssa_ and blast_ which need to be present in order for the tool to work.
 
 .. _protk: https://github.com/iracooke/protk
-.. _trans_proteomic_pipeline: http://tools.proteomecenter.org/wiki/index.php?title=Software:TPP
+.. _omssa: http://www.ncbi.nlm.nih.gov/pubmed/15473683
+.. _blast: https://toolshed.g2.bx.psu.edu/view/devteam/ncbi_blast_plus
+
+
+When installing this package, if you instruct galaxy to install dependencies it will automatically install blast_ but installation of protk_ and omssa_ may require additional steps (see below).
 
 There are two ways you can satify these dependencies (choose one):
 
-1. **Manual Install:** Details on how to install protk_ and the trans_proteomic_pipeline_ manually are available here_.
+1. **Manual Install:** Details on how to install protk_ and omssa_ manually are available here_.
 
 2. **Use Docker:** These tools are designed to run inside a docker_ container. If your galaxy supports `running tools within a docker container`__ you don't need to worry about dependencies. Simply install and things should just work.  The docker container itself is versioned and new versions of this tool will automatically download an update to the container if needed.
 
@@ -32,8 +36,7 @@ The source code for this tool and other protk galaxy tools is on github_.  Pleas
 .. _issue: https://github.com/iracooke/protk-galaxytools/issues
 __ issue_
 
+Unfortunately the omssa_ search tool itself is `no longer actively developed`__ but it remains a useful tool.  This wrapper uses the last released omssa_ binary.
 
-Please visit the XTandem_ page on the GPM website for details of the search engine itself.
-
-.. _XTandem: http://www.thegpm.org/tandem/
-
+.. _developed: http://pubchem.ncbi.nlm.nih.gov/omssa/
+__ developed_

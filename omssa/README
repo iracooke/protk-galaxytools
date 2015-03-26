@@ -1,5 +1,0 @@
-This package installs wrapper scripts for running OMSSA MS/MS searches
-
-Requirements:
-This package depends on the galaxy_protk, protk_omssa and protk_blast packages
-Please see instructions for those packages before installing

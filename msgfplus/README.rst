@@ -1,19 +1,23 @@
-X!Tandem
-========
+MS-GF+
+======
 
-Galaxy wrapper for running the X!Tandem search engine and converting results to pepXML
+Galaxy wrapper for the `MS-GF+`__ tandem ms search tool
+
+.. _msgfplus: http://proteomics.ucsd.edu/software-tools/ms-gf/
+__ msgfplus_
 
 Requirements
 ------------
 
-This package uses protk_ and the trans_proteomic_pipeline_ which need to be present in order for the tool to work.
+This package uses protk_, msgfplus_ and the `idconvert` tool from Proteowizard_ which need to be present in order for the tool to work.
 
 .. _protk: https://github.com/iracooke/protk
-.. _trans_proteomic_pipeline: http://tools.proteomecenter.org/wiki/index.php?title=Software:TPP
+.. _Proteowizard: http://proteowizard.sourceforge.net/
+
 
 There are two ways you can satify these dependencies (choose one):
 
-1. **Manual Install:** Details on how to install protk_ and the trans_proteomic_pipeline_ manually are available here_.
+1. **Manual Install:** Details on how to install protk_, msgfplus_ and Proteowizard_ manually are available here_.
 
 2. **Use Docker:** These tools are designed to run inside a docker_ container. If your galaxy supports `running tools within a docker container`__ you don't need to worry about dependencies. Simply install and things should just work.  The docker container itself is versioned and new versions of this tool will automatically download an update to the container if needed.
 
@@ -33,7 +37,7 @@ The source code for this tool and other protk galaxy tools is on github_.  Pleas
 __ issue_
 
 
-Please visit the XTandem_ page on the GPM website for details of the search engine itself.
+Information on the MS-GF+ search tool itself can be found here_
 
-.. _XTandem: http://www.thegpm.org/tandem/
+.. _here: http://proteowizard.sourceforge.net/
 

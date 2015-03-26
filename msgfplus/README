@@ -1,6 +1,0 @@
-This package is a galaxy wrapper for the MSGF+ search tool.
-
-Requirements:
-This package uses protk, msgfplus and proteowizard, which must be installed separately. 
-
-For instructions please see: https://github.com/iracooke/protk/#galaxy-integration

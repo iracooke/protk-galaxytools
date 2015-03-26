@@ -1,7 +1,7 @@
-X!Tandem
-========
+TPP Prophets
+============
 
-Galaxy wrapper for running the X!Tandem search engine and converting results to pepXML
+Galaxy wrappers for Peptide Prophet, iProphet and Protein Prophet
 
 Requirements
 ------------
@@ -32,8 +32,6 @@ The source code for this tool and other protk galaxy tools is on github_.  Pleas
 .. _issue: https://github.com/iracooke/protk-galaxytools/issues
 __ issue_
 
+Please visit the TPP__ website for details of the various Prophet tools
 
-Please visit the XTandem_ page on the GPM website for details of the search engine itself.
-
-.. _XTandem: http://www.thegpm.org/tandem/
-
+__ trans_proteomic_pipeline_
