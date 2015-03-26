@@ -23,4 +23,16 @@
 		Convert X!Tandem results to pepXML
 	</help>
 
+	<tests>
+		<!-- Just test that the tool runs and produces vaguely correct output -->
+		<test>
+		    <param name="input_file" value="tandem_to_pepxml_test.tandem" format="tandem"/>
+		    <output name="output" format="raw_pepxml">
+		        <assert_contents>
+					<has_text text="SQVFQLESTFDV" />
+		        </assert_contents>
+		    </output>
+		</test>
+	</tests>
+
 </tool>
