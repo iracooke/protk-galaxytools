@@ -1,6 +1,6 @@
-<tool id="sixframe_translate" name="Generate 6-frame translation" version="1.0.0">
+<tool id="sixframe_translate" name="Generate 6-frame translation" version="1.1.0">
 	<requirements>
-        <container type="docker">simonalpha/protk:1.4.1</container>		
+        <container type="docker">iracooke/protk-1.4.1</container>		
 	    <requirement type="package" version="1.4">protk</requirement>
    </requirements>
 

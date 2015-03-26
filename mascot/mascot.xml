@@ -1,7 +1,7 @@
-<tool id="proteomics_search_mascot_1" name="Mascot MSMS Search" version="1.0.3">
+<tool id="proteomics_search_mascot_1" name="Mascot MSMS Search" version="1.1.0">
 
 	<requirements>
-            <container type="docker">simonalpha/protk:1.4.1</container>
+            <container type="docker">iracooke/protk-1.4.1</container>
 	    <requirement type="package" version="1.4">protk</requirement>
    </requirements>
 
