@@ -29,7 +29,7 @@
 
 	<tests>
 	  <test>
-	      <param name="input_file" value="small_genome.fasta" format="fasta"/>
+	      <param name="fasta_file" value="small_genome.fasta" format="fasta"/>
 	      <output name="output" format="fasta">
 	          <assert_contents>
 	              <has_text text="SVQHWFYRFQAGHPRVFCPKNGPRRLW" />
