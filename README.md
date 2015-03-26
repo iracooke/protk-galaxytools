@@ -14,9 +14,9 @@
 
 ## Datatypes
 
-Many of the tools in this suite depend on the [proteomics datatypes](https://github.com/iracooke/proteomics-datatypes) repository.  If installed via the toolshed this will be automatically installed along with the tools themselves.
+Many of the tools in this suite depend on the [proteomics datatypes](https://github.com/iracooke/proteomics-datatypes) repository.  If tools are installed via the toolshed this will be automatically installed as well.
 
 ## Other dependencies
 
-All tools in this repository depend on the [protk](http://github.com/iracooke/protk) ruby gem and a wide variety of other open source proteomics software.  While [protk](http://github.com/iracooke/protk) provides an installer for most of these tools, an easier way to ensure that all these dependencies are satisfied is to enable running tools within [Docker](https://www.docker.com/) on your Galaxy instance.  If Galaxy is configured to run tools within docker containers these tools will automatically fetch an appropriate docker image.  For details on how we build this image you can refer to the [protk-dockerfile](https://github.com/iracooke/protk-dockerfile).
+All tools in this repository depend on the [protk](http://github.com/iracooke/protk) ruby gem and a wide variety of other open source proteomics software.  While [protk](http://github.com/iracooke/protk) provides an installer for most of these tools, an easier way to ensure that all these dependencies are satisfied is to enable running tools within [Docker](https://www.docker.com/) on your Galaxy instance.  If Galaxy is configured to run tools within docker containers these tools will automatically fetch an appropriate docker image.  For details on how we build this image, refer to the [protk-dockerfile](https://github.com/iracooke/protk-dockerfile) created by @simonalpha
 
