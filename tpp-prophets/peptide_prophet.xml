@@ -66,11 +66,24 @@
     <data format="peptideprophet_pepxml" name="output" metadata_source="input_file" label="peptide_prophet.${input_file.display_name}.pep.xml" from_work_dir="peptide_prophet_output.pep.xml"/>
   </outputs>
 
+
+  <tests>
+    <!-- Just test that the tool runs and produces vaguely correct output -->
+    <test>
+        <param name="input_file" value="mr176-BSA100fmole_BA3_01_8168.d_tandem.pep.xml" format="raw_pepxml"/>
+        <output name="output" format="peptideprophet_pepxml">
+            <assert_contents>
+                <has_text text="peptideprophet_result" />
+            </assert_contents>
+        </output>
+    </test>
+  </tests>
+
 <help>
 
 **What it does**
 
-Given raw search engine scores as inputs this tool estimates the accuracy of peptide assignments.  From a practical perspective it estimates the probability that each peptide assignment is correct (providing probabilities as outputs), given raw scores (possibly on some arbitrary scale) as inputs. 
+Given raw search engine scores as inputs this tool estimates the accuracy of peptide assignments.
 
 ----
 
