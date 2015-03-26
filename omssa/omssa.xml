@@ -173,6 +173,21 @@
 		<data format="raw_pepxml" name="output" metadata_source="input_file" label="omssa_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.pepXML"/>
 	</outputs>
 
+	<tests>
+		<!-- Just test that the tool runs and produces vaguely correct output -->
+		<test>
+		    <param name="source_select" value="input_ref"/>
+		    <param name="fasta_file" value="AASequences.fasta" format="fasta"/>
+		    <param name="input_file" value="mr176-BSA100fmole_BA3_01_8168.d.mgf" format="mgf"/>
+		    <param name="max_hit_expect" value="1000"/>
+		    <output name="output" format="raw_pepxml">
+		        <assert_contents>
+					<has_text text="IGCAPHQGSILLDKDGKR" />
+		        </assert_contents>
+		    </output>
+		</test>
+	</tests>
+
 	<help>
 **What it does**
 
