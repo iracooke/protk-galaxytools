@@ -67,18 +67,6 @@
   </outputs>
 
 
-  <tests>
-    <!-- Just test that the tool runs and produces vaguely correct output -->
-    <test>
-        <param name="input_file" value="mr176-BSA100fmole_BA3_01_8168.d_tandem.pep.xml" format="raw_pepxml"/>
-        <output name="output" format="peptideprophet_pepxml">
-            <assert_contents>
-                <has_text text="peptideprophet_result" />
-            </assert_contents>
-        </output>
-    </test>
-  </tests>
-
 <help>
 
 **What it does**

@@ -24,6 +24,20 @@
 	<data format="csv" name="output" metadata_source="input_file" label="${input_file.display_name}.csv" />
 </outputs>
 
+	
+	<tests>
+	  <!-- Just test that the tool runs and produces vaguely correct output -->
+	  <test>
+	      <param name="input_file" value="mr176-BSA100fmole_BA3_01_8168.d_tandem.pep.xml" format="raw_pepxml"/>
+	      <output name="output" format="csv">
+	          <assert_contents>
+	              <has_text text="ANTNNYAPKSSR" />
+	          </assert_contents>
+	      </output>
+	  </test>
+	</tests>
+
+
 <help>
 	Convert a pepXML file to Tab delimited text
 </help>
