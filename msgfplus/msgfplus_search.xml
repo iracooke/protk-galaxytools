@@ -165,14 +165,23 @@
             </change_format>
         </data>
     </outputs>
+
     <tests>
+        <!-- Just test that the tool runs and produces vaguely correct output -->
         <test>
             <param name="source_select" value="input_ref"/>
-              <param name="fasta_file" value="bsa.fasta"/>
-                  <param name="input_file" value="bsa.mzML"/>
-              <output name="output" file="bsa.mzid" compare="sim_size" delta="600" /> 
+            <param name="fasta_file" value="testdb.fasta" format="fasta"/>
+            <param name="input_file" value="tiny.mzML" format="mzml"/>
+            <param name="precursor_ion_tol" value="200"/>
+            <param name="pepxml_output_use" value="true"/>
+            <output name="output" format="raw_pepxml">
+                <assert_contents>
+                    <has_text text="FALPQYLKTVYQHQKAMKPWIQPKTKVIPYVRYL" />
+                </assert_contents>
+            </output>
         </test>
     </tests>
+
     <help>
 
 **What it does**

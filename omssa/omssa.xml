@@ -179,7 +179,13 @@
 		    <param name="source_select" value="input_ref"/>
 		    <param name="fasta_file" value="AASequences.fasta" format="fasta"/>
 		    <param name="input_file" value="mr176-BSA100fmole_BA3_01_8168.d.mgf" format="mgf"/>
-		    <param name="max_hit_expect" value="1000"/>
+            <param name="max_hit_expect" value="1000"/>
+            <param name="precursor_ion_tol" value="1.2"/>
+            <param name="precursor_tolu" value="Da"/>
+            <param name="fix_mods" value="3"/>
+            <param name="variable_mods" value="1"/>
+
+
 		    <output name="output" format="raw_pepxml">
 		        <assert_contents>
 					<has_text text="IGCAPHQGSILLDKDGKR" />
