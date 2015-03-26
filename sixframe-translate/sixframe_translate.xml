@@ -27,6 +27,17 @@
 		<data format="fasta" name="output" />
 	</outputs>
 
+	<tests>
+	  <test>
+	      <param name="input_file" value="small_genome.fasta" format="fasta"/>
+	      <output name="output" format="fasta">
+	          <assert_contents>
+	              <has_text text="SVQHWFYRFQAGHPRVFCPKNGPRRLW" />
+	          </assert_contents>
+	      </output>
+	  </test>
+	</tests>
+
 
   <help>
 
