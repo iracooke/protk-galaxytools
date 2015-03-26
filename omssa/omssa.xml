@@ -188,7 +188,7 @@
 
 		    <output name="output" format="raw_pepxml">
 		        <assert_contents>
-					<has_text text="IGCAPHQGSILLDKDGKR" />
+					<has_text text="VLFSQAQVYELERRFK" />
 		        </assert_contents>
 		    </output>
 		</test>
