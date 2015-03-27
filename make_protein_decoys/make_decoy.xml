@@ -1,0 +1,47 @@
+<tool id="make_decoy" name="Generate protein decoy sequences" version="1.0.0">
+	<requirements>
+		<container type="docker">iracooke/protk-1.4.1</container>
+	    <requirement type="package" version="1.4">protk</requirement>
+   </requirements>
+
+	<description>
+		Generate random protein sequences with the same AA composition as input sequences
+	</description>
+
+	<command>
+		make_decoy.rb $fasta_file -o $output -P $prefix_string $append
+	</command>
+
+	<stdio>
+		<exit_code range="1:"   level="fatal"   description="Failure" />
+	</stdio>
+
+	<inputs>	
+		<param name="fasta_file" type="data" format="fasta" label="Fasta file contain protein sequences" />
+		<param name="prefix_string" help="Prefix String to use for Decoys" type="text" value="decoy_" label="Prefix String" size="20"/>		
+		<param name="append" type="boolean" label="Append input sequences to the generated sequences" help="" truevalue="--append" falsevalue="" />
+	</inputs>
+
+	<outputs>
+		<data format="fasta" name="output" />
+	</outputs>
+
+	<tests>
+	  <test>
+	      <param name="fasta_file" value="testdb.fasta" format="fasta"/>
+	      <output name="output" file "testdb_decoy.fasta" format="fasta"/>
+	  </test>
+	</tests>
+
+
+
+  <help>
+
+**What it does**
+
+Generates random protein sequences based on the amino acid composition of a given set of input sequences. To be used for decoy proteomics searches
+
+
+  </help>
+
+</tool>
