@@ -29,7 +29,11 @@
 	<tests>
 	  <test>
 	      <param name="fasta_file" value="testdb.fasta" format="fasta"/>
-	      <output name="output" file="testdb_decoy.fasta" format="fasta"/>
+	      <output name="output" format="fasta">
+	      	<assert_contents>
+	      	    <has_text text="decoy_rp3" />
+	      	</assert_contents>
+	      </output>
 	  </test>
 	</tests>
 
