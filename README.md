@@ -4,6 +4,7 @@
 
 ## The Tools
 
+- `make_protein_decoys:` Generate randomised amino acid sequences with the same composition as those from a provided set
 - `mascot:` Run a [Mascot](http://www.matrixscience.com/search_intro.html) search from within Galaxy via your local Mascot server and convert results to `pepXML`. [Toolshed Link](https://toolshed.g2.bx.psu.edu/view/iracooke/mascot)
 - `msgfplus:` Run a tandem ms search using the [ms-gf+](http://proteomics.ucsd.edu/software-tools/ms-gf/) search engine. [Toolshed Link](https://toolshed.g2.bx.psu.edu/view/iracooke/msgfplus)
 - `omssa:` Run a tandem ms search using the omssa search engine. [Toolshed Link](https://toolshed.g2.bx.psu.edu/view/iracooke/omssa)
