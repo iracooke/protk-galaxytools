@@ -112,7 +112,7 @@
 	
 	<param name="enzyme" type="select" format="text">
 	    <label>Enzyme</label>
-	    <option value="Trypsin">Trypsin</option>
+	    <option selected="true" value="Trypsin">Trypsin</option>
 	    <option value="Trypsin/P">Trypsin/P</option>
 	    <option value="Arg-C">Arg-C</option>
 	    <option value="Asp-N">Asp-N</option>
