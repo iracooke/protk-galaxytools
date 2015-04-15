@@ -50,7 +50,7 @@
 		
   </inputs>
   <outputs>
-    <data format="interprophet_pepxml" name="output" label="interprophet.${pepxml_files[0].display_name}" from_work_dir="interprophet_output.pep.xml"/>
+    <data format="interprophet_pepxml" name="output" from_work_dir="interprophet_output.pep.xml"/>
   </outputs>
 
  <help>
