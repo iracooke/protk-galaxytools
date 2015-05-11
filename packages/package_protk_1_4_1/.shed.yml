@@ -1,6 +1,7 @@
 categories:
 - Tool Dependency Packages
-description: Ruby Proteomics Toolkit 1.4.1
+- Proteomics
+description: A ruby gem with many proteomics tools
 long_description: |
   Protk is a suite of tools for proteomics. It aims to present a simple and
   consistent command-line interface across otherwise disparate third party
@@ -13,6 +14,6 @@ long_description: |
 
   https://github.com/iracooke/protk
 name: package_protk_1_4_1
-owner: iuc
-remote_repository_url: https://github.com/galaxyproject/tools-iuc/tree/master/packages/package_protk_1_4_1
+owner: iracooke
+remote_repository_url: https://github.com/iracooke/protk-galaxytools/tree/master/packages/package_protk_1_4_1
 type: tool_dependency_definition
