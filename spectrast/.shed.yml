@@ -1,0 +1,11 @@
+categories:
+- Proteomics
+description: SpectraST can create, filter and search spectral libraries
+long_description: |
+  SpectraST is a spectral library creation and search tool developed at the ISB
+
+  http://tools.proteomecenter.org/wiki/index.php?title=Software:SpectraST
+name: spectrast
+owner: iracooke
+remote_repository_url: https://github.com/iracooke/protk-galaxytools/tree/master/spectrast
+type: unrestricted

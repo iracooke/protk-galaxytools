@@ -1,0 +1,49 @@
+<tool id="spectrast_create_1" name="SpectraST Create" version="1.0.0">
+    <requirements>
+        <container type="docker">iracooke/protk-1.4.2</container>
+        <requirement type="package" version="1.4">protk</requirement>
+        <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
+   </requirements>
+   
+	<description>Create Spectral Libraries</description>
+
+	<command>
+        spectrast_create.rb --galaxy 
+
+        #for $pepxml_file in $pepxml_files:
+        ${pepxml_file}
+        #end for
+
+        --spectrum-files='$spectrum_files'
+
+        --predicate 'Protein!~$decoy_prefix_string'
+
+        --p-thresh $p_thresh
+
+        --instrument-acquisition $instrument_acquisition
+
+        $input_file -o output
+
+	</command>
+
+	<inputs>
+
+        <param name="pepxml_files" multiple="true" type="data" format="pepxml,peptideprophet_pepxml,interprophet_pepxml" label="PepXML Files to use in library generation" help=""/>
+	
+        <param name="spectrum_files" multiple="true" type="data" format="mzml" label="Data files containing spectra referred to in pepxml files" help=""/>
+
+        <param name="decoy_prefix_string" help="String to identify decoys. All decoys wil be excluded" type="text" value="decoy" label="Decoy String" size="20"/> 
+
+        <param name="instrument_acquisition" help="Set the instrument and acquisition settings of the spectra (in case not specified in data files).
+                                 Examples: CID, ETD, CID-QTOF, HCD. The latter two are treated as high-mass accuracy spectra." type="text" value="CID-QTOF" label="Decoy String" size="20"/>
+
+        <param name="p_thresh" help="Matches scoring less than this value are discarded" type="float" value="0.95" min="0" max="1" label="Probability Threshold"/>
+
+	
+    </inputs>
+
+      <outputs>
+        <data format="splib" name="output" metadata_source="input_file" from_work_dir="output.splib"/>
+      </outputs>
+
+</tool>
