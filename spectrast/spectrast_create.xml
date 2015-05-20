@@ -7,6 +7,10 @@
    
 	<description>Create Spectral Libraries</description>
 
+    <stdio>
+        <exit_code range="1:" level="fatal" description="Job Failed" />
+    </stdio>
+
 	<command>
         spectrast_create.rb --galaxy 
 
@@ -22,7 +26,13 @@
 
         --instrument-acquisition $instrument_acquisition
 
-        -o output
+        -o library;
+
+        mkdir -p $output.extra_files_path;
+
+        cp library.splib library.spidx library.pepidx  $output.extra_files_path/;
+
+        echo "Spectral Library Primary File" > $output
 
 	</command>
 
@@ -37,13 +47,12 @@
         <param name="instrument_acquisition" help="Set the instrument and acquisition settings of the spectra (in case not specified in data files).
                                  Examples: CID, ETD, CID-QTOF, HCD. The latter two are treated as high-mass accuracy spectra." type="text" value="CID-QTOF" label="Decoy String" size="20"/>
 
-        <param name="p_thresh" help="Matches scoring less than this value are discarded" type="float" value="0.95" min="0" max="1" label="Probability Threshold"/>
-
+        <param name="p_thresh" help="Matches scoring less than this value are discarded" type="float" value="0.99" min="0" max="1" label="Probability Threshold"/>
 	
     </inputs>
 
       <outputs>
-        <data format="splib" name="output" from_work_dir="output.splib"/>
+        <data format="splib" name="output"/>
       </outputs>
 
 </tool>
