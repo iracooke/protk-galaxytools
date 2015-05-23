@@ -1,5 +1,5 @@
 <tool id="proteomics_search_interprophet_1" name="InterProphet" version="1.1.0">
-	
+    <description>Combine Peptide Prophet results from multiple search engines</description>
 	<requirements>
          <container type="docker">iracooke/protk-1.4.1</container>
 	    <requirement type="package" version="1.4">protk</requirement>
@@ -7,9 +7,7 @@
    </requirements>
 
 
-  <description>Combine Peptide Prophet results from multiple search engines</description>
-
-  <command>interprophet.rb --galaxy
+    <command>interprophet.rb --galaxy
 
 	-o interprophet_output.pep.xml
 

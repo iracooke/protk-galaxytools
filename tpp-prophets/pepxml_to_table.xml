@@ -1,13 +1,10 @@
 <tool id="pepxml_to_table_1" name="PepXML to Table" version="1.1.0">
-
+    <description>Converts a pepXML file to a tab delimited text file</description>
 	<requirements>
             <container type="docker">iracooke/protk-1.4.1</container>
 	    <requirement type="package" version="1.4">protk</requirement>
    </requirements>
 
-
-
-  <description>Converts a pepXML file to a tab delimited text file</description>
 
 
 <!-- Note .. the input file is assumed to be the first argument -->

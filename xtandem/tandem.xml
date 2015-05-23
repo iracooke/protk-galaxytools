@@ -1,12 +1,9 @@
 <tool id="proteomics_search_tandem_1" name="X!Tandem MSMS Search" version="1.1.0">
-
+    <description>Run an X!Tandem Search</description>
    <requirements>
          <container type="docker">iracooke/protk-1.4.1</container>
 	    <requirement type="package" version="1.4">protk</requirement>
    </requirements>
-
-	<description>Run an X!Tandem Search</description>
-
 	<command>
 		#if $database.source_select=="built_in":
 		tandem_search.rb -d $database.dbkey 

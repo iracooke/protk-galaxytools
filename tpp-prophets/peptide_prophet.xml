@@ -1,13 +1,12 @@
 <tool id="proteomics_search_peptide_prophet_1" name="Peptide Prophet" version="1.1.0">
+	<description>Calculate Peptide Prophet statistics on search results</description>
     <requirements>
         <container type="docker">iracooke/protk-1.4.1</container>
         <requirement type="package" version="1.4">protk</requirement>
         <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
    </requirements>
-   
-	<description>Calculate Peptide Prophet statistics on search results</description>
 
-	<command>
+    <command>
         peptide_prophet.rb --galaxy $input_file -o peptide_prophet_output.pep.xml
 
         -r 
