@@ -31,7 +31,8 @@
             #end if
 
             --p-thresh $p_thresh
-            --threads $threads
+            --threads "\${GALAXY_SLOTS:-1}"
+
 
     </command>
     <inputs>
@@ -55,7 +56,6 @@
         <param name="decoy_prefix_string" help="Prefix string for decoy ids" type="text" value="decoy_" label="Decoy Prefix String" size="20"/>    
         <param name="experiment_label" help="Used to commonly label all spectra from one experiment" type="text" value="" label="Experiment Label" size="20"/>
         <param name="p_thresh" help="Peptides scoring less than this value are discarded" type="float" value="0.05" min="0" max="1" label="Probability Threshold"/>
-        <param name="threads" type="integer" value="1" min="0" label="Threads" help="Number of threads to use"/>
     </inputs>
     <outputs>
         <data format="peptideprophet_pepxml" name="output" metadata_source="input_file" label="peptide_prophet.${input_file.display_name}.pep.xml" from_work_dir="peptide_prophet_output.pep.xml"/>

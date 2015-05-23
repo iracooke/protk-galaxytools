@@ -44,7 +44,7 @@
         $acetyl_protein_nterm
         $cleavage_semi
         $keep_spectra
-        --threads $threads
+        --threads "\${GALAXY_SLOTS:-1}"
 
     </command>
     <inputs>
@@ -128,8 +128,6 @@
 
         <param name="keep_spectra" type="boolean" label="Keep Spectra" help="Include spectra in the output" truevalue="--output-spectra" falsevalue=""/>
 
-        <param name="threads" type="integer" value="1" label="Threads" help="Number of threads to use for search. Maximum is 16"/>
-        
         <param name="enzyme" type="select" format="text">
             <label>Enzyme</label>
             <option value="[R]__pc__{P}">argc - [R]|{P}</option>

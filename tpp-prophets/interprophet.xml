@@ -8,18 +8,18 @@
     <command>
         interprophet.rb --galaxy
 
-        -o interprophet_output.pep.xml
-        $use_nss
-        $use_nrs
-        $use_nse
-        $use_nsi
-        $use_nsm
-        --p-thresh $p_thresh
-        --threads $threads
+            -o interprophet_output.pep.xml
+            $use_nss
+            $use_nrs
+            $use_nse
+            $use_nsi
+            $use_nsm
+            --p-thresh $p_thresh
+            --threads "\${GALAXY_SLOTS:-1}"
 
-        #for $pepxml_file in $pepxml_files:
-            ${pepxml_file}
-        #end for
+            #for $pepxml_file in $pepxml_files:
+                ${pepxml_file}
+            #end for
 
     </command>
     <inputs>
@@ -32,8 +32,6 @@
         <param name="use_nsi" checked="true" type="boolean" label="Include NSI in Model" help="Include NSI (Number of Sibling Ions) in Statistical Model" truevalue="" falsevalue="--no-nsi"/>
         <param name="use_nsm" checked="true" type="boolean" label="Include NSM in Model" help="Include NSM (Number of Sibling Modifications) in Statistical Model" truevalue="" falsevalue="--no-nsm"/>
         <param name="p_thresh" help="Peptides scoring less than this value are discarded" type="float" value="0.05" min="0" max="1" label="Probability Threshold"/>
-
-        <param name="threads" type="integer" value="1" min="0" label="Threads" help="Number of threads to use"/>
 
     </inputs>
     <outputs>
