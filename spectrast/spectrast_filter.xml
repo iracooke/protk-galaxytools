@@ -1,13 +1,11 @@
 <tool id="spectrast_filter_1" name="SpectraST Filter" version="1.0.0">
+    <description>Filter and Manipulate Spectral Libraries</description>
     <requirements>
         <container type="docker">iracooke/protk-1.4.2</container>
         <requirement type="package" version="1.4">protk</requirement>
         <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
    </requirements>
-   
-	<description>Filter and Manipulate Spectral Libraries</description>
-
-    <stdio>
+   <stdio>
         <exit_code range="1:" level="fatal" description="Job Failed" />
     </stdio>
 
