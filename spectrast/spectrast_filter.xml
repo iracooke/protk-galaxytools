@@ -18,8 +18,8 @@
         --replicates $replicates
         -o library;
 
-        mkdir -p ${output.extra_files_path};
-        cp library.splib library.spidx library.pepidx  ${output.extra_files_path}/;
+        mkdir -p ${output.files_path};
+        cp library.splib library.spidx library.pepidx  ${output.files_path}/;
 
         echo "Spectral Library Primary File" > $output
     </command>
