@@ -55,5 +55,12 @@
       <outputs>
         <data format="splib" name="output"/>
       </outputs>
+    <help>
+<![CDATA[
+**What it does**
 
+Create Spectral Libraries.
+
+]]>
+    </help>
 </tool>

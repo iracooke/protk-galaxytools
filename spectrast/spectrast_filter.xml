@@ -44,6 +44,11 @@
         <data format="splib" name="output"/>
     </outputs>
     <help>
-        Filter and Manipulate Spectral Libraries
+<![CDATA[
+**What it does**
+
+Filter and Manipulate Spectral Libraries
+
+]]>
     </help>
 </tool>
