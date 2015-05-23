@@ -7,7 +7,7 @@
         <requirement type="package" version="1.4">protk</requirement>
     </requirements>
     <stdio>
-        <exit_code range="1:"   level="fatal"   description="Failure" />
+        <exit_code range="1:" level="fatal" description="Failure" />
     </stdio>
     <command>
         make_decoy.rb $fasta_file -o $output -P $prefix_string $append
@@ -30,16 +30,12 @@
           </output>
       </test>
     </tests>
-
-
-
-  <help>
+    <help>
 
 **What it does**
 
 Generates random protein sequences based on the amino acid composition of a given set of input sequences. To be used for decoy proteomics searches
 
 
-  </help>
-
+    </help>
 </tool>

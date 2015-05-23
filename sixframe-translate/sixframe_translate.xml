@@ -8,16 +8,16 @@
         <exit_code range="1:" level="fatal" description="Failure" />
     </stdio>
     <command>
-        sixframe.rb 
+        sixframe.rb
         $fasta_file
-        -o $output 
-        $strip_header 
+        -o $output
+        $strip_header
         $coords
-        $peptideshaker 
+        $peptideshaker
         --min-len $minlen
 
         #if $gffoutput:
-        --gff
+            --gff
         #end if
     </command>
     <inputs>

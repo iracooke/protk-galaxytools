@@ -2,76 +2,68 @@
     <description>Calculate Protein Prophet statistics on search results</description>
     <requirements>
             <container type="docker">iracooke/protk-1.4.1</container>
-	    <requirement type="package" version="1.4">protk</requirement>
-	    <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
-   </requirements>
+        <requirement type="package" version="1.4">protk</requirement>
+        <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
+    </requirements>
 
-<!-- Note .. the input file is assumed to be the first argument -->
-  <command>
-  	protein_prophet.rb
+    <!-- Note .. the input file is assumed to be the first argument -->
+    <command>
+        protein_prophet.rb
+            --galaxy $input_file
+            -o protein_prophet_results.prot.xml
+            -r
 
-  	--galaxy $input_file 
+            $iproph
+            $nooccam
+            $groupwts
+            $normprotlen
+            $logprobs
+            $confem
+            $allpeps
+            $unmapped
+            $instances
+            $delude
+          --minprob=$minprob
+          --minindep=$minindep
+    </command>
+    <inputs>
+        <param name="input_file" type="data" format="peptideprophet_pepxml,interprophet_pepxml" multiple="false" label="Peptide Prophet Results" help="These files will typically be outputs from peptide prophet or interprophet"/>
 
-  	-o protein_prophet_results.prot.xml
+        <param name="iproph" selected="true" type="boolean" label="Inputs are from iProphet" truevalue="--iprophet-input" falsevalue=""/>
+        <param name="nooccam" type="boolean" label="Don't apply Occam's razor" help="When selected no attempt will be made to derive the simplest protein list explaining observed peptides" truevalue="--no-occam" falsevalue=""/>
+        <param name="groupwts" type="boolean" label="Use group weights" help="Check peptide's total weight (rather than actual weight) in the Protein Group against the threshold" truevalue="--group-wts" falsevalue=""/>
+        <param name="normprotlen" type="boolean" label="Normalize NSP using Protein Length" truevalue="--norm-protlen" falsevalue=""/>
+        <param name="logprobs" type="boolean" label="Use the log of probability in the confidence calculations" truevalue="--log-prob" falsevalue=""/>
+        <param name="confem" type="boolean" label="Use the EM to compute probability given the confidenct" truevalue="--confem" falsevalue=""/>
+        <param name="allpeps" type="boolean" label="Consider all possible peptides in the database in the confidence model" truevalue="--allpeps" falsevalue=""/>
+        <param name="unmapped" type="boolean" label="Report results for unmapped proteins" truevalue="--unmapped" falsevalue=""/>
+        <param name="instances" type="boolean" label="Use Expected Number of Ion Instances to adjust the peptide probabilities prior to NSP adjustment" truevalue="--instances" falsevalue=""/>
+        <param name="delude" type="boolean" label="Do NOT use peptide degeneracy information when assessing proteins" truevalue="--delude" falsevalue=""/>
 
-  	-r
-
-  	$iproph 
-  	$nooccam 
-  	$groupwts 
-  	$normprotlen 
-  	$logprobs 
-  	$confem 
-  	$allpeps 
-  	$unmapped 
-  	$instances 
-  	$delude
-  	
-  	--minprob=$minprob 
-  	--minindep=$minindep 
-  </command>
-  <inputs>
-	
-    <param name="input_file" type="data" format="peptideprophet_pepxml,interprophet_pepxml" multiple="false" label="Peptide Prophet Results" help="These files will typically be outputs from peptide prophet or interprophet"/>
-
-	<param name="iproph" selected="true" type="boolean" label="Inputs are from iProphet" truevalue="--iprophet-input" falsevalue=""/>
-	<param name="nooccam" type="boolean" label="Don't apply Occam's razor" help="When selected no attempt will be made to derive the simplest protein list explaining observed peptides" truevalue="--no-occam" falsevalue=""/>
-	<param name="groupwts" type="boolean" label="Use group weights" help="Check peptide's total weight (rather than actual weight) in the Protein Group against the threshold" truevalue="--group-wts" falsevalue=""/>
-	<param name="normprotlen" type="boolean" label="Normalize NSP using Protein Length" truevalue="--norm-protlen" falsevalue=""/>
-	<param name="logprobs" type="boolean" label="Use the log of probability in the confidence calculations" truevalue="--log-prob" falsevalue=""/>
-	<param name="confem" type="boolean" label="Use the EM to compute probability given the confidenct" truevalue="--confem" falsevalue=""/>
-	<param name="allpeps" type="boolean" label="Consider all possible peptides in the database in the confidence model" truevalue="--allpeps" falsevalue=""/>
-	<param name="unmapped" type="boolean" label="Report results for unmapped proteins" truevalue="--unmapped" falsevalue=""/>
-	<param name="instances" type="boolean" label="Use Expected Number of Ion Instances to adjust the peptide probabilities prior to NSP adjustment" truevalue="--instances" falsevalue=""/>
-	<param name="delude" type="boolean" label="Do NOT use peptide degeneracy information when assessing proteins" truevalue="--delude" falsevalue=""/>
-
-	<param name="minprob" type="text" label="Minimum peptide prophet probability for peptides to be considered" value="0.05"/>
-	<param name="minindep" type="text" label="Minimum percentage of independent peptides required for a protein" value="0"/>
-	
-  </inputs>
-  <outputs>
-    <data format="protxml" name="output" metadata_source="input_file" label="protein_prophet.${input_file.display_name}.protXML" from_work_dir="protein_prophet_results.prot.xml"/>
-  </outputs>
+        <param name="minprob" type="text" label="Minimum peptide prophet probability for peptides to be considered" value="0.05"/>
+        <param name="minindep" type="text" label="Minimum percentage of independent peptides required for a protein" value="0"/>
+    </inputs>
+    <outputs>
+        <data format="protxml" name="output" metadata_source="input_file" label="protein_prophet.${input_file.display_name}.protXML" from_work_dir="protein_prophet_results.prot.xml"/>
+    </outputs>
 
 
 <!--NOPLOT: do not generate plot png file
-		NOOCCAM: non-conservative maximum protein list
-		GROUPWTS: check peptide's total weight in the Protein Group against the threshold (default: check peptide's actual weight against threshold)   
-		NORMPROTLEN: Normalize NSP using Protein Length
-		LOGPROBS: Use the log of the probabilities in the Confidence calculations
-		CONFEM: Use the EM to compute probability given the confidence 
-		ALLPEPS: Consider all possible peptides in the database in the confidence model
-		UNMAPPED: Report results for UNMAPPED proteins
-		INSTANCES: Use Expected Number of Ion Instances to adjust the peptide probabilities prior to NSP adjustment
-		DELUDE: do NOT use peptide degeneracy information when assessing proteins
-		
-		MINPROB: peptideProphet probabilty threshold (default=0.05) 
-		MININDEP: minimum percentage of independent peptides required for a protein (default=0) 
-		
-		
+        NOOCCAM: non-conservative maximum protein list
+        GROUPWTS: check peptide's total weight in the Protein Group against the threshold (default: check peptide's actual weight against threshold)   
+        NORMPROTLEN: Normalize NSP using Protein Length
+        LOGPROBS: Use the log of the probabilities in the Confidence calculations
+        CONFEM: Use the EM to compute probability given the confidence 
+        ALLPEPS: Consider all possible peptides in the database in the confidence model
+        UNMAPPED: Report results for UNMAPPED proteins
+        INSTANCES: Use Expected Number of Ion Instances to adjust the peptide probabilities prior to NSP adjustment
+        DELUDE: do NOT use peptide degeneracy information when assessing proteins
+        
+        MINPROB: peptideProphet probabilty threshold (default=0.05) 
+        MININDEP: minimum percentage of independent peptides required for a protein (default=0) 
 -->
 
-  <help>
+    <help>
 
 **What it does**
 
@@ -86,6 +78,5 @@ If you use this tool please read and cite the paper describing the statistical m
 Nesvizhskii A., et al. “A Statistical Model for Identifying Proteins by Tandem Mass Spectrometry” *Anal. Chem.* 75, 4646-4658 (2003).
 
 
-  </help>
-
+    </help>
 </tool>
