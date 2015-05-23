@@ -2,8 +2,8 @@
     <description>Translates DNA/RNA to protein</description>
     <requirements>
         <container type="docker">iracooke/protk-1.4.2</container>
-        <requirement type="package" version="1.4">protk</requirement>
-   </requirements>
+        <requirement type="package" version="1.4.2">protk</requirement>
+    </requirements>
     <stdio>
         <exit_code range="1:" level="fatal" description="Failure" />
     </stdio>

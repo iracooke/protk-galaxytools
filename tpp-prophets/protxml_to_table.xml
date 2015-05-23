@@ -1,15 +1,14 @@
 <tool id="protxml_to_table_1" name="ProtXML to Table" version="1.1.0">
     <description>Converts a ProtXML file to a table</description>
     <requirements>
-            <container type="docker">iracooke/protk-1.4.1</container>
-        <requirement type="package" version="1.4">protk</requirement>
+        <container type="docker">iracooke/protk-1.4.1</container>
+        <requirement type="package" version="1.4.2">protk</requirement>
     </requirements>
     <command>
-        protxml_to_table.rb 
+        protxml_to_table.rb
           $invert_probs
-
-        $input_file 
-        -o $output 
+        $input_file
+        -o $output
     </command>
     <inputs>
         <param format="protxml" name="input_file" type="data" label="ProtXML File to Convert"/>

@@ -1,10 +1,10 @@
-<tool id="make_decoy" name="Generate protein decoy sequences" version="1.0.0">
+<tool id="make_decoy" name="Generate protein decoy sequences" version="1.0.1">
     <description>
         Generate random protein sequences with the same AA composition as input sequences
     </description>
     <requirements>
         <container type="docker">iracooke/protk-1.4.1</container>
-        <requirement type="package" version="1.4">protk</requirement>
+        <requirement type="package" version="1.4.2">protk</requirement>
     </requirements>
     <stdio>
         <exit_code range="1:" level="fatal" description="Failure" />
