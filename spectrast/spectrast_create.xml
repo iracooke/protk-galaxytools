@@ -9,28 +9,31 @@
         <exit_code range="1:" level="fatal" description="Job Failed" />
     </stdio>
     <command>
-        spectrast_create.rb --galaxy 
+<![CDATA[
+        spectrast_create.rb --galaxy
 
         #for $pepxml_file in $pepxml_files:
-        ${pepxml_file}
+            ${pepxml_file}
         #end for
 
         --spectrum-files='$spectrum_files'
-
         --predicate 'Protein!~$decoy_prefix_string'
-
         --p-thresh $p_thresh
-
         --instrument-acquisition $instrument_acquisition
+        -o library
 
-        -o library;
+        &&
 
-        mkdir -p $output.files_path;
+        mkdir -p $output.files_path
 
-        cp library.splib library.spidx library.pepidx  $output.files_path/;
+        &&
+
+        cp library.splib library.spidx library.pepidx  $output.files_path/
+
+        &&
 
         echo "Spectral Library Primary File" > $output
-
+]]>
     </command>
     <inputs>
 
