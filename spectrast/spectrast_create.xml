@@ -5,14 +5,10 @@
         <requirement type="package" version="1.4">protk</requirement>
         <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
    </requirements>
-   
-
-
     <stdio>
         <exit_code range="1:" level="fatal" description="Job Failed" />
     </stdio>
-
-	<command>
+    <command>
         spectrast_create.rb --galaxy 
 
         #for $pepxml_file in $pepxml_files:
@@ -35,26 +31,21 @@
 
         echo "Spectral Library Primary File" > $output
 
-	</command>
-
-	<inputs>
+    </command>
+    <inputs>
 
         <param name="pepxml_files" multiple="true" type="data" format="pepxml,peptideprophet_pepxml,interprophet_pepxml" label="PepXML Files to use in library generation" help=""/>
-	
         <param name="spectrum_files" multiple="true" type="data" format="mzml" label="Data files containing spectra referred to in pepxml files" help=""/>
-
         <param name="decoy_prefix_string" help="String to identify decoys. All decoys wil be excluded" type="text" value="decoy" label="Decoy String" size="20"/> 
-
-        <param name="instrument_acquisition" help="Set the instrument and acquisition settings of the spectra (in case not specified in data files).
-                                 Examples: CID, ETD, CID-QTOF, HCD. The latter two are treated as high-mass accuracy spectra." type="text" value="CID-QTOF" label="Decoy String" size="20"/>
-
-        <param name="p_thresh" help="Matches scoring less than this value are discarded" type="float" value="0.99" min="0" max="1" label="Probability Threshold"/>
-	
+        <param name="instrument_acquisition" type="text" value="CID-QTOF" label="Decoy String" size="20" 
+            help="Set the instrument and acquisition settings of the spectra (in case not specified in data files).
+            Examples: CID, ETD, CID-QTOF, HCD. The latter two are treated as high-mass accuracy spectra."/>
+        <param name="p_thresh" type="float" value="0.99" min="0" max="1" label="Probability Threshold"
+            help="Matches scoring less than this value are discarded" />
     </inputs>
-
-      <outputs>
+    <outputs>
         <data format="splib" name="output"/>
-      </outputs>
+    </outputs>
     <help>
 <![CDATA[
 **What it does**
