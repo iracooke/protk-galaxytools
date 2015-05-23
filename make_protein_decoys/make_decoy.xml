@@ -1,40 +1,35 @@
 <tool id="make_decoy" name="Generate protein decoy sequences" version="1.0.0">
-	<description>
-		Generate random protein sequences with the same AA composition as input sequences
-	</description>
-	<requirements>
-		<container type="docker">iracooke/protk-1.4.1</container>
-	    <requirement type="package" version="1.4">protk</requirement>
-   </requirements>
-
-	<command>
-		make_decoy.rb $fasta_file -o $output -P $prefix_string $append
-	</command>
-
-	<stdio>
-		<exit_code range="1:"   level="fatal"   description="Failure" />
-	</stdio>
-
-	<inputs>	
-		<param name="fasta_file" type="data" format="fasta" label="Fasta file contain protein sequences" />
-		<param name="prefix_string" help="Prefix String to use for Decoys" type="text" value="decoy_" label="Prefix String" size="20"/>		
-		<param name="append" type="boolean" label="Append input sequences to the generated sequences" help="" truevalue="--append" falsevalue="" />
-	</inputs>
-
-	<outputs>
-		<data format="fasta" name="output" />
-	</outputs>
-
-	<tests>
-	  <test>
-	      <param name="fasta_file" value="testdb.fasta" format="fasta"/>
-	      <output name="output" format="fasta">
-	      	<assert_contents>
-	      	    <has_text text="decoy_rp3" />
-	      	</assert_contents>
-	      </output>
-	  </test>
-	</tests>
+    <description>
+        Generate random protein sequences with the same AA composition as input sequences
+    </description>
+    <requirements>
+        <container type="docker">iracooke/protk-1.4.1</container>
+        <requirement type="package" version="1.4">protk</requirement>
+    </requirements>
+    <stdio>
+        <exit_code range="1:"   level="fatal"   description="Failure" />
+    </stdio>
+    <command>
+        make_decoy.rb $fasta_file -o $output -P $prefix_string $append
+    </command>
+    <inputs>
+        <param name="fasta_file" type="data" format="fasta" label="Fasta file contain protein sequences" />
+        <param name="prefix_string" help="Prefix String to use for Decoys" type="text" value="decoy_" label="Prefix String" size="20"/>        
+        <param name="append" type="boolean" label="Append input sequences to the generated sequences" help="" truevalue="--append" falsevalue="" />
+    </inputs>
+    <outputs>
+        <data format="fasta" name="output" />
+    </outputs>
+    <tests>
+      <test>
+          <param name="fasta_file" value="testdb.fasta" format="fasta"/>
+          <output name="output" format="fasta">
+              <assert_contents>
+                  <has_text text="decoy_rp3" />
+              </assert_contents>
+          </output>
+      </test>
+    </tests>
 
 
 
