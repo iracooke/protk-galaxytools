@@ -66,7 +66,6 @@
                 <param name="fasta_file" type="data" format="fasta" label="Uploaded FASTA file" />
             </when>
         </conditional>
-        
         <conditional name="tandem_params">
             <param name="source_select" type="select" label="Baseline Parameters">
                 <option value="built_in" selected="true">Built-In</option>
@@ -76,7 +75,7 @@
                 <param name="paramskey" type="select" format="text" >
                     <label>Paramset</label>
                     <option value="isb_kscore">ISB K-Score (Recommended for TPP)</option>
-                    <option value="isb_native">ISB Native</option>        
+                    <option value="isb_native">ISB Native</option>
                     <option value="gpm">GPM</option>
                 </param>
             </when>
@@ -99,8 +98,7 @@
             <param name="custom_mod" type="text">
             </param>
         </repeat>
-        
-        
+
         <param name="fixed_mods" format="text" type="select" multiple="true" label="Fixed Modifications" help="Hold the appropriate key while
             clicking to select multiple items">
             <options from_file="tandem_mods.loc">
@@ -115,17 +113,14 @@
         </repeat>
 
         <param name="acetyl_protein_nterm" type="boolean" label="Allow N-terminal protein acetylation as a variable modification" truevalue="-y" falsevalue="" />        
-        
-
         <param name="missed_cleavages" type="select" format="text" help="Allow peptides to contain up to this many missed enzyme cleavage sites">
             <label>Missed Cleavages Allowed</label>
-            <option value="0">0</option>        
+            <option value="0">0</option>
             <option value="1">1</option>
             <option selected="true" value="2">2</option>
         </param>
 
         <param name="cleavage_semi" type="boolean" label="Allow semi-cleaved peptides" help="This can increase search time dramatically" truevalue="--cleavage-semi" falsevalue=""/>
-
         <param name="keep_spectra" type="boolean" label="Keep Spectra" help="Include spectra in the output" truevalue="--output-spectra" falsevalue=""/>
 
         <param name="enzyme" type="select" format="text">
