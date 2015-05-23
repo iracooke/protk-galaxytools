@@ -2,72 +2,54 @@
     <description>Translates DNA/RNA to protein</description>
     <requirements>
         <container type="docker">iracooke/protk-1.4.2</container>
-	    <requirement type="package" version="1.4">protk</requirement>
+        <requirement type="package" version="1.4">protk</requirement>
    </requirements>
-	<command>
-		sixframe.rb 
-		$fasta_file
-		-o $output 
-		$strip_header 
-		$coords
-		$peptideshaker 
-		--min-len $minlen
+    <stdio>
+        <exit_code range="1:" level="fatal" description="Failure" />
+    </stdio>
+    <command>
+        sixframe.rb 
+        $fasta_file
+        -o $output 
+        $strip_header 
+        $coords
+        $peptideshaker 
+        --min-len $minlen
 
-		#if $gffoutput:
-		--gff
-		#end if
-
-	</command>
-
-
-
-	<stdio>
-		<exit_code range="1:"   level="fatal"   description="Failure" />
-	</stdio>
-
-	<inputs>	
-		<param name="fasta_file" type="data" format="fasta" label="Uploaded FASTA file" />
-		<param name="strip_header" type="boolean" label="Strip header info" help="" truevalue="--strip-header" falsevalue="" />
-		<param name="gffoutput" type="boolean" label="Produce gff instead of fasta" help="" truevalue="true" falsevalue="false" />
-
-		<param name="coords" type="boolean" label="Write genomic coordinates" help="" truevalue="--coords" falsevalue="" />
-
-		<param name="peptideshaker" type="boolean" label="Format fasta entries for PeptideShaker" help="" truevalue="--peptideshaker" falsevalue="" />
-
-		<param name="minlen" type="integer" value="20" min="1" label="Minimum Peptide Length"/>
-	</inputs>
-
-	<outputs>
-		<data format="fasta" name="output">
+        #if $gffoutput:
+        --gff
+        #end if
+    </command>
+    <inputs>
+        <param name="fasta_file" type="data" format="fasta" label="Uploaded FASTA file" />
+        <param name="strip_header" type="boolean" label="Strip header info" help="" truevalue="--strip-header" falsevalue="" />
+        <param name="gffoutput" type="boolean" label="Produce gff instead of fasta" help="" truevalue="true" falsevalue="false" />
+        <param name="coords" type="boolean" label="Write genomic coordinates" help="" truevalue="--coords" falsevalue="" />
+        <param name="peptideshaker" type="boolean" label="Format fasta entries for PeptideShaker" help="" truevalue="--peptideshaker" falsevalue="" />
+        <param name="minlen" type="integer" value="20" min="1" label="Minimum Peptide Length"/>
+    </inputs>
+    <outputs>
+        <data format="fasta" name="output">
             <change_format>
                 <when input="gffoutput" value="true" format="gff3" />
             </change_format>
         </data>
-	</outputs>
-
-	<tests>
-	  <test>
-	      <param name="fasta_file" value="small_genome.fasta" format="fasta"/>
-	      <output name="output" format="fasta">
-	          <assert_contents>
-	              <has_text text="SVQHWFYRFQAGHPRVFCPKNGPRRLW" />
-	          </assert_contents>
-	      </output>
-	  </test>
-	</tests>
-
-
-  <help>
+    </outputs>
+    <tests>
+      <test>
+          <param name="fasta_file" value="small_genome.fasta" format="fasta"/>
+          <output name="output" format="fasta">
+              <assert_contents>
+                  <has_text text="SVQHWFYRFQAGHPRVFCPKNGPRRLW" />
+              </assert_contents>
+          </output>
+      </test>
+    </tests>
+    <help>
 
 **What it does**
 
 Generates 6 frame translations suitable for proteogenomics workflows
 
-----
-
-**References**
-
-
-  </help>
-
+    </help>
 </tool>
