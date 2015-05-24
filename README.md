@@ -12,6 +12,7 @@
 - `sixframe-translate:` Generate 6-frame translations of nucleic acid sequences.
 - `tpp-prophets:` Calculate peptide and protein probabilities from tandem ms search results using the [TPP](http://tools.proteomecenter.org/wiki/index.php?title=Software:TPP) tools, `peptide prophet`, `iProphet` and `protein prophet`. [Toolshed Link](https://toolshed.g2.bx.psu.edu/view/iracooke/tpp_prophets)
 - `xtandem:` Run a tandem ms search using the [X!Tandem](http://www.thegpm.org/tandem/) search engine. [Toolshed Link](https://toolshed.g2.bx.psu.edu/view/iracooke/xtandem)
+- `spectrast:` (In Development) Create and filter splib files using [spectrast](http://tools.proteomecenter.org/wiki/index.php?title=Software:SpectraST)
 
 ## Datatypes
 
