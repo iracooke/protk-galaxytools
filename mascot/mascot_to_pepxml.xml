@@ -1,83 +1,72 @@
 <tool id="mascot_to_pepxml_1" name="Mascot to pepXML" version="1.1.0">
-	<requirements>
-            <container type="docker">iracooke/protk-1.4.1</container>
-	    	<requirement type="package" version="1.4">protk</requirement>
-			<requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
-   </requirements>
+    <description>Converts a mascot results file to pepXML</description>
+    <requirements>
+        <container type="docker">iracooke/protk-1.4.1</container>
+        <requirement type="package" version="1.4.2">protk</requirement>
+        <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
+    </requirements>
+    <command>mascot_to_pepxml.rb 
+        $input_file 
 
-  <description>Converts a mascot results file to pepXML</description>
+        -o $output 
 
-<command>mascot_to_pepxml.rb 
-	$input_file 
+        #if $database.source_select=="built_in":
+            -d $database.dbkey
+        #else 
+            -d $database.fasta_file
+        #end if
 
-	-o $output 
+        #if $explicit_enzyme.explicit_enzyme_use
+            --enzyme $explicit_enzyme.enzyme
+        #end if
 
-	#if $database.source_select=="built_in":
-	-d $database.dbkey
-	#else 
-	-d $database.fasta_file
-	#end if
+        $shortid
+    </command>
+    <inputs>
+        <param name="input_file" type="data" format="mascotdat" multiple="false" label="Input File" help="Mascot results file"/>
 
-	#if $explicit_enzyme.explicit_enzyme_use
-	--enzyme $explicit_enzyme.enzyme
-	#end if
+        <conditional name="database">
+            <param name="source_select" type="select" label="Database source" help="A local copy of the database used in the Mascot search">
+                <option value="built_in">Built-In</option>
+                <option value="input_ref">Uploaded fasta file</option>
+            </param>
+            <when value="built_in">
+                <param name="dbkey" type="select" format="text" >
+                    <label>Database</label>
+                    <options from_file="pepxml_databases.loc">
+                        <column name="name" index="0" />
+                        <column name="value" index="2" />
+                    </options>
+                </param>
+            </when>
+            <when value="input_ref">
+                <param name="fasta_file" type="data" format="fasta" label="Uploaded FASTA file" />
+            </when>
+        </conditional>
 
-	$shortid
+        <param name="shortid" type="boolean" label="Short ID" help="Use protein id from the Mascot result file instead reading from the fasta database." truevalue="--shortid" falsevalue="" />
 
-</command>
-<inputs>
+        <conditional name="explicit_enzyme">
+            <param name="explicit_enzyme_use" type="boolean" label="Specify Enzyme" help="If left unchecked the Enzyme will be read from the input file" truevalue="true" falsevalue="false" />
+            <when value="false" />
+            <when value="true">
+                <param name="enzyme" type="text" label="Enzyme" size="80" value="trypsin" help="Semi-cleavage can be specified as semisample_enyzme eg semitrypsin"/>
+            </when>
+        </conditional>
 
-
-	<param name="input_file" type="data" format="mascotdat" multiple="false" label="Input File" help="Mascot results file"/>
-
-	<conditional name="database">
-		<param name="source_select" type="select" label="Database source" help="A local copy of the database used in the Mascot search">
-			<option value="built_in">Built-In</option>
-			<option value="input_ref">Uploaded fasta file</option>
-		</param>
-		<when value="built_in">
-			<param name="dbkey" type="select" format="text" >
-				<label>Database</label>
-				<options from_file="pepxml_databases.loc">
-					<column name="name" index="0" />
-					<column name="value" index="2" />
-				</options>
-			</param>
-		</when>
-		<when value="input_ref">
-			<param name="fasta_file" type="data" format="fasta" label="Uploaded FASTA file" />
-		</when>
-	</conditional>
-
-	<param name="shortid" type="boolean" label="Short ID" help="Use protein id from the Mascot result file instead reading from the fasta database." truevalue="--shortid" falsevalue="" />
-
-	<conditional name="explicit_enzyme">
-		<param name="explicit_enzyme_use" type="boolean" label="Specify Enzyme" help="If left unchecked the Enzyme will be read from the input file" truevalue="true" falsevalue="false" />
-		<when value="false" />
-		<when value="true">
-			<param name="enzyme" type="text" label="Enzyme" size="80" value="trypsin" help="Semi-cleavage can be specified as semisample_enyzme eg semitrypsin"/>
-		</when>
-	</conditional>
-
-
-
-</inputs>
-<outputs>
-	<data format="raw_pepxml" metadata_source="input_file" name="output" label="${input_file.display_name}.pepXML" />
-</outputs>
-
-	<tests>
-    	<test>
-    		<param name="source_select" value="input_ref"/>
-	      	<param name="fasta_file" value="bsa.fasta"/>
-   		   	<param name="input_file" value="F002832.dat"/>
-      		<output name="output" file="bsa_mascot2xml.pep.xml" compare="sim_size" delta="600" /> 
-    	</test>
-    	
-  	</tests>
-
-<help>
-	Convert mascot results from mascotdat to pepXML
-</help>
-
+    </inputs>
+    <outputs>
+        <data format="raw_pepxml" metadata_source="input_file" name="output" label="${input_file.display_name}.pepXML" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="source_select" value="input_ref"/>
+              <param name="fasta_file" value="bsa.fasta"/>
+                  <param name="input_file" value="F002832.dat"/>
+              <output name="output" file="bsa_mascot2xml.pep.xml" compare="sim_size" delta="600" />
+        </test>
+    </tests>
+    <help>
+        Convert mascot results from mascotdat to pepXML
+    </help>
 </tool>

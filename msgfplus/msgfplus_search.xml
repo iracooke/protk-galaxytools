@@ -2,7 +2,7 @@
     <description>Run an MSGF+ Search</description>
     <requirements>
         <container type="docker">iracooke/protk-1.4.1</container>
-        <requirement type="package" version="1.4">protk</requirement>
+        <requirement type="package" version="1.4.2">protk</requirement>
         <requirement type="package" version="20140210">msgfplus</requirement>
         <requirement type="package" version="3_0_4388">proteowizard</requirement>
     </requirements>
@@ -47,8 +47,7 @@
         --num-reported-matches=$num_reported_matches
         --java-mem=$java_mem
 
-        --threads $threads
-
+        --threads "\${GALAXY_SLOTS:-1}"
         #if $pepxml_output_use:
         --pepxml
         #end if
@@ -155,7 +154,6 @@
         <param name="max_pep_charge" help="" type="integer" value="3" label="Maximum Peptide Charge"/>
         <param name="num_reported_matches" help="Number of matches per spectrum to be reported" type="integer" value="1" label="Num reported matches"/>
         <param name="java_mem" help="Increase this value if you get out of memory errors" type="text" size="80" value="3500M" label="Java Memory Limit"/>
-        <param name="threads" type="integer" value="1" label="Threads" help="Number of threads to use for search."/>        
         <param name="pepxml_output_use" checked="true" type="boolean" label="Convert results to pepXML" help="" truevalue="true" falsevalue="false" />
     </inputs>
     <outputs>

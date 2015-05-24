@@ -1,38 +1,33 @@
 <tool id="tandem_to_pepxml_1" name="Tandem to pepXML" version="1.1.0">
-	<requirements>
-         <container type="docker">iracooke/protk-1.4.1</container>
-	    <requirement type="package" version="1.4">protk</requirement>
-	    <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
+    <description>Converts a tandem result file to pepXML</description>
+    <requirements>
+        <container type="docker">iracooke/protk-1.4.1</container>
+        <requirement type="package" version="1.4.2">protk</requirement>
+        <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
     </requirements>
+    <command>
+        tandem_to_pepxml.rb $input_file -o $output 
+    </command>
 
-	<description>Converts a tandem result file to pepXML</description>
+    <inputs>
+        <param name="input_file" type="data" format="tandem" multiple="false" label="Input File" help="X!Tandem results file"/>
+    </inputs>
 
-	<command>
-		tandem_to_pepxml.rb $input_file -o $output 
-	</command>
-
-	<inputs>
-		<param name="input_file" type="data" format="tandem" multiple="false" label="Input File" help="X!Tandem results file"/>
-	</inputs>
-
-	<outputs>
-		<data format="raw_pepxml" metadata_source="input_file" name="output" label="${input_file.display_name}.pepXML" />
-	</outputs>
-
-	<help>
-		Convert X!Tandem results to pepXML
-	</help>
-
-	<tests>
-		<!-- Just test that the tool runs and produces vaguely correct output -->
-		<test>
-		    <param name="input_file" value="tandem_to_pepxml_test.tandem" format="tandem"/>
-		    <output name="output" format="raw_pepxml">
-		        <assert_contents>
-					<has_text text="SQVFQLESTFDV" />
-		        </assert_contents>
-		    </output>
-		</test>
-	</tests>
-
+    <outputs>
+        <data format="raw_pepxml" metadata_source="input_file" name="output" label="${input_file.display_name}.pepXML" />
+    </outputs>
+    <tests>
+        <!-- Just test that the tool runs and produces vaguely correct output -->
+        <test>
+            <param name="input_file" value="tandem_to_pepxml_test.tandem" format="tandem"/>
+            <output name="output" format="raw_pepxml">
+                <assert_contents>
+                    <has_text text="SQVFQLESTFDV" />
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help>
+        Convert X!Tandem results to pepXML
+    </help>
 </tool>

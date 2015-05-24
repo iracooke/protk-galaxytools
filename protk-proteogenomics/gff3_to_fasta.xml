@@ -1,40 +1,29 @@
 <tool id="gff3_to_fasta" name="Extract proteins from gff3" version="1.1.0">
-	<requirements>
-        <container type="docker">iracooke/protk-1.4.1</container>		
-	    <requirement type="package" version="1.4">protk</requirement>
+    <description>Extract proteins from gff3 and encode genomic coordinates in the fasta header</description>
+    <requirements>
+        <container type="docker">iracooke/protk-1.4.1</container>
+        <requirement type="package" version="1.4.2">protk</requirement>
    </requirements>
-
-	<description>Extract proteins from gff3 and encode genomic coordinates in the fasta header</description>
-
-	<command>
-		augustus_to_proteindb.rb $gff_file -o $output $coords
-	</command>
-
-
-
-
-	<stdio>
-		<exit_code range="1:"   level="fatal"   description="Failure" />
-	</stdio>
-
-	<inputs>	
-		<param name="gff_file" type="data" format="gff3" label="Augustus Generated gff3 File" />
-		<param name="coords" type="boolean" label="Write genomic coordinates" help="" truevalue="--info" falsevalue="" />
-	</inputs>
-
-	<outputs>
-		<data format="fasta" name="output" />
-	</outputs>
-
-	<tests>
-	  <!-- Just test that the tool runs and produces vaguely correct output -->
-	  <test>
-	      <param name="gff_file" value="augustus_sample.gff" format="gff3"/>
-	      <output name="output" file="augustus_sample.fasta" format="fasta"/>
-	  </test>
-	</tests>
-
-
+    <stdio>
+        <exit_code range="1:"   level="fatal"   description="Failure" />
+    </stdio>
+    <command>
+        augustus_to_proteindb.rb $gff_file -o $output $coords
+    </command>
+    <inputs>
+        <param name="gff_file" type="data" format="gff3" label="Augustus Generated gff3 File" />
+        <param name="coords" type="boolean" label="Write genomic coordinates" help="" truevalue="--info" falsevalue="" />
+    </inputs>
+    <outputs>
+        <data format="fasta" name="output" />
+    </outputs>
+    <tests>
+      <!-- Just test that the tool runs and produces vaguely correct output -->
+      <test>
+          <param name="gff_file" value="augustus_sample.gff" format="gff3"/>
+          <output name="output" file="augustus_sample.fasta" format="fasta"/>
+      </test>
+    </tests>
   <help>
 
 **What it does**
@@ -42,11 +31,5 @@
 Extract proteins from gff3 and encode genomic coordinates in the fasta header.
 Currently this only works with gff3 generated using the Augustus gene finder
 
-----
-
-**References**
-
-
   </help>
-
 </tool>

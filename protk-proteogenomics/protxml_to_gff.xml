@@ -1,102 +1,78 @@
 <tool id="protxml_to_gff" name="Proteomics to GFF" version="1.1.0">
-	<description>Export Proteomics Data to GFF</description>
+    <description>Export Proteomics Data to GFF</description>
+    <requirements>
+        <container type="docker">iracooke/protk-1.4.1</container>
+        <requirement type="package" version="1.4.2">protk</requirement>
+        <requirement type="package" version="2.2.29">blast+</requirement>
+    </requirements>
+    <stdio>
+        <exit_code range="1:"   level="fatal"   description="Failure" />
+    </stdio>
+    <command>
+        protxml_to_gff.rb $protxml_file 
+            #if $database.source_select=="built_in":
+                -d $database.dbkey
+            #else 
+                -d $database.fasta_file
+            #end if
+            -c $gene_file
+            --gff-idregex='$gffidpattern'
+            -o $output
+    </command>
+    <inputs>
+        <conditional name="database">
+            <param name="source_select" type="select" label="Database source used for Proteomics Searches" help="Database should be an amino acid fasta file with entry id's that can be parsed to obtain contig or scaffold ids referenced in your gff file">
+                <option value="input_ref">Your Upload File</option>
+                <option value="built_in">Built-In</option>
+            </param>
+            <when value="built_in">
+                <param name="dbkey" type="select" format="text" >
+                    <label>Database</label>
+                    <options from_file="pepxml_databases.loc">
+                        <column name="name" index="0" />
+                        <column name="value" index="2" />
+                    </options>
+                </param>
+            </when>
+            <when value="input_ref">
+                <param name="fasta_file" type="data" format="fasta" label="Uploaded FASTA file" />
+            </when>
+        </conditional>
+        <param name="protxml_file" type="data" format="protxml" multiple="false" label="Proteomics Search Results" help="A ProtXML file produced by Protein Prophet"/>
+        <param name="gene_file" type="data" format="gff3" multiple="false" label="Protein coordinates" help="A gff3 file with coordinates for all protein entries used for proteomics searches. Coordinates should correspond to entries in the genome fasta file"/>
+        <param name="gffidpattern" size="40" type="text" value="lcl\|([^ ]*)" label="gff id regex" help="Regex with capture group for parsing gff ids from protein ids">
+            <sanitizer>
+            <valid initial="string.printable">
+             <remove value="&apos;"/>
+            </valid>
+            <mapping initial="none">
+              <add source="&apos;" target="__sq__"/>
+            </mapping>
+              </sanitizer>
+        </param>
+    </inputs>
+    <outputs>
+        <data format="gff3" name="output" />
+    </outputs>
+    <tests>
+      <test>
+          <param name="source_select" value="input_ref"/>
+          <param name="fasta_file" value="small_prot.fasta" format="fasta"/>
 
-	<requirements>
-		<container type="docker">iracooke/protk-1.4.1</container>		
-		<requirement type="package" version="1.4">protk</requirement>
-		<requirement type="package" version="2.2.29">blast+</requirement>
-   </requirements>
-
-	<command>
-		protxml_to_gff.rb $protxml_file 
-		
-		#if $database.source_select=="built_in":
-		-d $database.dbkey
-		#else 
-		-d $database.fasta_file
-		#end if
-
-		-c $gene_file
-
-		--gff-idregex='$gffidpattern'
-		
-		-o $output
-
-
-	</command>
-
-	<stdio>
-		<exit_code range="1:"   level="fatal"   description="Failure" />
-	</stdio>
-
-	<inputs>	
-		<conditional name="database">
-			<param name="source_select" type="select" label="Database source used for Proteomics Searches" help="Database should be an amino acid fasta file with entry id's that can be parsed to obtain contig or scaffold ids referenced in your gff file">
-				<option value="input_ref">Your Upload File</option>
-				<option value="built_in">Built-In</option>
-			</param>
-			<when value="built_in">
-				<param name="dbkey" type="select" format="text" >
-					<label>Database</label>
-					<options from_file="pepxml_databases.loc">
-						<column name="name" index="0" />
-						<column name="value" index="2" />
-					</options>
-				</param>
-			</when>
-			<when value="input_ref">
-				<param name="fasta_file" type="data" format="fasta" label="Uploaded FASTA file" />
-			</when>
-		</conditional>
-		
-		<param name="protxml_file" type="data" format="protxml" multiple="false" label="Proteomics Search Results" help="A ProtXML file produced by Protein Prophet"/>
-
-		<param name="gene_file" type="data" format="gff3" multiple="false" label="Protein coordinates" help="A gff3 file with coordinates for all protein entries used for proteomics searches. Coordinates should correspond to entries in the genome fasta file"/>
-
-		<param name="gffidpattern" size="40" type="text" value="lcl\|([^ ]*)" label="gff id regex" help="Regex with capture group for parsing gff ids from protein ids">
-	    	<sanitizer>
-        	<valid initial="string.printable">
-         	<remove value="&apos;"/>
-        	</valid>
-        	<mapping initial="none">
-          	<add source="&apos;" target="__sq__"/>
-        	</mapping>
-      		</sanitizer>
-	    </param>
-
-	</inputs>
-
-	<outputs>
-		<data format="gff3" name="output" />
-	</outputs>
-
-
-	<tests>
-	  <test>
-	  	<param name="source_select" value="input_ref"/>
-	  	<param name="fasta_file" value="small_prot.fasta" format="fasta"/>
-
-	      <param name="protxml_file" value="small.prot.xml" format="protxml"/>
-	      <param name="gene_file" value="small_combined.gff" format="gff3"/>
-	      <output name="output" format="gff3">
-	          <assert_contents>
-	              <has_text text="polypeptide" />
-	          </assert_contents>
-	      </output>
-	  </test>
-	</tests>
-
-  <help>
+          <param name="protxml_file" value="small.prot.xml" format="protxml"/>
+          <param name="gene_file" value="small_combined.gff" format="gff3"/>
+          <output name="output" format="gff3">
+              <assert_contents>
+                  <has_text text="polypeptide" />
+              </assert_contents>
+          </output>
+      </test>
+    </tests>
+    <help>
 
 **What it does**
 
 Exports peptides and proteins to gff
 
-----
-
-**References**
-
-
-  </help>
-
+    </help>
 </tool>
