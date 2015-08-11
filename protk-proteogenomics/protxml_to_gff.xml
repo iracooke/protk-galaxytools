@@ -16,7 +16,21 @@
                 -d $database.fasta_file
             #end if
             -c $gene_file
-            --gff-idregex='$gffidpattern'
+            #if str( $gffidpattern ):
+                --gff-idregex='$gffidpattern'
+            #end if
+
+            #if str( $genomeidpattern ):
+                --genome-idregex='$genomeidpattern'
+            #end if
+
+            #if str( $ignorepattern ):
+                --ignore-regex='$ignorepattern'
+            #end if
+            
+            --threshold=$peptide_threshold
+            --prot-threshold=$prot_threshold
+            $stack_charges
             -o $output
     </command>
     <inputs>
@@ -40,6 +54,9 @@
         </conditional>
         <param name="protxml_file" type="data" format="protxml" multiple="false" label="Proteomics Search Results" help="A ProtXML file produced by Protein Prophet"/>
         <param name="gene_file" type="data" format="gff3" multiple="false" label="Protein coordinates" help="A gff3 file with coordinates for all protein entries used for proteomics searches. Coordinates should correspond to entries in the genome fasta file"/>
+        <param name="peptide_threshold" label="Peptide Probability Threshold" type="float" value="0.95" min="0" max="1" help="Only peptides within accepted proteins and passing this threshold will appear in the output"/>
+        <param name="prot_threshold" label="Protein Probability Threshold" type="float" value="0.99" min="0" max="1" help="Only peptides within proteins passing this threshold will appear in the output"/>
+        <param name="stack_charges" value="false" type="boolean" label="Peptides with different charges get separate gff entries" help="" truevalue="--stack-charge-states" falsevalue="" />
         <param name="gffidpattern" size="40" type="text" value="lcl\|([^ ]*)" label="gff id regex" help="Regex with capture group for parsing gff ids from protein ids">
             <sanitizer>
             <valid initial="string.printable">
@@ -50,6 +67,31 @@
             </mapping>
               </sanitizer>
         </param>
+
+        <param name="genomeidpattern" size="40" type="text" label="genome id regex" help="Regex with capture group for parsing genomic ids from protein ids">
+            <sanitizer>
+            <valid initial="string.printable">
+             <remove value="&apos;"/>
+            </valid>
+            <mapping initial="none">
+              <add source="&apos;" target="__sq__"/>
+            </mapping>
+              </sanitizer>
+        </param>        
+
+        <param name="ignorepattern" size="40" type="text" label="ignore regex" help="Regex to match protein ids that we should ignore completely">
+            <sanitizer>
+            <valid initial="string.printable">
+             <remove value="&apos;"/>
+            </valid>
+            <mapping initial="none">
+              <add source="&apos;" target="__sq__"/>
+            </mapping>
+              </sanitizer>
+        </param>        
+
+
+
     </inputs>
     <outputs>
         <data format="gff3" name="output" />
