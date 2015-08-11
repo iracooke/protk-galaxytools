@@ -44,7 +44,7 @@
         $acetyl_protein_nterm
         $cleavage_semi
         $keep_spectra
-        --threads "\${GALAXY_SLOTS:-1}"
+        --threads "\${GALAXY_SLOTS:-12}"
 
     </command>
     <inputs>
@@ -127,7 +127,7 @@
             <label>Enzyme</label>
             <option value="[R]__pc__{P}">argc - [R]|{P}</option>
             <option value="[X]__pc__[D]">aspn - [X]|[D]</option>
-            <option value="[FLMWY]__pc__{P}">chymotrypsin - [FLMWY]|{P}</option>
+            <option value="[FLWY]__pc__{P}">chymotrypsin - [FLWY]|{P}</option>
             <option value="[R]__pc__[X]">clostripain - [R]|[X]</option>
             <option value="[M]__pc__{X}">cnbr - [M]|{X}</option>
             <option value="[AGILV]__pc__{P}">elastase - [AGILV]|{P}</option>
