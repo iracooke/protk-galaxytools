@@ -30,7 +30,7 @@
             $use_nsi
             $use_nsm
             --p-thresh $p_thresh
-            --threads "\${GALAXY_SLOTS:-1}"
+            --threads "\${GALAXY_SLOTS:-12}"
 
 ]]>
     </command>

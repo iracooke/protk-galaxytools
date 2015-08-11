@@ -31,12 +31,12 @@
             #end if
 
             --p-thresh $p_thresh
-            --threads "\${GALAXY_SLOTS:-1}"
+            --threads "\${GALAXY_SLOTS:-12}"
 
 
     </command>
     <inputs>
-        <param name="input_file" type="data" format="raw_pepxml" multiple="false" label="Raw Search Results" help="These files will typically be outputs from omssa or xtandem search tools"/>
+        <param name="input_file" type="data" format="pepxml,raw_pepxml" multiple="false" label="Raw Search Results" help="These files will typically be outputs from omssa or xtandem search tools"/>
 
         <param name="glyco" type="boolean" label="Expect true positives to have a glycocapture motif" truevalue="--glyco" falsevalue=""/>
         <param name="useicat" type="boolean" label="Use icat information" truevalue="--useicat" falsevalue=""/>

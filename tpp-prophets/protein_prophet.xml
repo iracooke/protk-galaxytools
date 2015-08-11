@@ -6,10 +6,14 @@
         <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
     </requirements>
 
-    <!-- Note .. the input file is assumed to be the first argument -->
     <command>
         protein_prophet.rb
-            --galaxy $input_file
+            --galaxy 
+            
+            #for $input_file in $input_files:
+                ${input_file}
+            #end for
+            
             -o protein_prophet_results.prot.xml
             -r
 
@@ -27,7 +31,7 @@
           --minindep=$minindep
     </command>
     <inputs>
-        <param name="input_file" type="data" format="peptideprophet_pepxml,interprophet_pepxml" multiple="false" label="Peptide Prophet Results" help="These files will typically be outputs from peptide prophet or interprophet"/>
+        <param name="input_files" type="data" format="peptideprophet_pepxml,interprophet_pepxml" multiple="true" label="Peptide Prophet Results" help="These files will typically be outputs from peptide prophet or interprophet"/>
 
         <param name="iproph" selected="true" type="boolean" label="Inputs are from iProphet" truevalue="--iprophet-input" falsevalue=""/>
         <param name="nooccam" type="boolean" label="Don't apply Occam's razor" help="When selected no attempt will be made to derive the simplest protein list explaining observed peptides" truevalue="--no-occam" falsevalue=""/>
@@ -44,7 +48,7 @@
         <param name="minindep" type="text" label="Minimum percentage of independent peptides required for a protein" value="0"/>
     </inputs>
     <outputs>
-        <data format="protxml" name="output" metadata_source="input_file" label="protein_prophet.${input_file.display_name}.protXML" from_work_dir="protein_prophet_results.prot.xml"/>
+        <data format="protxml" name="output" from_work_dir="protein_prophet_results.prot.xml"/>
     </outputs>
 
 
