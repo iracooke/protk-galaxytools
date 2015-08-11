@@ -47,7 +47,7 @@
         --num-reported-matches=$num_reported_matches
         --java-mem=$java_mem
 
-        --threads "\${GALAXY_SLOTS:-1}"
+        --threads "\${GALAXY_SLOTS:-12}"
         #if $pepxml_output_use:
         --pepxml
         #end if
