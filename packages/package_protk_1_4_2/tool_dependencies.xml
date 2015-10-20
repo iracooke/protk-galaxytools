@@ -1,20 +1,26 @@
 <?xml version="1.0"?>
 <tool_dependency>
     <package name="ruby" version="2.0">
-        <repository name="package_ruby_2_0" owner="bgruening" prior_installation_required="True" />
+        <repository name="package_ruby_2_0" owner="iuc" prior_installation_required="True" />
     </package>
     <package name="libxml2" version="2.9.1">
         <repository name="package_libxml2_2_9_1" owner="devteam" prior_installation_required="True" />
+    </package>
+    <package name="openssl" version="1.0">
+        <repository name="package_openssl_1_0" owner="iuc" prior_installation_required="True" />
     </package>
     <package name="protk" version="1.4.2">
         <install version="1.0">
             <actions>
                 <action type="setup_ruby_environment">
-                    <repository name="package_ruby_2_0" owner="bgruening">
+                    <repository name="package_ruby_2_0" owner="iuc">
                         <package name="ruby" version="2.0" />
                     </repository>
                     <repository name="package_libxml2_2_9_1" owner="devteam">
                         <package name="libxml2" version="2.9.1" />
+                    </repository>
+                    <repository name="package_openssl_1_0" owner="iuc">
+                        <package name="openssl" version="1.0" />
                     </repository>
                     <package parameters="--with-xml2-config=$LIBXML_ROOT_PATH/bin/xml2-config">protk=1.4.2</package>
                 </action>
