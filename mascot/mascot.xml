@@ -36,7 +36,10 @@
         #end if
 
         -v $missed_cleavages
-        --quantitation='$quant_method'
+
+        #if str ( $quant_method ) != 'No Quant'
+            --quantitation='$quant_method'
+        #end if
 
         #if $security.security_use
             --use-security
@@ -166,7 +169,7 @@
 
         <param name="quant_method" type="select" format="text">
             <label>Quantitation</label>
-            <option selected="true" value="None">None</option>
+            <option selected="true" value="No Quant">No Quant</option>
             <option value="iTRAQ 4plex">iTRAQ 4plex</option>
             <option value="iTRAQ 4plex (protein)">iTRAQ 4plex (protein)</option>
             <option value="iTRAQ 8plex">iTRAQ 8plex</option>
