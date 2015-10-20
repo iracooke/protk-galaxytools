@@ -74,7 +74,7 @@
         </conditional>
         <param name="input_file" type="data" format="mzml" multiple="false" label="MSMS File" help="An mzML file with MS/MS data"/>
         <param name="variable_mods" format="text" type="select" multiple="true" label="Variable Modifications" help="Multiple Selection Allowed">
-            <options from_file="msgfplus_mods.loc">
+            <options from_file="msgfplus_mods_var.loc">
                 <column name="name" index="0" />
                 <column name="value" index="2" />
             </options>
@@ -84,7 +84,7 @@
             <param name="custom_mod" type="text" />
         </repeat>
         <param name="fixed_mods" format="text" type="select" multiple="true" label="Fixed Modifications" help="Multiple Selection Allowed">
-            <options from_file="msgfplus_mods.loc">
+            <options from_file="msgfplus_mods_fix.loc">
                 <column name="name" index="0" />
                 <column name="value" index="2" />
             </options>

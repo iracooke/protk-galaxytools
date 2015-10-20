@@ -46,5 +46,5 @@
 #CH2,K,opt,any,Methy				# Methylation K
 #HO3P,STY,opt,any,Phospho			# Phosphorylation STY
 
-Carbamidomethyl C	carbamidomethyl_c_	C2H3N1O1,C,opt,any,Carbamidomethyl	carbamidomethyl_c_
-Oxidation M	oxidation_m_	O1,M,opt,any,Oxidation	oxidation_m_
+Carbamidomethyl C	carbamidomethyl_c_	C2H3N1O1,C,fix,any,Carbamidomethyl	carbamidomethyl_c_
+
