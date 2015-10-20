@@ -1,0 +1,53 @@
+<tool id="mzid_to_protxml" name="mzIdentML to protXML" version="1.0.0">
+	<description>Convert mzIdentML to protXML</description>
+
+	<requirements>
+		<container type="docker">iracooke/protk-1.4.2</container>		
+		<requirement type="package" version="1.4">protk</requirement>
+		<requirement type="package" version="2.2.29">blast+</requirement>
+   </requirements>
+
+	<command>
+		mzid_to_protxml.rb $mzid_file 
+				
+		-o $output
+	</command>
+
+	<stdio>
+		<exit_code range="1:"   level="fatal"   description="Failure" />
+	</stdio>
+
+	<inputs>
+		
+		<param name="mzid_file" type="data" format="mzid" multiple="false" label="Proteomics Search Results" help="A ProtXML file produced by Protein Prophet"/>
+
+	</inputs>
+
+	<outputs>
+		<data format="protxml" name="output" />
+	</outputs>
+
+
+	<tests>
+	  <test>
+	      <param name="mzid_file" value="PeptideShaker_tiny.mzid" format="mzid"/>
+	      <output name="output" format="protxml">
+	          <assert_contents>
+	              <has_text text="JEMP01000061" />
+	          </assert_contents>
+	      </output>
+	  </test>
+	</tests>
+
+  <help>
+
+**What it does**
+
+Roughly converts mzIdentML to protXML.  
+
+At the present time, the conversion is really only designed to work with mzIdentML files produced by PeptideShaker and to produce protXML files suitable for input to protk proteogenomics tools. 
+
+
+  </help>
+
+</tool>
