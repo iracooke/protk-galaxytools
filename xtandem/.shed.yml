@@ -1,0 +1,10 @@
+categories:
+- Proteomics
+description: X!Tandem search engine
+long_description: |
+  X!Tandem search engine
+
+name: xtandem
+owner: iracooke
+remote_repository_url: https://github.com/iracooke/protk-galaxytools/tree/master/xtandem
+type: unrestricted
