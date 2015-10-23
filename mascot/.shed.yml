@@ -1,0 +1,8 @@
+categories: [Proteomics]
+description: Mascot MSMS Search
+homepage_url: https://github.com/iracooke/protk-galaxytools
+long_description: Run mascot searches from galaxy by interfacing with your local mascot
+  server
+name: mascot
+owner: iracooke
+remote_repository_url: https://github.com/iracooke/protk-galaxytools/blob/master/mascot/.shed.yml

@@ -1,0 +1,7 @@
+categories: [Proteomics]
+description: OMSSA MSMS Search
+homepage_url: https://github.com/iracooke/protk-galaxytools
+long_description: Search MSMS Spectra against a protein database with OMSSA
+name: omssa
+owner: iracooke
+remote_repository_url: https://github.com/iracooke/protk-galaxytools/blob/master/omssa/.shed.yml

@@ -1,8 +1,8 @@
 <tool id="protxml_to_gff" name="Proteomics to GFF" version="1.1.0">
     <description>Export Proteomics Data to GFF</description>
     <requirements>
-        <container type="docker">iracooke/protk-1.4.1</container>
-        <requirement type="package" version="1.4.2">protk</requirement>
+        <container type="docker">iracooke/protk-1.4.3</container>
+        <requirement type="package" version="1.4.3">protk</requirement>
         <requirement type="package" version="2.2.29">blast+</requirement>
     </requirements>
     <stdio>

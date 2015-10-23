@@ -1,0 +1,7 @@
+categories: [Proteomics]
+description: Translate DNA into Protein
+homepage_url: https://github.com/iracooke/protk-galaxytools
+long_description: Translate DNA into protein using all six possible frames
+name: sixframe_translate
+owner: iracooke
+remote_repository_url: https://github.com/iracooke/protk-galaxytools/blob/master/sixframe-translate/.shed.yml

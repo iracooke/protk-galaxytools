@@ -1,0 +1,7 @@
+categories: [Proteomics]
+description: Generate decoys from protein sequences
+homepage_url: https://github.com/iracooke/protk-galaxytools
+long_description: Generate a decoy database from an input set of protein sequences
+name: make_protein_decoys
+owner: iracooke
+remote_repository_url: https://github.com/iracooke/protk-galaxytools/blob/master/make_protein_decoys/.shed.yml

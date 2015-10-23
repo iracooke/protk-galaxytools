@@ -1,8 +1,8 @@
-<tool id="proteomics_search_interprophet_1" name="InterProphet" version="1.1.0">
+<tool id="proteomics_search_interprophet_1" name="InterProphet" version="1.1.1">
     <description>Combine Peptide Prophet results from multiple search engines</description>
     <requirements>
-         <container type="docker">iracooke/protk-1.4.1</container>
-        <requirement type="package" version="1.4.2">protk</requirement>
+         <container type="docker">iracooke/protk-1.4.3</container>
+        <requirement type="package" version="1.4.3">protk</requirement>
         <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
     </requirements>
     <command>

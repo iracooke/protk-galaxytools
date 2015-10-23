@@ -1,8 +1,8 @@
-<tool id="gff3_to_fasta" name="Extract proteins from gff3" version="1.1.0">
+<tool id="gff3_to_fasta" name="Extract proteins from gff3" version="1.1.1">
     <description>Extract proteins from gff3 and encode genomic coordinates in the fasta header</description>
     <requirements>
-        <container type="docker">iracooke/protk-1.4.1</container>
-        <requirement type="package" version="1.4.2">protk</requirement>
+        <container type="docker">iracooke/protk-1.4.3</container>
+        <requirement type="package" version="1.4.3">protk</requirement>
    </requirements>
     <stdio>
         <exit_code range="1:"   level="fatal"   description="Failure" />

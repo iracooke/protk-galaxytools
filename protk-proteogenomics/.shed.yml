@@ -1,0 +1,7 @@
+categories: [Proteomics]
+description: Proteogenomics tools using protk
+homepage_url: https://github.com/iracooke/protk-galaxytools
+long_description: Tools for mapping peptides to genomic coordinates
+name: protk_proteogenomics
+owner: iracooke
+remote_repository_url: https://github.com/iracooke/protk-galaxytools/blob/master/protk-proteogenomics/.shed.yml

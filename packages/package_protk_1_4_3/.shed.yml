@@ -1,0 +1,13 @@
+categories:
+- Tool Dependency Packages
+description: Contains a tool dependency definition that downloads and compiles version
+  1.4.3 of the ruby package protk.
+long_description: |
+  Protk is a suite of tools for proteomics. It aims to present a simple and consistent command-line 
+  interface across otherwise disparate third party tools. The following analysis tasks are currently supported; 
+
+  https://github.com/iracooke/protk
+name: package_protk_1_4_3
+owner: iracooke
+remote_repository_url: https://github.com/iracooke/protk-galaxytools/tree/master/packages/package_protk_1_4_3
+type: tool_dependency_definition

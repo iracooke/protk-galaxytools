@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<tool_dependency>
+        <package name="omssa" version="2.1.9">
+            <install version="1.0">
+                <actions>                	
+					<action type="download_by_url">https://dl.dropboxusercontent.com/u/226794/galaxy/omssa_2.1.9.tar.gz</action>
+                    <action language="cheetah" type="template_command">
+                        sh install.sh $env.INSTALL_DIR
+                    </action>
+                    <action type="set_environment">
+                        <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR</environment_variable>
+                        <environment_variable action="set_to" name="PROTK_OMSSA_ROOT">$INSTALL_DIR</environment_variable>
+                    </action>
+                </actions>
+            </install>
+            <readme>
+            	Downloads prebuilt binaries of the OMSSA search engine from NCBI
+            </readme>
+        </package>
+</tool_dependency>

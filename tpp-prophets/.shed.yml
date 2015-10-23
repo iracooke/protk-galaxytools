@@ -1,0 +1,8 @@
+categories: [Proteomics]
+description: Peptide and Protein inference using the TPP
+homepage_url: https://github.com/iracooke/protk-galaxytools
+long_description: Perform peptide and protein inference based on MSMS search results
+  from various search engines
+name: tpp_prophets
+owner: iracooke
+remote_repository_url: https://github.com/iracooke/protk-galaxytools/blob/master/tpp-prophets/.shed.yml
