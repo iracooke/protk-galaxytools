@@ -6,6 +6,7 @@
         <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
     </requirements>
     <command>
+        export XML_ONLY="true";
         peptide_prophet.rb
             --galaxy $input_file
             -o peptide_prophet_output.pep.xml

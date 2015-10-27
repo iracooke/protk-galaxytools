@@ -7,6 +7,8 @@
     </requirements>
     <command>
 <![CDATA[
+        export XML_ONLY="true";
+
         interprophet.rb --galaxy
         #if str( $input_type.type ) == "files":
             #for $pepxml_file in $input_type.pepxml_files:

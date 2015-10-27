@@ -11,7 +11,7 @@
         <param name="invert_probs" type="boolean" label="Print inverted probabilities (ie 1-p instead of p)" truevalue="--invert-probabilities" falsevalue=""/>
     </inputs>
     <outputs>
-        <data format="csv" name="output" metadata_source="input_file" label="${input_file.display_name}.csv" />
+        <data format="tabular" name="output" metadata_source="input_file" label="${input_file.display_name}.tsv" />
     </outputs>
     <tests>
         <!-- Just test that the tool runs and produces vaguely correct output -->
