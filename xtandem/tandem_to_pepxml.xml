@@ -5,6 +5,9 @@
         <requirement type="package" version="1.4.3">protk</requirement>
         <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
     </requirements>
+    <stdio>
+        <exit_code range="1:" level="fatal" description="Failure" />
+    </stdio>
     <command>
         tandem_to_pepxml.rb $input_file -o $output 
     </command>
