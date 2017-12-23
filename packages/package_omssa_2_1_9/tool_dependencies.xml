@@ -3,7 +3,7 @@
         <package name="omssa" version="2.1.9">
             <install version="1.0">
                 <actions>                	
-					<action type="download_by_url">https://dl.dropboxusercontent.com/u/226794/galaxy/omssa_2.1.9.tar.gz</action>
+					<action type="download_by_url">https://s3.amazonaws.com/galaxy-protk/omssa_2.1.9.tar.gz</action>
                     <action language="cheetah" type="template_command">
                         sh install.sh $env.INSTALL_DIR
                     </action>
