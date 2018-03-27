@@ -2,16 +2,14 @@
     <description>Calculate Protein Prophet statistics on search results</description>
     <requirements>
         <container type="docker">iracooke/protk-1.4.3</container>
-        <requirement type="package" version="1.4.3">protk</requirement>
-        <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
+        <requirement type="package" version="1.4.4a">protk</requirement>
     </requirements>
-
     <command>
         protein_prophet.rb
             --galaxy 
             
             #for $input_file in $input_files:
-                ${input_file}
+                '${input_file}'
             #end for
             
             -o protein_prophet_results.prot.xml

@@ -2,10 +2,9 @@
     <description>Converts a pepXML file to a tab delimited text file</description>
     <requirements>
         <container type="docker">iracooke/protk-1.4.3</container>
-        <requirement type="package" version="1.4.3">protk</requirement>
+        <requirement type="package" version="1.4.4a">protk</requirement>
     </requirements>
-    <!-- Note .. the input file is assumed to be the first argument -->
-    <command>pepxml_to_table.rb $input_file -o $output $invert_probs</command>
+    <command>pepxml_to_table.rb '$input_file' -o '$output' $invert_probs</command>
     <inputs>
         <param name="input_file" type="data" format="pepxml,raw_pepxml,peptideprophet_pepxml,interprophet_pepxml"  multiple="false" label="Input File" help="A pepXML file"/>
         <param name="invert_probs" type="boolean" label="Print inverted probabilities (ie 1-p instead of p)" truevalue="--invert-probabilities" falsevalue=""/>

@@ -2,13 +2,12 @@
     <description>Calculate Peptide Prophet statistics on search results</description>
     <requirements>
         <container type="docker">iracooke/protk-1.4.3</container>
-        <requirement type="package" version="1.4.3">protk</requirement>
-        <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
+        <requirement type="package" version="1.4.4a">protk</requirement>
     </requirements>
     <command>
         export XML_ONLY="true";
         peptide_prophet.rb
-            --galaxy $input_file
+            --galaxy '$input_file'
             -o peptide_prophet_output.pep.xml
             -r 
             $glyco 
@@ -27,8 +26,8 @@
             $usedecoys
             --decoy-prefix $decoy_prefix_string
 
-            #if $experiment_label
-                --experiment-label $experiment_label
+            #if str($experiment_label).strip():
+                --experiment-label '$experiment_label'
             #end if
 
             --p-thresh $p_thresh
