@@ -1,59 +1,38 @@
-<tool id="proteomics_search_interprophet_1" name="InterProphet" version="1.1.0">
-	
-	<requirements>
-         <container type="docker">iracooke/protk-1.4.1</container>
-	    <requirement type="package" version="1.4">protk</requirement>
-	    <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
-   </requirements>
-
-
-  <description>Combine Peptide Prophet results from multiple search engines</description>
-
-  <command>interprophet.rb --galaxy
-
+<tool id="proteomics_search_interprophet_1" name="InterProphet" version="1.4.4">
+    <description>Combine Peptide Prophet results from multiple search engines</description>
+    <requirements>
+	    <requirement type="package" version="1.4.4a">protk</requirement>
+    </requirements>
+    <command><![CDATA[
+interprophet.rb --galaxy
 	-o interprophet_output.pep.xml
-
 	$use_nss 
-
 	$use_nrs 
-
 	$use_nse 
-
 	$use_nsi 
-
 	$use_nsm 
-
 	--p-thresh $p_thresh
+	--threads "\${GALAXY_SLOTS:-4}"
+    #for $pepxml_file in $pepxml_files:
+	    '${pepxml_file}'
+    #end for	
+    ]]>
+    </command>
+    <inputs>
+	    <param name="pepxml_files" multiple="true" type="data" format="peptideprophet_pepxml" label="Peptide Prophet Results" help="These files will typically be outputs from search tools that have subsequently been run through peptide prophet"/>
 
-	--threads $threads
-
-#for $pepxml_file in $pepxml_files:
-	${pepxml_file}
-#end for	
-
-  </command>
-
-
-  <inputs>
-
-	<param name="pepxml_files" multiple="true" type="data" format="peptideprophet_pepxml" label="Peptide Prophet Results" help="These files will typically be outputs from search tools that have subsequently been run through peptide prophet"/>
-
-	<param name="use_nss" checked="true" type="boolean" label="Include NSS in Model" help="Include NSS (Number of Sibling Searches) in Statistical Model" truevalue="" falsevalue="--no-nss"/>
-	<param name="use_nrs" checked="true" type="boolean" label="Include NRS in Model" help="Include NRS (Number of Replicate Spectra) in Statistical Model" truevalue="" falsevalue="--no-nrs"/>
-	<param name="use_nse" checked="true" type="boolean" label="Include NSE in Model" help="Include NSE (Number of Sibling Experiments) in Statistical Model" truevalue="" falsevalue="--no-nse"/>
-	<param name="use_nsi" checked="true" type="boolean" label="Include NSI in Model" help="Include NSI (Number of Sibling Ions) in Statistical Model" truevalue="" falsevalue="--no-nsi"/>
-	<param name="use_nsm" checked="true" type="boolean" label="Include NSM in Model" help="Include NSM (Number of Sibling Modifications) in Statistical Model" truevalue="" falsevalue="--no-nsm"/>
-	
-    <param name="p_thresh" help="Peptides scoring less than this value are discarded" type="float" value="0.05" min="0" max="1" label="Probability Threshold"/>
-
-	<param name="threads" type="integer" value="1" min="0" label="Threads" help="Number of threads to use"/>
+	    <param name="use_nss" checked="true" type="boolean" label="Include NSS in Model" help="Include NSS (Number of Sibling Searches) in Statistical Model" truevalue="" falsevalue="--no-nss"/>
+	    <param name="use_nrs" checked="true" type="boolean" label="Include NRS in Model" help="Include NRS (Number of Replicate Spectra) in Statistical Model" truevalue="" falsevalue="--no-nrs"/>
+	    <param name="use_nse" checked="true" type="boolean" label="Include NSE in Model" help="Include NSE (Number of Sibling Experiments) in Statistical Model" truevalue="" falsevalue="--no-nse"/>
+	    <param name="use_nsi" checked="true" type="boolean" label="Include NSI in Model" help="Include NSI (Number of Sibling Ions) in Statistical Model" truevalue="" falsevalue="--no-nsi"/>
+	    <param name="use_nsm" checked="true" type="boolean" label="Include NSM in Model" help="Include NSM (Number of Sibling Modifications) in Statistical Model" truevalue="" falsevalue="--no-nsm"/>
+        <param name="p_thresh" help="Peptides scoring less than this value are discarded" type="float" value="0.05" min="0" max="1" label="Probability Threshold"/>
 		
-  </inputs>
-  <outputs>
-    <data format="interprophet_pepxml" name="output" label="interprophet.${pepxml_files[0].display_name}" from_work_dir="interprophet_output.pep.xml"/>
-  </outputs>
-
- <help>
+    </inputs>
+    <outputs>
+        <data format="interprophet_pepxml" name="output" label="interprophet.${pepxml_files[0].display_name}" from_work_dir="interprophet_output.pep.xml"/>
+    </outputs>
+    <help>
 
 **What it does**
 
@@ -67,6 +46,5 @@ If you use this tool please read and cite the paper describing iProphet
 
 Shteynberg D, et al. “iProphet: Improved statistical validation of peptide identifications in shotgun proteomics.” *Molecular and Cellular Proteomics* 10, M111.007690 (2011).
 
-  </help>
-
+    </help>
 </tool>

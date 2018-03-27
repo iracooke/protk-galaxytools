@@ -1,40 +1,35 @@
-<tool id="proteomics_search_peptide_prophet_1" name="Peptide Prophet" version="1.1.0">
-    <requirements>
-        <container type="docker">iracooke/protk-1.4.1</container>
-        <requirement type="package" version="1.4">protk</requirement>
-        <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
-   </requirements>
-   
+<tool id="proteomics_search_peptide_prophet_1" name="Peptide Prophet" version="1.4.4">
 	<description>Calculate Peptide Prophet statistics on search results</description>
+    <requirements>
+	    <requirement type="package" version="1.4.4a">protk</requirement>
+    </requirements>
+    <command><![CDATA[
+peptide_prophet.rb --galaxy 
+    '$input_file'
+    -o peptide_prophet_output.pep.xml
+    -r 
+    $glyco 
+    $useicat 
+    $phospho 
+    $usepi 
+    $usert 
+    $accurate_mass 
+    $no_ntt 
+    $no_nmc 
+    $use_gamma 
+    $use_only_expect 
+    $force_fit 
+    $allow_alt_instruments 
+    $maldi
+    $usedecoys
+    --decoy-prefix $decoy_prefix_string
 
-	<command>
-        peptide_prophet.rb --galaxy $input_file -o peptide_prophet_output.pep.xml
-
-        -r 
-        $glyco 
-        $useicat 
-        $phospho 
-        $usepi 
-        $usert 
-        $accurate_mass 
-        $no_ntt 
-        $no_nmc 
-        $use_gamma 
-        $use_only_expect 
-        $force_fit 
-        $allow_alt_instruments 
-        $maldi
-        $usedecoys
-        --decoy-prefix $decoy_prefix_string
-
-#if $experiment_label
-        --experiment-label $experiment_label
-#end if
-
-        --p-thresh $p_thresh
-
-        --threads $threads
-
+    #if str($experiment_label).strip()
+        --experiment-label '$experiment_label'
+    #end if
+    --p-thresh $p_thresh
+	--threads "\${GALAXY_SLOTS:-4}"
+    ]]>
 	</command>
 
 	<inputs>
@@ -59,7 +54,6 @@
     <param name="decoy_prefix_string" help="Prefix string for decoy ids" type="text" value="decoy_" label="Decoy Prefix String" size="20"/>	
     <param name="experiment_label" help="Used to commonly label all spectra from one experiment" type="text" value="" label="Experiment Label" size="20"/>
     <param name="p_thresh" help="Peptides scoring less than this value are discarded" type="float" value="0.05" min="0" max="1" label="Probability Threshold"/>
-    <param name="threads" type="integer" value="1" min="0" label="Threads" help="Number of threads to use"/>
 	
   </inputs>
   <outputs>

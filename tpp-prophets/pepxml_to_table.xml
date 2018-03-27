@@ -1,30 +1,19 @@
-<tool id="pepxml_to_table_1" name="PepXML to Table" version="1.1.0">
-
-	<requirements>
-            <container type="docker">iracooke/protk-1.4.1</container>
-	    <requirement type="package" version="1.4">protk</requirement>
-   </requirements>
-
-
-
-  <description>Converts a pepXML file to a tab delimited text file</description>
-
-
-<!-- Note .. the input file is assumed to be the first argument -->
-<command>pepxml_to_table.rb $input_file -o $output $invert_probs</command>
-
-
-<inputs>
-
-	<param name="input_file" type="data" format="pepxml,raw_pepxml,peptideprophet_pepxml,interprophet_pepxml"  multiple="false" label="Input File" help="A pepXML file"/>
-    <param name="invert_probs" type="boolean" label="Print inverted probabilities (ie 1-p instead of p)" truevalue="--invert-probabilities" falsevalue=""/>
-
-</inputs>
-<outputs>
-	<data format="csv" name="output" metadata_source="input_file" label="${input_file.display_name}.csv" />
-</outputs>
-
-	
+<tool id="pepxml_to_table_1" name="PepXML to Table" version="">
+    <description>Converts a pepXML file to a tab delimited text file</description>
+    <requirements>
+	    <requirement type="package" version="1.4.4a">protk</requirement>
+    </requirements>
+    <command><![CDATA[
+pepxml_to_table.rb $input_file -o $output $invert_probs
+    ]]>
+    </command>
+    <inputs>
+	    <param name="input_file" type="data" format="pepxml,raw_pepxml,peptideprophet_pepxml,interprophet_pepxml"  multiple="false" label="Input File" help="A pepXML file"/>
+        <param name="invert_probs" type="boolean" label="Print inverted probabilities (ie 1-p instead of p)" truevalue="--invert-probabilities" falsevalue=""/>
+    </inputs>
+    <outputs>
+	    <data format="csv" name="output" metadata_source="input_file" label="${input_file.display_name}.csv" />
+    </outputs>
 	<tests>
 	  <!-- Just test that the tool runs and produces vaguely correct output -->
 	  <test>
@@ -36,10 +25,7 @@
 	      </output>
 	  </test>
 	</tests>
-
-
-<help>
-	Convert a pepXML file to Tab delimited text
-</help>
-
+    <help>
+    	Convert a pepXML file to Tab delimited text
+    </help>
 </tool>
