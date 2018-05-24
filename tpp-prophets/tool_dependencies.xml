@@ -1,8 +1,0 @@
-<tool_dependency>
-    <package name="protk" version="1.4.3">
-        <repository name="package_protk_1_4_3" owner="iracooke"/>
-    </package>
-    <package name="trans_proteomic_pipeline" version="4.8.0">
-        <repository name="package_tpp_4_8_0" owner="iuc"/>
-    </package>
-</tool_dependency>

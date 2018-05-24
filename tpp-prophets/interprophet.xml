@@ -1,9 +1,8 @@
 <tool id="proteomics_search_interprophet_1" name="InterProphet" version="1.1.1">
     <description>Combine Peptide Prophet results from multiple search engines</description>
     <requirements>
-         <container type="docker">iracooke/protk-1.4.3</container>
-        <requirement type="package" version="1.4.3">protk</requirement>
-        <requirement type="package" version="4.8.0">trans_proteomic_pipeline</requirement>
+        <container type="docker">iracooke/protk-1.4.3</container>
+        <requirement type="package" version="1.4.4a">protk</requirement>
     </requirements>
     <command>
 <![CDATA[
@@ -12,15 +11,15 @@
         interprophet.rb --galaxy
         #if str( $input_type.type ) == "files":
             #for $pepxml_file in $input_type.pepxml_files:
-                ${pepxml_file}
+                '${pepxml_file}'
             #end for
         #else
             #for $list_item in $input_type.pepxml_list:
-                ${list_item}
+                '${list_item}'
             #end for
             #for $extra_list_holder in $input_type.extra_pepxml_lists:
                 #for $list_item in $extra_list_holder.extra_list:
-                    ${list_item}
+                    '${list_item}'
                 #end for
             #end for
         #end if
