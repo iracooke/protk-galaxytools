@@ -65,7 +65,7 @@
         <test>
             <param name="input_file" value="mr176-BSA100fmole_BA3_01_8168.d_tandem.pep.xml" ftype="raw_pepxml"/>
             <param name="database" value="AASequences.fasta" ftype="fasta"/>
-            <output name="output" value="peptide_prophet_result1_pepxml.xml" ftype="peptideprophet_pepxml" />
+            <output name="output" file="peptide_prophet_result1_pepxml.xml" ftype="peptideprophet_pepxml" lines_diff="30" />
         </test>
     </tests>
     <help>

@@ -4,15 +4,27 @@
         <requirement type="package" version="1.4.4a">protk</requirement>
     </requirements>
     <command detect_errors="aggressive">
+    <![CDATA[
+        ln -s '$database' ./AASequences.fasta &&
+        #for $counter, $input_file in enumerate($input_files):
+            ln -s '$input_file' ${counter}.xml &&
+            sed -i.bak 's|<search_database local_path=".*" type="AA"\/>|<search_database local_path="\./AASequences\.fasta" type="AA"\/>|g' ${counter}.xml &&
+        #end for
+        #set $iprophet = False
+
         protein_prophet.rb
             --galaxy 
-            #for $input_file in $input_files:
-                '${input_file}'
+            #for $counter, $input_file in enumerate($input_files):
+                #if $input_file.ext == 'interprophet_pepxml'
+                    #set $iprophet = True
+                #end if
+                ${counter}.xml
             #end for
-            --database '$database'
             -o protein_prophet_results.prot.xml
             -r
-            $iproph
+            #if $iprophet
+                --iprophet-input
+            #end if
             $nooccam
             $groupwts
             $normprotlen
@@ -24,6 +36,8 @@
             $delude
           --minprob='$minprob'
           --minindep='$minindep'
+          > /dev/null
+    ]]>
     </command>
     <inputs>
         <param name="input_files" type="data" format="peptideprophet_pepxml,interprophet_pepxml" multiple="true"
@@ -31,7 +45,6 @@
         <param argument="--database" type="data" format="fasta"
             label="Specify the database to use for this search" help="Can be a named protk database or the path to a fasta file"/>
 
-        <param name="iproph" selected="true" type="boolean" label="Inputs are from iProphet" truevalue="--iprophet-input" falsevalue=""/>
         <param name="nooccam" type="boolean" label="Don't apply Occam's razor" help="When selected no attempt will be made to derive the simplest protein list explaining observed peptides" truevalue="--no-occam" falsevalue=""/>
         <param name="groupwts" type="boolean" label="Use group weights" help="Check peptide's total weight (rather than actual weight) in the Protein Group against the threshold" truevalue="--group-wts" falsevalue=""/>
         <param name="normprotlen" type="boolean" label="Normalize NSP using Protein Length" truevalue="--norm-protlen" falsevalue=""/>
@@ -46,13 +59,13 @@
         <param name="minindep" type="text" label="Minimum percentage of independent peptides required for a protein" value="0"/>
     </inputs>
     <outputs>
-        <data format="protxml" name="output" from_work_dir="protein_prophet_results.prot.xml"/>
+        <data name="output" from_work_dir="protein_prophet_results.prot.xml" format="protxml"/>
     </outputs>
     <tests>
         <test>
-            <param name="input_file" value="peptide_prophet_result1_pepxml.xml" ftype="peptideprophet_pepxml" />
+            <param name="input_files" value="peptide_prophet_result1_pepxml.xml" ftype="peptideprophet_pepxml" />
             <param name="database" value="AASequences.fasta" ftype="fasta"/>
-            <output name="output" value="protein_prophet_result1_protxml.xml" ftype="protxml" />
+            <output name="output" file="protein_prophet_result1_protxml.xml" ftype="protxml" lines_diff="6" />
         </test>
     </tests>
 

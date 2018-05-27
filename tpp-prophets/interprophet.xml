@@ -8,51 +8,24 @@
         export XML_ONLY="true";
 
         interprophet.rb --galaxy
-        #if str( $input_type.type ) == "files":
-            #for $pepxml_file in $input_type.pepxml_files:
-                '${pepxml_file}'
-            #end for
-        #else
-            #for $list_item in $input_type.pepxml_list:
-                '${list_item}'
-            #end for
-            #for $extra_list_holder in $input_type.extra_pepxml_lists:
-                #for $list_item in $extra_list_holder.extra_list:
-                    '${list_item}'
-                #end for
-            #end for
-        #end if
-
-            -o interprophet_output.pep.xml
-            $use_nss
-            $use_nrs
-            $use_nse
-            $use_nsi
-            $use_nsm
-            --p-thresh $p_thresh
-            --threads "\${GALAXY_SLOTS:-12}"
+        #for $input_file in $input_files:
+            '${input_file}'
+        #end for
+        -o interprophet_output.pep.xml
+        $use_nss
+        $use_nrs
+        $use_nse
+        $use_nsi
+        $use_nsm
+        --p-thresh $p_thresh
+        --threads "\${GALAXY_SLOTS:-12}"
 
 ]]>
     </command>
     <inputs>
 
-        <conditional name="input_type">
-            <param name="type" type="select" label="Input Type">
-                <option value="files" selected="true">Datasets</option>
-                <option value="collections">Collections</option>
-            </param>
-            <when value="files">
-                <param name="pepxml_files" multiple="true" type="data" format="peptideprophet_pepxml" label="Peptide Prophet Results" help="These files will typically be outputs from search tools that have subsequently been run through peptide prophet"/>
-            </when>
-            <when value="collections">
-                <param name="pepxml_list" type="data_collection" multiple="true" format="peptideprophet_pepxml" label="Peptide Prophet Results" help="These files will typically be outputs from search tools that have subsequently been run through peptide prophet"/>
-                <repeat name="extra_pepxml_lists" title="Additional PepXML Collections" >
-                    <param name="extra_list" type="data_collection" multiple="true" collection_type="list" format="peptideprophet_pepxml" label="Peptide Prophet Results" help="These files will typically be outputs from search tools that have subsequently been run through peptide prophet"/>
-                </repeat>
-            </when>
-        </conditional>
-
-        <!-- <param name="pepxml_files" multiple="true" type="data" format="peptideprophet_pepxml" label="Peptide Prophet Results" help="These files will typically be outputs from search tools that have subsequently been run through peptide prophet"/> -->
+        <param name="input_files" multiple="true" type="data" format="peptideprophet_pepxml"
+            label="Peptide Prophet Results" help="These files will typically be outputs from search tools that have subsequently been run through peptide prophet"/>
 
         <param name="use_nss" checked="true" type="boolean" label="Include NSS in Model" help="Include NSS (Number of Sibling Searches) in Statistical Model" truevalue="" falsevalue="--no-nss"/>
         <param name="use_nrs" checked="true" type="boolean" label="Include NRS in Model" help="Include NRS (Number of Replicate Spectra) in Statistical Model" truevalue="" falsevalue="--no-nrs"/>
@@ -65,6 +38,13 @@
     <outputs>
         <data format="interprophet_pepxml" name="output" from_work_dir="interprophet_output.pep.xml"/>
     </outputs>
+    <tests>
+        <test>
+            <param name="input_files" value="peptide_prophet_result1_pepxml.xml" ftype="peptideprophet_pepxml" />
+            <!--param name="database" value="AASequences.fasta" ftype="fasta"/-->
+            <output name="output" file="protein_prophet_result1_protxml.xml" ftype="protxml" />
+        </test>
+    </tests>
     <help>
 
 **What it does**

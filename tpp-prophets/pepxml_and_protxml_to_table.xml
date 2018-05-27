@@ -44,4 +44,6 @@
     <help>
         Convert a pepXML and ProtXML files to tab delimited text files.
     </help>
+    <citations>
+    </citations>
 </tool>
