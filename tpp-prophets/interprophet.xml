@@ -1,10 +1,9 @@
 <tool id="proteomics_search_interprophet_1" name="InterProphet" version="1.1.1">
     <description>Combine Peptide Prophet results from multiple search engines</description>
     <requirements>
-        <container type="docker">iracooke/protk-1.4.3</container>
         <requirement type="package" version="1.4.4a">protk</requirement>
     </requirements>
-    <command>
+    <command detect_errors="aggressive">
 <![CDATA[
         export XML_ONLY="true";
 
@@ -46,7 +45,7 @@
                 <param name="pepxml_files" multiple="true" type="data" format="peptideprophet_pepxml" label="Peptide Prophet Results" help="These files will typically be outputs from search tools that have subsequently been run through peptide prophet"/>
             </when>
             <when value="collections">
-                <param name="pepxml_list" type="data_collection" multiple="true" collection_type="list" format="peptideprophet_pepxml" label="Peptide Prophet Results" help="These files will typically be outputs from search tools that have subsequently been run through peptide prophet"/>
+                <param name="pepxml_list" type="data_collection" multiple="true" format="peptideprophet_pepxml" label="Peptide Prophet Results" help="These files will typically be outputs from search tools that have subsequently been run through peptide prophet"/>
                 <repeat name="extra_pepxml_lists" title="Additional PepXML Collections" >
                     <param name="extra_list" type="data_collection" multiple="true" collection_type="list" format="peptideprophet_pepxml" label="Peptide Prophet Results" help="These files will typically be outputs from search tools that have subsequently been run through peptide prophet"/>
                 </repeat>
@@ -70,15 +69,13 @@
 
 **What it does**
 
-Takes a set of pepXML files (possibly generated using different search engines) and calculates updated identification probabilities for each peptide.  The updated probabilities are based on a statistical model that combines evidence from identifications across all of the input files, spectra, modified states and charge states. 
+Takes a set of pepXML files (possibly generated using different search engines) and calculates updated identification probabilities for each peptide.
+The updated probabilities are based on a statistical model that combines evidence from identifications across all of the input files,
+spectra, modified states and charge states. 
 
-----
-
-**Citation**
-
-If you use this tool please read and cite the paper describing iProphet
-
-Shteynberg D, et al. “iProphet: Improved statistical validation of peptide identifications in shotgun proteomics.” *Molecular and Cellular Proteomics* 10, M111.007690 (2011).
 
     </help>
+    <citations>
+        <citation type="doi">10.1074/mcp.M111.007690</citation>
+     </citations>
 </tool>

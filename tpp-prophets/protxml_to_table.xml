@@ -1,7 +1,6 @@
 <tool id="protxml_to_table_1" name="ProtXML to Table" version="1.1.1">
     <description>Converts a ProtXML file to a table</description>
     <requirements>
-        <container type="docker">iracooke/protk-1.4.3</container>
         <requirement type="package" version="1.4.4a">protk</requirement>
     </requirements>
     <command>
@@ -20,7 +19,7 @@ protxml_to_table.rb
     <tests>
       <!-- Just test that the tool runs and produces vaguely correct output -->
       <test>
-          <param name="input_file" value="mr176-BSA100fmole_BA3_01_8168.d_tandem_pproph_protproph.prot.xml" format="protxml"/>
+          <param name="input_file" value="mr176-BSA100fmole_BA3_01_8168.d_tandem_pproph_protproph.prot.xml" ftype="protxml"/>
           <output name="output" format="tabular">
               <assert_contents>
                   <has_text text="AVQKYLTAHEQSK" />
