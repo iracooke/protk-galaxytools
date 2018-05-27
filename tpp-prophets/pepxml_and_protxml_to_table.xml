@@ -1,0 +1,47 @@
+<tool id="protxml_and_pepxml_to_tabular" name="PepXML and ProtXML to Table" version="1.1.1">
+    <description>Converts a pepXML/ProtXML file to a tab delimited text file</description>
+    <requirements>
+        <requirement type="package" version="1.4.4a">protk</requirement>
+    </requirements>
+    <command>
+    #if $input_file.ext == 'protxml'
+        protxml_to_table.rb
+    #else:
+        pepxml_to_table.rb
+    #end if
+
+    '$input_file'
+    -o '$output'
+    $invert_probs
+    </command>
+    <inputs>
+        <param name="input_file" type="data" format="protxml,pepxml,raw_pepxml,peptideprophet_pepxml,interprophet_pepxml" 
+            label="Input file in ProtXML or PepXML format"/>
+        <param name="invert_probs" type="boolean" truevalue="--invert-probabilities" falsevalue="" label="Print inverted probabilities (ie 1-p instead of p)"/>
+    </inputs>
+    <outputs>
+        <data format="tabular" name="output" />
+    </outputs>
+    <tests>
+        <!-- Just test that the tool runs and produces vaguely correct output -->
+        <test>
+            <param name="input_file" value="mr176-BSA100fmole_BA3_01_8168.d_tandem.pep.xml" ftype="raw_pepxml"/>
+            <output name="output" ftype="tabular">
+                <assert_contents>
+                    <has_text text="ANTNNYAPKSSR" />
+                </assert_contents>
+            </output>
+        </test>
+        <test>
+            <param name="input_file" value="mr176-BSA100fmole_BA3_01_8168.d_tandem_pproph_protproph.prot.xml" ftype="protxml"/>
+            <output name="output" ftype="tabular">
+                <assert_contents>
+                    <has_text text="AVQKYLTAHEQSK" />
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help>
+        Convert a pepXML and ProtXML files to tab delimited text files.
+    </help>
+</tool>
