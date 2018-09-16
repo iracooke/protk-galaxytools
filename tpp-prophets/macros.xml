@@ -1,8 +1,32 @@
 <macros>
+    <token name="@TOOL_VERSION@">1.4.4</token>
     <xml name="requirements">
         <requirements>
             <requirement type="package" version="1.4.4a">protk</requirement>
             <yield/>
         </requirements>
     </xml>
+    <xml name="pt">
+        <conditional name="p_threshold">
+            <param name="source_select" type="select" label="Probability Threshold from">
+                <option value="file">file input</option>
+                <option value="input" selected="true">user input</option>
+            </param>
+            <when value="file">
+                <param name="p_thresh_file" type="data" format="txt"
+                    label="Probability Threshold from file" help="These file containers one threshold value"/>
+            </when>
+            <when value="input">
+                <param name="p_thresh" help="Peptides scoring less than this value are discarded" type="float" value="0.05" min="0" max="1" label="Probability Threshold"/>
+            </when>
+        </conditional>
+    </xml>
+    <token name="@P_TRESH@"><![CDATA[
+        #if $p_threshold.source_select == 'file':
+            export TRESH=`cat '$p_threshold.p_thresh_file'` &&
+        #else:
+            #set $p_thresh = $p_threshold.p_thresh
+        #end if
+    ]]>
+    </token>
 </macros>

@@ -1,4 +1,4 @@
-<tool id="protxml_and_pepxml_to_tabular" name="PepXML and ProtXML to Table" version="1.1.1">
+<tool id="protxml_and_pepxml_to_tabular" name="PepXML and ProtXML to Table" version="@TOOL_VERSION@">
     <description>Converts a pepXML/ProtXML file to a tab delimited text file</description>
     <macros>
         <import>macros.xml</import>

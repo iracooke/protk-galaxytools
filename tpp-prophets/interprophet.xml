@@ -1,4 +1,4 @@
-<tool id="proteomics_search_interprophet_1" name="InterProphet" version="1.1.1">
+<tool id="proteomics_search_interprophet_1" name="InterProphet" version="@TOOL_VERSION@">
     <description>Combine Peptide Prophet results from multiple search engines</description>
     <macros>
         <import>macros.xml</import>
@@ -6,7 +6,10 @@
     <expand macro="requirements" />
     <command detect_errors="aggressive">
 <![CDATA[
+        export HOME=`pwd` &&
         export XML_ONLY="true";
+
+        @P_TRESH@
 
         interprophet.rb --galaxy
         #for $input_file in $input_files:
@@ -18,7 +21,7 @@
         $use_nse
         $use_nsi
         $use_nsm
-        --p-thresh $p_thresh
+        --p-thresh "\${TRESH:-$p_thresh}"
         --threads "\${GALAXY_SLOTS:-12}"
 
 ]]>
@@ -33,8 +36,7 @@
         <param name="use_nse" checked="true" type="boolean" label="Include NSE in Model" help="Include NSE (Number of Sibling Experiments) in Statistical Model" truevalue="" falsevalue="--no-nse"/>
         <param name="use_nsi" checked="true" type="boolean" label="Include NSI in Model" help="Include NSI (Number of Sibling Ions) in Statistical Model" truevalue="" falsevalue="--no-nsi"/>
         <param name="use_nsm" checked="true" type="boolean" label="Include NSM in Model" help="Include NSM (Number of Sibling Modifications) in Statistical Model" truevalue="" falsevalue="--no-nsm"/>
-        <param name="p_thresh" help="Peptides scoring less than this value are discarded" type="float" value="0.05" min="0" max="1" label="Probability Threshold"/>
-
+        <expand macro="pt" />
     </inputs>
     <outputs>
         <data format="interprophet_pepxml" name="output" from_work_dir="interprophet_output.pep.xml"/>
