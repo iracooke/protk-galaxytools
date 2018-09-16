@@ -1,21 +1,35 @@
 <tool id="proteomics_search_protein_prophet_1" name="Protein Prophet" version="1.1.1">
     <description>Calculate Protein Prophet statistics on search results</description>
-    <requirements>
-        <container type="docker">iracooke/protk-1.4.3</container>
-        <requirement type="package" version="1.4.4a">protk</requirement>
-    </requirements>
-    <command>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
+    <command detect_errors="aggressive">
+    <![CDATA[
+        #if $database:
+            ln -s '$database' ./AASequences.fasta &&
+        #end if
+        #for $counter, $input_file in enumerate($input_files):
+            ln -s '$input_file' ${counter}.xml &&
+            #if $database:
+                sed -i.bak 's|<search_database local_path=".*" type="AA"\/>|<search_database local_path="\./AASequences\.fasta" type="AA"\/>|g' ${counter}.xml &&
+            #end if
+        #end for
+        #set $iprophet = False
+
         protein_prophet.rb
-            --galaxy 
-            
-            #for $input_file in $input_files:
-                '${input_file}'
+            --galaxy
+            #for $counter, $input_file in enumerate($input_files):
+                #if $input_file.ext == 'interprophet_pepxml'
+                    #set $iprophet = True
+                #end if
+                ${counter}.xml
             #end for
-            
             -o protein_prophet_results.prot.xml
             -r
-
-            $iproph
+            #if $iprophet
+                --iprophet-input
+            #end if
             $nooccam
             $groupwts
             $normprotlen
@@ -25,13 +39,17 @@
             $unmapped
             $instances
             $delude
-          --minprob=$minprob
-          --minindep=$minindep
+          --minprob='$minprob'
+          --minindep='$minindep'
+          > /dev/null
+    ]]>
     </command>
     <inputs>
-        <param name="input_files" type="data" format="peptideprophet_pepxml,interprophet_pepxml" multiple="true" label="Peptide Prophet Results" help="These files will typically be outputs from peptide prophet or interprophet"/>
+        <param name="input_files" type="data" format="peptideprophet_pepxml,interprophet_pepxml" multiple="true"
+            label="Peptide Prophet Results" help="These files will typically be outputs from peptide prophet or interprophet"/>
+        <param argument="--database" type="data" format="fasta" optional="True"
+            label="Specify the database to use for this search" help="Can be a named protk database or the path to a fasta file"/>
 
-        <param name="iproph" selected="true" type="boolean" label="Inputs are from iProphet" truevalue="--iprophet-input" falsevalue=""/>
         <param name="nooccam" type="boolean" label="Don't apply Occam's razor" help="When selected no attempt will be made to derive the simplest protein list explaining observed peptides" truevalue="--no-occam" falsevalue=""/>
         <param name="groupwts" type="boolean" label="Use group weights" help="Check peptide's total weight (rather than actual weight) in the Protein Group against the threshold" truevalue="--group-wts" falsevalue=""/>
         <param name="normprotlen" type="boolean" label="Normalize NSP using Protein Length" truevalue="--norm-protlen" falsevalue=""/>
@@ -46,8 +64,15 @@
         <param name="minindep" type="text" label="Minimum percentage of independent peptides required for a protein" value="0"/>
     </inputs>
     <outputs>
-        <data format="protxml" name="output" from_work_dir="protein_prophet_results.prot.xml"/>
+        <data name="output" from_work_dir="protein_prophet_results.prot.xml" format="protxml"/>
     </outputs>
+    <tests>
+        <test>
+            <param name="input_files" value="peptide_prophet_result1_pepxml.xml" ftype="peptideprophet_pepxml" />
+            <param name="database" value="AASequences.fasta" ftype="fasta"/>
+            <output name="output" file="protein_prophet_result1_protxml.xml" ftype="protxml" lines_diff="6" />
+        </test>
+    </tests>
 
 
 <!--NOPLOT: do not generate plot png file
@@ -71,14 +96,9 @@
 
 Given a set of peptide assignments from MS/MS spectra in the form of a pepXML file, this tool estimates probabilities at the protein level.  As output, the tool produces a protXML file, which contains proteins along with the estimated probabilities that those proteins were present.  Probabilities are estimated using a statistical model based on the number of peptides corresponding to that protein and the confidence that each of those peptides were assigned correctly.  It takes account of the fact that peptides may correspond to more than one protein. 
 
-----
-
-**Citation**
-
-If you use this tool please read and cite the paper describing the statistical model implemented by Protein Prophet
-
-Nesvizhskii A., et al. “A Statistical Model for Identifying Proteins by Tandem Mass Spectrometry” *Anal. Chem.* 75, 4646-4658 (2003).
-
 
     </help>
+    <citations>
+        <citation type="doi">10.1021/ac0341261</citation>
+     </citations>
 </tool>
