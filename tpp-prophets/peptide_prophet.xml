@@ -4,6 +4,9 @@
         <requirement type="package" version="1.4.4a">protk</requirement>
     </requirements>
     <command detect_errors="aggressive">
+    <![CDATA[
+        export HOME=`pwd` &&
+
         export XML_ONLY="true";
         peptide_prophet.rb
             --galaxy '$input_file'
@@ -31,7 +34,7 @@
             --database '$database'
             --p-thresh $p_thresh
             --threads "\${GALAXY_SLOTS:-12}"
-
+    ]]>
     </command>
     <inputs>
         <param name="input_file" type="data" format="pepxml,raw_pepxml"
