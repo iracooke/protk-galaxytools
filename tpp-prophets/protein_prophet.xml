@@ -1,19 +1,24 @@
 <tool id="proteomics_search_protein_prophet_1" name="Protein Prophet" version="1.1.1">
     <description>Calculate Protein Prophet statistics on search results</description>
-    <requirements>
-        <requirement type="package" version="1.4.4a">protk</requirement>
-    </requirements>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
     <command detect_errors="aggressive">
     <![CDATA[
-        ln -s '$database' ./AASequences.fasta &&
+        #if $database:
+            ln -s '$database' ./AASequences.fasta &&
+        #end if
         #for $counter, $input_file in enumerate($input_files):
             ln -s '$input_file' ${counter}.xml &&
-            sed -i.bak 's|<search_database local_path=".*" type="AA"\/>|<search_database local_path="\./AASequences\.fasta" type="AA"\/>|g' ${counter}.xml &&
+            #if $database:
+                sed -i.bak 's|<search_database local_path=".*" type="AA"\/>|<search_database local_path="\./AASequences\.fasta" type="AA"\/>|g' ${counter}.xml &&
+            #end if
         #end for
         #set $iprophet = False
 
         protein_prophet.rb
-            --galaxy 
+            --galaxy
             #for $counter, $input_file in enumerate($input_files):
                 #if $input_file.ext == 'interprophet_pepxml'
                     #set $iprophet = True
@@ -42,7 +47,7 @@
     <inputs>
         <param name="input_files" type="data" format="peptideprophet_pepxml,interprophet_pepxml" multiple="true"
             label="Peptide Prophet Results" help="These files will typically be outputs from peptide prophet or interprophet"/>
-        <param argument="--database" type="data" format="fasta"
+        <param argument="--database" type="data" format="fasta" optional="True"
             label="Specify the database to use for this search" help="Can be a named protk database or the path to a fasta file"/>
 
         <param name="nooccam" type="boolean" label="Don't apply Occam's razor" help="When selected no attempt will be made to derive the simplest protein list explaining observed peptides" truevalue="--no-occam" falsevalue=""/>

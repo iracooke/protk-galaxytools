@@ -1,8 +1,9 @@
 <tool id="protxml_and_pepxml_to_tabular" name="PepXML and ProtXML to Table" version="1.1.1">
     <description>Converts a pepXML/ProtXML file to a tab delimited text file</description>
-    <requirements>
-        <requirement type="package" version="1.4.4a">protk</requirement>
-    </requirements>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
     <command>
     #if $input_file.ext == 'protxml'
         protxml_to_table.rb

@@ -1,8 +1,9 @@
 <tool id="proteomics_search_peptide_prophet_1" name="Peptide Prophet" version="1.1.1">
     <description>Calculate Peptide Prophet statistics on search results</description>
-    <requirements>
-        <requirement type="package" version="1.4.4a">protk</requirement>
-    </requirements>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
     <command detect_errors="aggressive">
     <![CDATA[
         export HOME=`pwd` &&
@@ -31,7 +32,9 @@
             #if str($experiment_label).strip():
                 --experiment-label '$experiment_label'
             #end if
-            --database '$database'
+            #if $database:
+                --database '$database'
+            #end if
             --p-thresh $p_thresh
             --threads "\${GALAXY_SLOTS:-12}"
     ]]>
@@ -39,7 +42,7 @@
     <inputs>
         <param name="input_file" type="data" format="pepxml,raw_pepxml"
             label="Raw Search Results" help="These files will typically be outputs from omssa or xtandem search tools"/>
-        <param argument="--database" type="data" format="fasta"
+        <param argument="--database" type="data" format="fasta" optional="True"
             label="Specify the database to use for this search" help="Can be a named protk database or the path to a fasta file"/>
 
         <param argument="--glyco" type="boolean" label="Expect true positives to have a glycocapture motif" truevalue="--glyco" falsevalue=""/>

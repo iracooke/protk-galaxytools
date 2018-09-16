@@ -1,8 +1,9 @@
 <tool id="proteomics_search_interprophet_1" name="InterProphet" version="1.1.1">
     <description>Combine Peptide Prophet results from multiple search engines</description>
-    <requirements>
-        <requirement type="package" version="1.4.4a">protk</requirement>
-    </requirements>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
     <command detect_errors="aggressive">
 <![CDATA[
         export XML_ONLY="true";
