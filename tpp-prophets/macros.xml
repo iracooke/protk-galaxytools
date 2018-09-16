@@ -1,0 +1,8 @@
+<macros>
+    <xml name="requirements">
+        <requirements>
+            <requirement type="package" version="1.4.4a">protk</requirement>
+            <yield/>
+        </requirements>
+    </xml>
+</macros>
