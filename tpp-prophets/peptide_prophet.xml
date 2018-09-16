@@ -62,7 +62,8 @@
         <param name="p_thresh" help="Peptides scoring less than this value are discarded" type="float" value="0.05" min="0" max="1" label="Probability Threshold"/>
     </inputs>
     <outputs>
-        <data name="output" from_work_dir="peptide_prophet_output.pep.xml" format="peptideprophet_pepxml"/>
+        <data name="output" from_work_dir="peptide_prophet_output.pep.xml" format="peptideprophet_pepxml"
+            label="peptide_prophet.${input_file.display_name}.pep.xml" />
     </outputs>
     <tests>
         <test>
