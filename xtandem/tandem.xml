@@ -164,7 +164,7 @@
         <param name="allow_multi_isotope_search" type="boolean" label="Allow multi-isotope search" help="This allows peptide candidates in windows around -1 Da and -2 Da from the acquired mass to be considered. Only applicable when the minus/plus window above is set to less than 0.5 Da. Good for accurate-mass instruments for which the reported precursor mass is not corrected to the monoisotopic mass." truevalue="--multi-isotope-search" falsevalue=""/>
     </inputs>
     <outputs>
-        <data format="tandem" name="output" metadata_source="input_file" label="X!Tandem_vs_${database.dbkey if $database.has_key('dbkey') else $database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}.tandem"/>
+        <data format="tandem" name="output" metadata_source="input_file" label="X!Tandem_vs_${database.fasta_file.display_name}.${input_file.display_name}.${input_file.display_name}.tandem"/>
     </outputs>
     <tests>
         <!-- Just test that the tool runs and produces vaguely correct output -->
